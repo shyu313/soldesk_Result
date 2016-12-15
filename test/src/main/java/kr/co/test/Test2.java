@@ -69,16 +69,18 @@ public class Test2 {
 			Document doc = Jsoup.parse(sb.toString());
 			// System.out.println(doc.select("div.col-md-8"));
 			try {
-				String content = doc.select("div.col-md-8").toString();
+				String content = doc.select("div.col-md-8").toString(); // 제목, 가사 부분
 				String[] carray = content.split(">");
-				String subject = carray[2].substring(0, carray[2].length() - 4);
-				String[] sarray = doc.select("div.col-md-4").toString().split(">");
-				BufferedWriter out = new BufferedWriter(new FileWriter(no+ " - " + subject + ".txt"));
+				String subject = carray[2].substring(0, carray[2].length() - 4); // 제목 분리
+				String[] sarray = doc.select("div.col-md-4").toString().split(">"); // 가수 부분 분리
+				BufferedWriter out = new BufferedWriter(new FileWriter(no+ " - " + subject + ".txt")); // 출력파일 만들기 : 번호 - 제목.txt
+				// 출력파일 내용
 				out.write("제목 : " + subject);
 				out.newLine(); 
 				out.write("가수 : " + sarray[1].substring(3, sarray[1].length() - 7));
 				out.newLine();
 				for (int i = 6; i < carray.length; i++) {
+					// 가사
 					out.write(carray[i].substring(0, carray[i].length() - 7));
 					out.newLine();
 				} 
