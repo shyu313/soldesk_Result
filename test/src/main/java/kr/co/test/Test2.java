@@ -90,7 +90,7 @@ public class Test2 {
 			}
 
 			// 참고 - Jsoup에서 제공하는 Connect 처리
-			Document doc2 = Jsoup.connect("http://finance.naver.com/item/coinfo.nhn?code=045510&target=finsum_more").get();
+			//Document doc2 = Jsoup.connect("http://finance.naver.com/item/coinfo.nhn?code=045510&target=finsum_more").get();
 			//System.out.println(doc2.data());
 		}
 		// 12. 얼마나 걸렸나 찍어보자
