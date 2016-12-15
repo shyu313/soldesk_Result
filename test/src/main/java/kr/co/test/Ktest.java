@@ -1,8 +1,10 @@
 package kr.co.test;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,7 +35,7 @@ public class Ktest {
 		
 		
 		
-		for(int no=1;no<=5;no++){
+		for(int no=1;no<=2;no++){
 		// 2. 가져올 HTTP 주소 세팅
 	    HttpPost http = new HttpPost("http://gasazip.com/"+no);
 
@@ -70,6 +72,40 @@ public class Ktest {
 	    
 	    
 	    System.out.println(doc.select("div.col-md-8"));
+	    String gasa = doc.select("div.col-md-8").
+	    
+	    
+	    /*
+	 // 파일 출력하기
+	 		try {
+	 			String fileName="D:/java0802/song.txt";
+	 			// 출력 파일이 없으면 생성
+	 			// append: true 추가, false 겹쳐쓰기(overwrite)
+	 			FileWriter fw=new FileWriter(fileName,false);
+	 			PrintWriter out=new PrintWriter(fw, true);  // true 버퍼 클리어
+	 			out.println(doc.select("div.col-md-8"));
+
+	 			out.close();
+	 			fw.close();
+	 			System.out.println("데이터 파일 생성 완료!!");
+	 			
+	 		}catch(Exception e){
+	 			System.out.println("파일 읽기 실패!!  "+e);
+	 		}
+	    */
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	    
 	    // 참고 - Jsoup에서 제공하는 Connect 처리
 	    Document doc2 = Jsoup.connect("http://finance.naver.com/item/coinfo.nhn?code=045510&target=finsum_more").get();

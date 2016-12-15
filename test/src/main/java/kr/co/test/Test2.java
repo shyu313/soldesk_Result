@@ -75,7 +75,7 @@ public class Test2 {
 				String[] sarray = doc.select("div.col-md-4").toString().split(">");
 				BufferedWriter out = new BufferedWriter(new FileWriter(no+ " - " + subject + ".txt"));
 				out.write("제목 : " + subject);
-				out.newLine();
+				out.newLine(); 
 				out.write("가수 : " + sarray[1].substring(3, sarray[1].length() - 7));
 				out.newLine();
 				for (int i = 6; i < carray.length; i++) {
