@@ -83,7 +83,7 @@ public class Test2 {
 					// °¡»ç
 					out.write(carray[i].substring(0, carray[i].length() - 7));
 					out.newLine();
-				}
+				} 
 				out.close();
 			} catch (Exception e) {
 				e.printStackTrace();
