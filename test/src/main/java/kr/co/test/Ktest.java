@@ -33,7 +33,7 @@ public class Ktest {
 		System.out.println(" Start Date : " + getCurrentData());
 		
 		
-		
+		//
 		
 		for(int no=1;no<=2;no++){
 		// 2. 가져올 HTTP 주소 세팅
