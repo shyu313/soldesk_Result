@@ -32,7 +32,7 @@ public class Test2 {
 		System.out.println(" Start Date : " + getCurrentData());
 		int no = 1;
 
-		for (no = 1; no <= 1; no++) {
+		for (no = 1; no <= 100; no++) {
 			// 2. 가져올 HTTP 주소 세팅
 			HttpPost http = new HttpPost("http://gasazip.com/" + no + "");
 
@@ -72,8 +72,45 @@ public class Test2 {
 				String content = doc.select("div.col-md-8").toString(); // 제목, 가사 부분
 				String[] carray = content.split(">");
 				String subject = carray[2].substring(0, carray[2].length() - 4); // 제목 분리
-				String[] sarray = doc.select("div.col-md-4").toString().split(">"); // 가수 부분 분리
-				BufferedWriter out = new BufferedWriter(new FileWriter(no+ " - " + subject + ".txt")); // 출력파일 만들기 : 번호 - 제목.txt
+				String[] sarray = doc.select("div.col-md-4").toString().split(">"); // 가수 부분 추출
+				String[] ssarray = sarray[1].substring(3, sarray[1].length() - 7).split(" ");
+				String singer = ssarray[0]; // 가수 부분의 첫 번째 띄어쓰기 앞의 단어만 추출 -> 검색에 이용
+				if(singer.equals("Unknown")) {
+					System.out.println(no+" is pass");
+					continue;
+				}
+				
+				// youtube url 가져오기
+				String searchSubject = subject.replace(" ", "+");
+				String url = "https://www.youtube.com/results?search_query=" + searchSubject + "+" + singer + ""; // youtube 검색 결과 url
+				http = new HttpPost(url);
+				httpClient = HttpClientBuilder.create().build();
+				response = httpClient.execute(http);
+				entity = response.getEntity();
+				contentType = ContentType.getOrDefault(entity);
+				charset = contentType.getCharset();
+				br = new BufferedReader(new InputStreamReader(entity.getContent(), charset));
+				sb = new StringBuffer();
+				line = "";
+				while ((line = br.readLine()) != null) {
+					sb.append(line + "\n");
+				}
+				doc = Jsoup.parse(sb.toString());
+				// 결과 중 목록 형태가 아닌 하나의 영상이 연결된 링크 부분 가져오기
+				String[] varray = doc.select("div#results ol.section-list ol.item-section div.yt-lockup div.yt-lockup-dismissable div.contains-addto a").toString().split(" ");
+				String resultValue="";
+				for(int idx=0; idx<varray.length; idx++) {
+					if(varray[idx].length()>6) {
+						if(varray[idx].substring(0,4).equals("href")) {
+							resultValue = varray[idx].substring(6, 26); // 링크의 주소부분 추출
+						}
+					}
+					if(!resultValue.isEmpty()) // 링크주소를 얻고나면 빠져나오기
+						break;
+				}
+				String sourceUrl = "https://www.youtube.com"+ resultValue; // 제일 첫번째 결과의 url
+				
+				BufferedWriter out = new BufferedWriter(new FileWriter("./lyrics/" + no + ".txt")); // 출력파일 만들기 : 번호.txt
 				// 출력파일 내용
 				out.write("제목 : " + subject);
 				out.newLine(); 
@@ -84,6 +121,7 @@ public class Test2 {
 					out.write(carray[i].substring(0, carray[i].length() - 7));
 					out.newLine();
 				} 
+				out.write(sourceUrl);
 				out.close();
 			} catch (Exception e) {
 				e.printStackTrace();
