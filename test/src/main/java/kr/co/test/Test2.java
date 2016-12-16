@@ -51,8 +51,7 @@ public class Test2 {
 			ContentType contentType = ContentType.getOrDefault(entity);
 			Charset charset = contentType.getCharset();
 
-			// 7. DOM 데이터를 한 줄씩 읽기 위해 Reader에 담음 (InputStream / Buffered 중
-			// 선택은 개인취향)
+			// 7. DOM 데이터를 한 줄씩 읽기 위해 Reader에 담음 (InputStream / Buffered 중 선택은 개인취향)
 			BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent(), charset));
 
 			// 8. 가져온 DOM 데이터를 담기위한 그릇
@@ -64,25 +63,17 @@ public class Test2 {
 				sb.append(line + "\n");
 			}
 
-			// 10. 가져온 DOM을 보자
-			// System.out.println(sb.toString());
-
 			// 11. Jsoup으로 파싱해보자.
 			Document doc = Jsoup.parse(sb.toString());
-			// StringBuffer str = new StringBuffer();
-
-			// System.out.println(doc.select("div.col-md-8"));
+			
 			try {
-				//String content = doc.select("div.col-md-8").toString(); // 제목, 가사 부분
-				//Elements contents = doc.select("div.col-md-8"); // 제목, 가사 부분
-
 				String subject = doc.select("div.col-md-8").get(0).text(); 	// 제목
 				String lyrics = doc.select("div.col-md-8").get(1).text(); 	// 가사
 				String metadata = doc.select("div.col-md-4").get(0).text();	// 가수
 				String singer = metadata.split(" ")[0].toString();
 				String album ="";
 				
-				if(metadata.contains("집")){									// 앨범 
+				if(metadata.contains("집")){								// 앨범 
 					album = metadata.substring(metadata.indexOf(":")+2, metadata.indexOf("집")+1);	// 공백제외
 				}
 				
@@ -91,9 +82,6 @@ public class Test2 {
 					continue;
 				}
 				// 가사집 크롤링 종료 
-				
-				
-				
 				
 				// youtube url 가져오기 (*함수형으로)
 				String searchSubject = subject.replace(" ", "+");
@@ -140,16 +128,9 @@ public class Test2 {
 					if (!resultValue.isEmpty()) // 링크주소를 얻고나면 빠져나오기
 						break;
 				}*/
-				String sourceUrl = "https://www.youtube.com"; // 제일
-																			// 첫번째
-																			// 결과의
-																			// url
+				String sourceUrl = "https://www.youtube.com"; 
 
-				BufferedWriter out = new BufferedWriter(new FileWriter("./lyrics/" + no + ".txt")); // 출력파일
-																									// 만들기
-																									// :
-																									// 번호.txt
-				// 출력파일 내용
+				BufferedWriter out = new BufferedWriter(new FileWriter("./lyrics/" + no + ".txt")); // 출력파일 만들기 : 번호.txt
 				out.write("제목 : " + subject);
 				out.newLine();
 				out.write("가수 : " + singer);
