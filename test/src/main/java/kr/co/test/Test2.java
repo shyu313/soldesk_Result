@@ -106,7 +106,7 @@ public class Test2 {
 				charset = contentType.getCharset();
 				br = new BufferedReader(new InputStreamReader(entity.getContent(), charset));
 				sb = new StringBuffer();
-				line = "";
+				line = ""; 
 				while ((line = br.readLine()) != null) {
 					sb.append(line + "\n");
 				}
