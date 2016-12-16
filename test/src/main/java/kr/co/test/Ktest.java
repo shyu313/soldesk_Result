@@ -72,7 +72,7 @@ public class Ktest {
 	    
 	    
 	    System.out.println(doc.select("div.col-md-8"));
-	    String gasa = doc.select("div.col-md-8").
+	    String gasa = doc.select("div.col-md-8").toString();
 	    
 	    
 	    /*
@@ -93,27 +93,7 @@ public class Ktest {
 	 			System.out.println("파일 읽기 실패!!  "+e);
 	 		}
 	    */
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    // 참고 - Jsoup에서 제공하는 Connect 처리
-	    Document doc2 = Jsoup.connect("http://finance.naver.com/item/coinfo.nhn?code=045510&target=finsum_more").get();
-//	    System.out.println(doc2.data());
-	    
-	    
 		}
-	    
 	    
 	    // 12. 얼마나 걸렸나 찍어보자
 	    System.out.println(" End Date : " + getCurrentData());

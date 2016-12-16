@@ -106,7 +106,7 @@ public class Test2 {
 						}
 					}
 					if(!resultValue.isEmpty()) // 링크주소를 얻고나면 빠져나오기
-						break;
+						break; 
 				}
 				String sourceUrl = "https://www.youtube.com"+ resultValue; // 제일 첫번째 결과의 url
 				
