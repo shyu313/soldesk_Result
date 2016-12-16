@@ -32,7 +32,7 @@ public class Test2 {
 		System.out.println(" Start Date : " + getCurrentData());
 		int no = 1;
 
-		for (no = 1; no <= 100; no++) {
+		for (no = 1; no <= 1; no++) {
 			// 2. 가져올 HTTP 주소 세팅
 			HttpPost http = new HttpPost("http://gasazip.com/" + no + "");
 
@@ -75,14 +75,28 @@ public class Test2 {
 				String[] sarray = doc.select("div.col-md-4").toString().split(">"); // 가수 부분 추출
 				String[] ssarray = sarray[1].substring(3, sarray[1].length() - 7).split(" ");
 				String singer = ssarray[0]; // 가수 부분의 첫 번째 띄어쓰기 앞의 단어만 추출 -> 검색에 이용
+				// 예외처리
 				if(singer.equals("Unknown")) {
 					System.out.println(no+" is pass");
 					continue;
 				}
+				// 앨범 '~집' 이란 단어가 있는 경우 album 값으로 저장
+				String album="";
+				for(int idx=0; idx<ssarray.length; idx++) {
+					if(ssarray[idx].equals("앨범")) {
+						for(int i=idx+2; i<ssarray.length; i++) {
+							if(ssarray[i].substring(ssarray[i].length()-1, ssarray[i].length()).equals("집")) {
+								album=ssarray[i];
+								break;
+							}
+						}
+						break;
+					}
+				}
 				
-				// youtube url 가져오기
+				// youtube url 가져오기 (*함수형으로)
 				String searchSubject = subject.replace(" ", "+");
-				String url = "https://www.youtube.com/results?search_query=" + searchSubject + "+" + singer + ""; // youtube 검색 결과 url
+				String url = "https://www.youtube.com/results?search_query=" + searchSubject + "+" + singer + "+" + album; // youtube 검색 결과 url
 				http = new HttpPost(url);
 				httpClient = HttpClientBuilder.create().build();
 				response = httpClient.execute(http);
@@ -97,7 +111,7 @@ public class Test2 {
 				}
 				doc = Jsoup.parse(sb.toString());
 				// 결과 중 목록 형태가 아닌 하나의 영상이 연결된 링크 부분 가져오기
-				String[] varray = doc.select("div#results ol.section-list ol.item-section div.yt-lockup div.yt-lockup-dismissable div.contains-addto a").toString().split(" ");
+				String[] varray = doc.select("div.contains-addto a").toString().split(" "); // contains-addto - 음악 재생 페이지
 				String resultValue="";
 				for(int idx=0; idx<varray.length; idx++) {
 					if(varray[idx].length()>6) {
@@ -126,10 +140,6 @@ public class Test2 {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			// 참고 - Jsoup에서 제공하는 Connect 처리
-			//Document doc2 = Jsoup.connect("http://finance.naver.com/item/coinfo.nhn?code=045510&target=finsum_more").get();
-			//System.out.println(doc2.data());
 		}
 		// 12. 얼마나 걸렸나 찍어보자
 		System.out.println(" End Date : " + getCurrentData());
