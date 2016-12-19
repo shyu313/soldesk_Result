@@ -215,6 +215,9 @@ public class Test2 {
 			}
 		}
 		
+		// 가중치 계산, 기준 단어마다 +0.1
+		resultMap.size();	// 전체 열(단어 수)
+		resultMap.values().size();  // 전체 
 
 		
 		
