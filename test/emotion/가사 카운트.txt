@@ -1,0 +1,68 @@
+library(tm)
+library(KoNLP)
+library(wordcloud)
+library(stringi)
+library(Ruchardet)
+library(extrafont)
+library(ggplot2)
+library(corrplot)
+library(data.table)
+library(Hmisc)
+library(igraph)
+
+
+
+useSejongDic()
+
+# 사전에 없는 단어 추가
+mergeUserDic()
+
+
+sam_1_v <- readLines("combined.txt", encoding = detectFileEncoding("combined.txt"))
+
+
+# 각 줄에서 단어만 남기기
+data = sapply(sam_1_v, extractNoun, USE.NAMES = F)
+
+data = gsub("https", "", data)
+data = gsub("youtube", "", data)
+data = gsub("www", "", data)
+data = gsub("com", "", data)
+data = gsub("watch", "", data)
+data = gsub("the", "", data)
+data = gsub("of", "", data)
+data = gsub("Yo", "", data)
+data = gsub("in", "", data)
+data = gsub("is", "", data)
+data = gsub("of", "", data)
+data = gsub("to", "", data)
+data = gsub("it", "", data)
+data = gsub("ll", "", data)
+data = gsub("IT", "", data)
+data = gsub("가수", "", data)
+data = gsub("작사", "", data)
+data = gsub("작곡", "", data)
+data = gsub("day", "", data)
+data = gsub("니가", "", data)
+data = gsub("up", "", data)
+data = gsub("is", "", data)
+data = gsub("제목", "", data)
+
+
+
+
+undata = unlist(data)
+
+data = Filter(function(x){nchar(x)>=1},undata)
+
+write(unlist(data),"new_data.txt")
+
+table_data = read.table("new_data.txt")
+
+wordcount = table(table_data)
+
+wordcloud(names(wordcount),freq=wordcount,scale=c(5,1),
+          rot.per=0.25,min.freq=1,random.order=F,random.color=T,
+          colors=brewer.pal(9,"Set1"))
+
+wordcont = sort(wordcount,decreasing = T)
