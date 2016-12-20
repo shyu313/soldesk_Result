@@ -189,7 +189,8 @@ public class Test2 {
 		
 		//해쉬맵으로 바꾸자
 		/*
-		 	알고리즘 
+		 	알고리즘 은 개뿔, 이것은 뻘짓거리였다. 
+		 	해쉬맵 필요없이 가중치만 저장해두면 됨
 		 	Map1(key, Map2(key2,0또는1))
 		 	Map1 : resultMap
 		 	Map2 : compareMap
@@ -197,17 +198,23 @@ public class Test2 {
 		 	key2 : 검색결과 타이틀
 		 	
 		 */
-		HashMap <String, Integer> compareMap= null;
-		HashMap <String, HashMap > resultMap = null;
+		HashMap <String, Integer> compareMap= new HashMap<String, Integer>();
+		HashMap <String, HashMap > resultMap = new HashMap<String, HashMap>();
+		
+		int weight[] = new int[atag.size()];	// 각 타이틀의 가중치 결과
 		
 		for(int index=0; index < atag.size(); index++) {			// 태그 내에 비교대상 제목을 찾음 
+			
 			Element element = atag.get(index);
 			String compareTitle = element.attr("title");			// 비교 대상의 제목
+			weight[index] = 0; 										// 가중치 초기값
 			
-			for(index=0; index<compareSource.length; index++){		
-				String resultTitleWord = compareSource[index];		// 비교 기준 단어
+			for(int index2=0; index2<compareSource.length; index2++){		
+				String resultTitleWord = compareSource[index2];		// 비교 기준 단어
+				// 가중치 합산
 				if( compareTitle.contains(resultTitleWord)){		
 				compareMap.put(compareTitle, 1);					// 비교 대상 제목내에 같은 단어를 포함하는 경우
+				weight[index] += 1;
 				}else{
 				compareMap.put(compareTitle, 0);					// 포함하지 않는 경우
 				}
@@ -215,15 +222,12 @@ public class Test2 {
 			}
 		}
 		
-		// 가중치 계산, 기준 단어마다 +0.1
-		resultMap.size();	// 전체 열(단어 수)
-		resultMap.values().size();  // 전체 
-
-		
-		
-
-		
-		
+		System.out.println("Result Map  제목 : " +resultMap.keySet() );
+		System.out.println("Compare Map 제목목록 : " +compareMap.keySet());
+		// 단어에 해당하는 각 목록의 가중치 합산+0.1
+		for(int index=0; index<weight.length; index++){
+			System.out.println(index + " 가중치 결과 : " + weight[index]);
+		}
 		return href;
 	}
 	
