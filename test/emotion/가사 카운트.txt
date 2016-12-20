@@ -1,4 +1,3 @@
-library(tm)
 library(KoNLP)
 library(wordcloud)
 library(stringi)
@@ -24,7 +23,14 @@ sam_1_v <- readLines("combined.txt", encoding = detectFileEncoding("combined.txt
 # 각 줄에서 단어만 남기기
 data = sapply(sam_1_v, extractNoun, USE.NAMES = F)
 
-data = gsub("https", "", data)
+
+undata = unlist(data)
+
+data = Filter(function(x){nchar(x)>=2},undata)
+
+
+data = gsub('\\d+',"",data) # 숫자 제거
+data = gsub('\\.',"",data) # 점(.) 제거
 data = gsub("youtube", "", data)
 data = gsub("www", "", data)
 data = gsub("com", "", data)
@@ -51,9 +57,7 @@ data = gsub("제목", "", data)
 
 
 
-undata = unlist(data)
 
-data = Filter(function(x){nchar(x)>=1},undata)
 
 write(unlist(data),"new_data.txt")
 
