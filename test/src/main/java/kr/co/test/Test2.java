@@ -83,7 +83,7 @@ public class Test2 {
 					album = metadata.substring(metadata.indexOf(":")+2, metadata.indexOf("집")+1);	// 공백제외
 					album = album.replace(" ", "+");
 				}
-				
+			
 				if (metadata.contains("Unknown")) {							// 가수가 없는 경우 예외처리
 					System.out.println(no + " is pass");
 					continue;
