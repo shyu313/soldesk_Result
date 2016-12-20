@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -24,6 +25,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import kr.co.utility.Crawler;
+
 public class Test2 {
 
 	public static String getCurrentData() {
@@ -35,7 +38,8 @@ public class Test2 {
 		// 1. 가져오기전 시간 찍기
 		System.out.println(" Start Date : " + getCurrentData());
 		int no = 1;
-
+		
+		// 오차 8개 : 112,115,162,244,246,365,386,466 => 검색이 특수한 경우 : 앨범, 번호, 피처링 등등 
 		for (no = 1; no <= 1; no++) {
 			// 2. 가져올 HTTP 주소 세팅
 			HttpPost http = new HttpPost("http://gasazip.com/" + no + "");
@@ -69,7 +73,7 @@ public class Test2 {
 			Document doc = Jsoup.parse(sb.toString());
 			
 			try {
-				String subject = doc.select("div.col-md-8").get(0).text(); 	// 제목
+				String subject = doc.select("div.col-md-8").get(0).text().replace("'","").replace("<","").replace(">","").replace("`","").replace("*",""); 	// 제목
 				String lyrics = doc.select("div.col-md-8").get(1).text(); 	// 가사
 				String metadata = doc.select("div.col-md-4").get(0).text();	// 가수
 				String singer = metadata.split(" ")[0].toString();
@@ -85,8 +89,6 @@ public class Test2 {
 					continue;
 				}
 				// 가사집 크롤링 종료 
-				
-			
 				
 				
 /*
@@ -109,26 +111,25 @@ public class Test2 {
 
 				// youtube url 가져오기 (*메소드 형태로 구현)
 				String searchSubject = subject.replace(" ", "+");				// 검색어에서 공백을 +로 
-				String compare="";
+				String compare=singer+" ";										// 비교기준에 가수 추가
 				// 손보자... 
 				// 비교할 내용을 Utility class 에 스트링 메소드로 추가 
+				
 				//  1. 제목앞에 숫자가 붙는 경우
 				int index = subject.indexOf(".");	
 				if(index==1) {	
 					searchSubject = "0"+ searchSubject.replace(".", "+");
-					compare = searchSubject.substring(index+1, searchSubject.length()).replace("+", " ").toLowerCase().trim();
+					compare += searchSubject.substring(index+1, searchSubject.length()).replace("+", " ").toLowerCase().trim();
 				} else if(index==2) {
-					compare = searchSubject.substring(index+1, searchSubject.length()).replace("+", " ").toLowerCase().trim();
+					compare += searchSubject.substring(index+1, searchSubject.length()).replace("+", " ").toLowerCase().trim();
 				} else {
-					compare = subject;
+					compare += subject.toLowerCase();
 				}
 				
 				// youtube 링크 가져오기
 				System.out.println(no);
-				String href = searchYoutube(searchSubject, singer, compare);
-				if(href.isEmpty()) {
-					href = searchYoutube(searchSubject, singer, album, compare);
-				}
+				String href = searchYoutube(searchSubject, singer,album, compare);
+				
 				if(href.isEmpty()) {
 					System.out.println("https://www.youtube.com/results?search_query=" + searchSubject + "+" + singer + "+" + album);
 				}
@@ -165,100 +166,68 @@ public class Test2 {
 	}
 	
 	// 검색어에 앨범이 없는 경우
-	public static String searchYoutube(String subject, String singer, String compare) throws ClientProtocolException, IOException {
-		String href="";
-		String url = "https://www.youtube.com/results?search_query=" + subject + "+" + singer; // youtube 검색 결과 url
-		HttpPost http = new HttpPost(url);
-		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-		CloseableHttpResponse response = httpClient.execute(http);
-		HttpEntity entity = response.getEntity();
-		ContentType contentType = ContentType.getOrDefault(entity);
-		Charset charset = contentType.getCharset();
-		BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent(), charset));
-		StringBuffer sb = new StringBuffer();
-		String line = ""; 
-		while ((line = br.readLine()) != null) {
-			sb.append(line + "\n");
+	public static String searchYoutube(String subject, String singer, String album, String compare) throws ClientProtocolException, IOException {
+		String url="";
+		if(album.equals("")){
+			url = "https://www.youtube.com/results?search_query=" + subject + "+" + singer; 	// youtube 검색 결과 url
+		}else{
+			url = "https://www.youtube.com/results?search_query=" + subject + "+" + singer + "+" + album;
 		}
-		Document doc = Jsoup.parse(sb.toString());
-		
-		// comparSource 와 정확도 측정 시작
+		Document doc= Crawler.crawl(url);
 		Elements atag = doc.select("h3.yt-lockup-title a");
-		// 2. 제목이 틀린 경우 정확도 측정
-		String compareSource[] = compare.split(" ");
+		String playHrefs[] = new String[atag.size()];				// 재생목록 링크
+		String playTitle[] = new String[atag.size()];
 		
-		//해쉬맵으로 바꾸자
-		/*
-		 	알고리즘 은 개뿔, 이것은 뻘짓거리였다. 
-		 	해쉬맵 필요없이 가중치만 저장해두면 됨
-		 	Map1(key, Map2(key2,0또는1))
-		 	Map1 : resultMap
-		 	Map2 : compareMap
-		 	key1 : 비교할 타이틀
-		 	key2 : 검색결과 타이틀
-		 	
-		 */
-		HashMap <String, Integer> compareMap= new HashMap<String, Integer>();
-		HashMap <String, HashMap > resultMap = new HashMap<String, HashMap>();
 		
-		int weight[] = new int[atag.size()];	// 각 타이틀의 가중치 결과
-		
+		// 2. 제목의 정확도 측정, 가수 까지 비교해야한다.
+		// #73 신의 계시(19금 등장) : https://www.youtube.com/watch?v=xJNKkhaaRGM&list=PLte5SNR6rfS3vXAtzBo8yMnaS2FokhNSN
+		String compareSource[] = compare.split(" "); 
+		int weights[] = new int[atag.size()];						// 각 타이틀의 가중치 결과
 		for(int index=0; index < atag.size(); index++) {			// 태그 내에 비교대상 제목을 찾음 
-			
 			Element element = atag.get(index);
-			String compareTitle = element.attr("title");			// 비교 대상의 제목
-			weight[index] = 0; 										// 가중치 초기값
+			String compareTitle = element.attr("title").toLowerCase();	// 비교 대상의 제목, 영어의 경우 소문자로
+			playTitle[index] = element.attr("title");				// 재생링크 제목 저장
+			playHrefs[index] = element.attr("href");				// 재생링크 목록 저장
 			
-			for(int index2=0; index2<compareSource.length; index2++){		
-				String resultTitleWord = compareSource[index2];		// 비교 기준 단어
-				// 가중치 합산
-				if( compareTitle.contains(resultTitleWord)){		
-				compareMap.put(compareTitle, 1);					// 비교 대상 제목내에 같은 단어를 포함하는 경우
-				weight[index] += 1;
-				}else{
-				compareMap.put(compareTitle, 0);					// 포함하지 않는 경우
+			weights[index] = 0; 									// 가중치 초기값
+			for(String resultTitleWord : compareSource){			// 비교 기준 단어
+				if( compareTitle.contains(resultTitleWord)){		// 가중치 합산
+					weights[index] += 1;
 				}
-				resultMap.put(resultTitleWord, compareMap);			// 비교기준 단어를 맵에 저장
 			}
 		}
-		
-		System.out.println("Result Map  제목 : " +resultMap.keySet() );
-		System.out.println("Compare Map 제목목록 : " +compareMap.keySet());
-		// 단어에 해당하는 각 목록의 가중치 합산+0.1
-		for(int index=0; index<weight.length; index++){
-			System.out.println(index + " 가중치 결과 : " + weight[index]);
+	
+		int maxWeight = weights[0];				// 초기값
+		int correct=0;					
+		int index=-1;							// 배열 0번째 부터 넣기위해 초기값 -1
+		for(int weight :weights){				// 최대값 구하기
+			index++;
+//			System.out.println(" 가중치 결과 : " + weight);
+			if(maxWeight < weight){				// 가중치가 같은 경우 가장 위의 제목을 가리킴	
+				maxWeight = weight;
+				correct = index;				// 가장 정확한 제목의 주소 인덱스
+			}
 		}
-		return href;
+		//System.out.println(playHrefs[correct]);
+		
+		return playHrefs[correct];					// 가중치 최대값의 제목 주소를 리턴
 	}
 	
 	// 검색어에 앨범이 있는 경우
-	public static String searchYoutube(String subject, String singer, String album, String compare) throws ClientProtocolException, IOException {
-		String href="";
-		String url = "https://www.youtube.com/results?search_query=" + subject + "+" + singer + "+" + album; // youtube 검색 결과 url
-		HttpPost http = new HttpPost(url);
-		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-		CloseableHttpResponse response = httpClient.execute(http);
-		HttpEntity entity = response.getEntity();
-		ContentType contentType = ContentType.getOrDefault(entity);
-		Charset charset = contentType.getCharset();
-		BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent(), charset));
-		StringBuffer sb = new StringBuffer();
-		String line = ""; 
-		while ((line = br.readLine()) != null) {
-			sb.append(line + "\n");
-		}
-		Document doc = Jsoup.parse(sb.toString());
-		
-		Elements atag = doc.select("h3.yt-lockup-title a");
-		for(Element element: atag) {
-			if(element.attr("title").toLowerCase().contains(compare)) {
-				System.out.println("요청 타이틀 : " + compare );
-				System.out.println("응답 타이틀 : " + element.attr("title"));
-				href = element.attr("href");
-				break;
-			}
-		}
-		
-		return href;
-	}
+//	public static String searchYoutube(String subject, String singer, String album, String compare) throws ClientProtocolException, IOException {
+//		String href="";
+//		String url = "https://www.youtube.com/results?search_query=" + subject + "+" + singer + "+" + album; // youtube 검색 결과 url
+//		Document doc = Crawler.crawl(url);
+//		Elements atag = doc.select("h3.yt-lockup-title a");
+//		for(Element element: atag) {
+//			if(element.attr("title").toLowerCase().contains(compare)) {
+//				System.out.println("요청 타이틀 : " + compare );
+//				System.out.println("응답 타이틀 : " + element.attr("title"));
+//				href = element.attr("href");
+//				break;
+//			}
+//		}
+//		
+//		return href;
+//	}
 }
