@@ -62,7 +62,7 @@ public class Test2 {
 
 			// 8. 가져온 DOM 데이터를 담기위한 그릇
 			StringBuffer sb = new StringBuffer();
-
+ 
 			// 9. DOM 데이터 가져오기
 			String line = "";
 			while ((line = br.readLine()) != null) {
