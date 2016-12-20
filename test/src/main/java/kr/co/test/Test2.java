@@ -59,7 +59,7 @@ public class Test2 {
 
 			// 7. DOM 데이터를 한 줄씩 읽기 위해 Reader에 담음 (InputStream / Buffered 중 선택은 개인취향)
 			BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent(), charset));
-
+ 
 			// 8. 가져온 DOM 데이터를 담기위한 그릇
 			StringBuffer sb = new StringBuffer();
  
