@@ -78,7 +78,7 @@ public class Test2 {
 				String metadata = doc.select("div.col-md-4").get(0).text();	// 가수
 				String singer = metadata.split(" ")[0].toString();
 				String album ="";
-				
+				 
 				if(metadata.contains("집")){								// 앨범 
 					album = metadata.substring(metadata.indexOf(":")+2, metadata.indexOf("집")+1);	// 공백제외
 					album = album.replace(" ", "+");
