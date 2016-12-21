@@ -37,10 +37,19 @@ public class Test2 {
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		// 1. 가져오기전 시간 찍기
 		System.out.println(" Start Date : " + getCurrentData());
-		int no = 1;
-		
+		int noStart = 10159;					// 가사 크롤링 시작 번호
+		int noFinish = 10166;					// 가사 크롤링 끝 번호
 		// 오차 8개 : 112,115,162,244,246,365,386,466 => 검색이 특수한 경우 : 앨범, 번호, 피처링 등등 
-		for (no = 1; no <= 1; no++) {
+		// 특수 문자 에러 : 10029, 10078, 10159, 10165 
+		
+		// 디버깅을 위한 Error Report 작성 
+		System.out.println("Error Report Open");
+		int errorNo=1, passedNo=1;																																	// 에러 개수, 패스된 가사 카운트
+		BufferedWriter errorOut = new BufferedWriter(new FileWriter("./errorReport/Exception Lyrics_"+ noStart+"~"+noFinish+"_range.txt"));				// 에러 리포트 문서 
+		BufferedWriter passedOut = new BufferedWriter(new FileWriter("./errorReport/Passed Lyrics_"+ noStart+"~"+noFinish+"_range.txt"));		// 패스된 가사 리포트 문서 
+	
+		
+		for (int no = noStart; no <= noFinish; no++) {
 			// 2. 가져올 HTTP 주소 세팅
 			HttpPost http = new HttpPost("http://gasazip.com/" + no + "");
 
@@ -85,7 +94,11 @@ public class Test2 {
 				}
 			
 				if (metadata.contains("Unknown")) {							// 가수가 없는 경우 예외처리
-					System.out.println(no + " is pass");
+					System.out.println(no + " is pass. 문서에 저장합니다.");
+					passedOut.write("패스No."+passedNo+" / ");
+					passedOut.write("가사No." + no +" is passed");
+					passedOut.newLine();
+					passedNo++;
 					continue;
 				}
 				// 가사집 크롤링 종료 
@@ -149,6 +162,8 @@ public class Test2 {
 				String sourceUrl = "https://www.youtube.com" + href; 
 
 				BufferedWriter out = new BufferedWriter(new FileWriter("./lyrics/" + no + ".txt")); // 출력파일 만들기 : 번호.txt
+				
+				
 				out.write("제목 : " + subject);
 				out.newLine();
 				out.write("가수 : " + singer);
@@ -159,8 +174,20 @@ public class Test2 {
 				out.close();
 			} catch (Exception e) {
 				e.printStackTrace();
+				System.out.println("예외 발생! 문서에 저장합니다.");			// 디버깅을 위해 예외가일어나는 경우까지 모두 텍스트 파일로 저장
+				errorOut.write("에러No."+errorNo+" / ");
+				errorOut.write("가사No." + no);
+				errorOut.newLine();
+				errorOut.write(e.toString());
+				errorOut.newLine();
+				errorNo++;
 			}
+		
 		}
+		
+		System.out.println("Error Report Close");
+		errorOut.close();
+		passedOut.close();
 		// 12. 얼마나 걸렸나 찍어보자
 		System.out.println(" End Date : " + getCurrentData());
 	}
@@ -182,16 +209,16 @@ public class Test2 {
 		// 2. 제목의 정확도 측정, 가수 까지 비교해야한다.
 		// #73 신의 계시(19금 등장) : https://www.youtube.com/watch?v=xJNKkhaaRGM&list=PLte5SNR6rfS3vXAtzBo8yMnaS2FokhNSN
 		String compareSource[] = compare.split(" "); 
-		int weights[] = new int[atag.size()];						// 각 타이틀의 가중치 결과
-		for(int index=0; index < atag.size(); index++) {			// 태그 내에 비교대상 제목을 찾음 
+		int weights[] = new int[atag.size()];								// 각 타이틀의 가중치 결과
+		for(int index=0; index < atag.size(); index++) {				// 태그 내에 비교대상 제목을 찾음 
 			Element element = atag.get(index);
 			String compareTitle = element.attr("title").toLowerCase();	// 비교 대상의 제목, 영어의 경우 소문자로
-			playTitle[index] = element.attr("title");				// 재생링크 제목 저장
-			playHrefs[index] = element.attr("href");				// 재생링크 목록 저장
+			playTitle[index] = element.attr("title");							// 재생링크 제목 저장
+			playHrefs[index] = element.attr("href");						// 재생링크 목록 저장
 			
-			weights[index] = 0; 									// 가중치 초기값
-			for(String resultTitleWord : compareSource){			// 비교 기준 단어
-				if( compareTitle.contains(resultTitleWord)){		// 가중치 합산
+			weights[index] = 0; 											// 가중치 초기값
+			for(String resultTitleWord : compareSource){				// 비교 기준 단어
+				if( compareTitle.contains(resultTitleWord)){				// 가중치 합산
 					weights[index] += 1;
 				}
 			}
