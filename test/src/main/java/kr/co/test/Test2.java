@@ -28,7 +28,7 @@ import org.jsoup.select.Elements;
 import kr.co.utility.Crawler;
 
 public class Test2 {
-
+ 
 	public static String getCurrentData() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		return sdf.format(new Date());
