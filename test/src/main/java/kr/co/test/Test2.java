@@ -37,8 +37,9 @@ public class Test2 {
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		// 1. 가져오기전 시간 찍기
 		System.out.println(" Start Date : " + getCurrentData());
-		int noStart = 10159;					// 가사 크롤링 시작 번호
-		int noFinish = 10166;					// 가사 크롤링 끝 번호
+		// 15만개 도전 
+		int noStart = 12051;					// 가사 크롤링 시작 번호
+		int noFinish = 161000;					// 가사 크롤링 끝 번호
 		// 오차 8개 : 112,115,162,244,246,365,386,466 => 검색이 특수한 경우 : 앨범, 번호, 피처링 등등 
 		// 특수 문자 에러 : 10029, 10078, 10159, 10165 
 		
