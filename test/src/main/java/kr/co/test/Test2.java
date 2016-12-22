@@ -38,7 +38,7 @@ public class Test2 {
 		// 1. 가져오기전 시간 찍기
 		System.out.println(" Start Date : " + getCurrentData());
 		// 15만개 도전 
-		int noStart = 12051;					// 가사 크롤링 시작 번호
+		int noStart = 13981;					// 가사 크롤링 시작 번호
 		int noFinish = 161000;					// 가사 크롤링 끝 번호
 		// 오차 8개 : 112,115,162,244,246,365,386,466 => 검색이 특수한 경우 : 앨범, 번호, 피처링 등등 
 		// 특수 문자 에러 : 10029, 10078, 10159, 10165 
