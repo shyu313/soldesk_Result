@@ -1,0 +1,113 @@
+library(KoNLP)
+library(wordcloud)
+library(Ruchardet)
+library(WriteXLS) # 엑셀로 저장
+library(stringr)
+
+useSejongDic()
+useSystemDic()
+
+# 사전에 없는 단어 추가
+buildDictionary()
+
+
+
+
+sam_1_v <- readLines("lyrics.txt", encoding = detectFileEncoding("lyrics.txt"))
+
+# 영어 숫자 특수문자 다 빼야 bound안
+exword <- readLines("exceptionWord.txt", encoding = detectFileEncoding("exceptionWord.txt"))
+
+
+
+
+
+SPword = SimplePos22(exword[1:1000])
+SPword2 = SimplePos22(exword[18000:19000])
+SPword3 = SimplePos22(exword[length(exword)])
+
+strsplit(SPword[[1]][1],"+")
+SPword[[1]][1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 각 줄에서 단어만 남기기
+data = sapply(sam_1_v, extractNoun, USE.NAMES = F)
+
+
+SimplePos22("난  화가 몹시 나있어 도대체 더 참을수가 없어 널 하는 나를 두고 또다른 를 만날수가 있어 허 에 수가 나  너에게 걸어 있어 널 어떻게 쳐다봐야 이런저런 뿐인데 는 마 그 가 인지 해봐 이 아냐 그렇다면 을 내게 말해봐 너만을 해 차라리 떠난다고 내게 말해줘 오~ 너는 왜 오오오~ 너는 왜 도 모르는거야 너만을 향한 내 을 너는 왜 도 모르는거야 남은건 널 위한 뿐 난  뭐가 몰라 도대체 어떻게 그럴수가 있나 이 에 그럴수가 그 너만을 했었는데 너에게 어떻게 말을 꺼내볼까 이런저런 뿐인데 는 마 그 가 인지 해봐 이 아냐 그렇다면 을 내게 말해봐 너만을 해 차라리 떠난다고 내게 말해줘 너는 왜 오오오~ 너는 왜 도 모르는거야 이 돌 수는 없잖아 너는 왜 도 모르는거야 이 깊어만 가잖아")
+
+
+undata = unlist(data)
+
+# undata = SimplePos09(undata)
+
+
+# 2글자 이상 단어만
+data = Filter(function(x){nchar(x)>=2},undata)
+
+# data = data_back 백업
+
+# 필터
+data = gsub('\\d+',"",data) # 숫자 제거
+data = gsub('\\.',"",data) # 점(.) 제거
+data = gsub("[A-Za-z]","",data) # 영문 제거
+data = gsub("[あ-ン]","",data) # 일어 제거
+data = gsub("\\d+", "", data)   # 숫자 제거
+
+
+
+# 단어 파일만들기
+write(unlist(data),"new_data.txt")
+
+# 단어 파일 입력
+table_data = read.table("new_data.txt")
+
+# 테이블만들기
+wordcount = table(table_data)
+
+
+# 워드클라우드
+#wordcloud(names(wordcount),freq=wordcount,scale=c(5,1),
+ #         rot.per=0.25,min.freq=1,random.order=F,random.color=T,
+ #         colors=brewer.pal(9,"Set1"))
+
+#정렬
+wordcont = sort(wordcount,decreasing = T)
+
+# 상위 1000개
+head(wordcont,n=1000)
+
+# 텍스트로 저장하기
+write.table(head(wordcont,n=1000),'data.txt')
+
+
+
+#################
+Gsample <- readLines("combined.txt", encoding = detectFileEncoding("combined.txt"))
+Gsample = SimplePos22(Gsample)
+Gsample = gsub('\\d+',"",Gsample) # 숫자 제거
+Gsample = gsub('\\.',"",Gsample) # 점(.) 제거
+Gsample = gsub("[A-Za-z]","",Gsample) # 영문 제거
+Gsample = gsub("[あ-ン]","",Gsample) # 일어 제거
+Gsample = gsub("\\d+", "", Gsample)   # 숫자 제거
+write.table(Gsample,'gsample.txt')
+###########
+
+
+
+
+write.table(Gsample,'gsample.txt')
