@@ -28,28 +28,21 @@ import org.jsoup.select.Elements;
 import kr.co.utility.Crawler;
 
 public class Test2 {
- 
-	public static String getCurrentData() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-		return sdf.format(new Date());
-	}
-
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		// 1. 가져오기전 시간 찍기
 		System.out.println(" Start Date : " + getCurrentData());
-		// 15만개 도전 
 		int noStart = 36741;					// 가사 크롤링 시작 번호
 		int noFinish = 161000;					// 가사 크롤링 끝 번호
-		// 오차 8개 : 112,115,162,244,246,365,386,466 => 검색이 특수한 경우 : 앨범, 번호, 피처링 등등 
-		// 특수 문자 에러 : 10029, 10078, 10159, 10165 
 		
 		// 디버깅을 위한 Error Report 작성 
-		System.out.println("Error Report Open");
-		int errorNo=1, passedNo=1;																																	// 에러 개수, 패스된 가사 카운트
-		BufferedWriter errorOut = new BufferedWriter(new FileWriter("./errorReport/Exception Lyrics_"+ noStart+"~"+noFinish+"_range.txt"));				// 에러 리포트 문서 
-		BufferedWriter passedOut = new BufferedWriter(new FileWriter("./errorReport/Passed Lyrics_"+ noStart+"~"+noFinish+"_range.txt"));		// 패스된 가사 리포트 문서 
+		//System.out.println("Error Report Open");
+		//int errorNo=1, passedNo=1;																																	// 에러 개수, 패스된 가사 카운트
+		//BufferedWriter errorOut = new BufferedWriter(new FileWriter("./errorReport/Exception Lyrics_"+ noStart+"~"+noFinish+"_range.txt"));				// 에러 리포트 문서 
+		//BufferedWriter passedOut = new BufferedWriter(new FileWriter("./errorReport/Passed Lyrics_"+ noStart+"~"+noFinish+"_range.txt"));		// 패스된 가사 리포트 문서 
 	
 		
+		
+		// 누락된 가사만 크롤링 테스트하기
 		for (int no = noStart; no <= noFinish; no++) {
 			// 2. 가져올 HTTP 주소 세팅
 			HttpPost http = new HttpPost("http://gasazip.com/" + no + "");
@@ -95,33 +88,14 @@ public class Test2 {
 			
 				if (metadata.contains("Unknown")) {							// 가수가 없는 경우 예외처리
 					System.out.println(no + " is pass. 문서에 저장합니다.");
-					passedOut.write("패스No."+passedNo+" / ");
-					passedOut.write("가사No." + no +" is passed");
-					passedOut.newLine();
-					passedNo++;
+//					passedOut.write("패스No."+passedNo+" / ");
+//					passedOut.write("가사No." + no +" is passed");
+//					passedOut.newLine();
+//					passedNo++;
 					continue;
 				}
 				// 가사집 크롤링 종료 
-				
-				
-/*
-	정확한 유투브를 재생하는데 발생 문제점
-	1. 노래 앞에 번호가 붙는 경우
-	- 1. 	: 앞에 0을 붙여서 검색
-	- 01.	: 보다 정확한 결과 나옴
 	
-	2. 제목 자체가 틀린 경우 -> 정확도에 따라 url 주소 선정 
-		- 띄어쓰기			: 공백제거로 가능 
-		- **단어가 틀린경우	: #1  오른 -> 오르는
-							  #95 jumbo -> jumpo
-							  
-	
-	3. 앨범명이 노래 제목과 같은 경우(타이틀곡 = 앨범명)
- 		- #81   
- 
- 
- */
-
 				// youtube url 가져오기 (*메소드 형태로 구현)
 				String searchSubject = subject.replace(" ", "+");				// 검색어에서 공백을 +로 
 				String compare=singer+" ";										// 비교기준에 가수 추가
@@ -174,20 +148,18 @@ public class Test2 {
 				out.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("예외 발생! 문서에 저장합니다.");			// 디버깅을 위해 예외가일어나는 경우까지 모두 텍스트 파일로 저장
-				errorOut.write("에러No."+errorNo+" / ");
-				errorOut.write("가사No." + no);
-				errorOut.newLine();
-				errorOut.write(e.toString());
-				errorOut.newLine();
-				errorNo++;
+				//System.out.println("예외 발생! 문서에 저장합니다.");			// 디버깅을 위해 예외가일어나는 경우까지 모두 텍스트 파일로 저장
+//				errorOut.write("에러No."+errorNo+" / ");
+//				errorOut.write("가사No." + no);
+//				errorOut.newLine();
+//				errorOut.write(e.toString());
+//				errorOut.newLine();
+//				errorNo++;
 			}
-		
 		}
-		
-		System.out.println("Error Report Close");
-		errorOut.close();
-		passedOut.close();
+		//System.out.println("Error Report Close");
+//		errorOut.close();
+//		passedOut.close();
 		// 12. 얼마나 걸렸나 찍어보자
 		System.out.println(" End Date : " + getCurrentData());
 	}
@@ -240,21 +212,14 @@ public class Test2 {
 		return playHrefs[correct];					// 가중치 최대값의 제목 주소를 리턴
 	}
 	
-	// 검색어에 앨범이 있는 경우
-//	public static String searchYoutube(String subject, String singer, String album, String compare) throws ClientProtocolException, IOException {
-//		String href="";
-//		String url = "https://www.youtube.com/results?search_query=" + subject + "+" + singer + "+" + album; // youtube 검색 결과 url
-//		Document doc = Crawler.crawl(url);
-//		Elements atag = doc.select("h3.yt-lockup-title a");
-//		for(Element element: atag) {
-//			if(element.attr("title").toLowerCase().contains(compare)) {
-//				System.out.println("요청 타이틀 : " + compare );
-//				System.out.println("응답 타이틀 : " + element.attr("title"));
-//				href = element.attr("href");
-//				break;
-//			}
-//		}
-//		
-//		return href;
-//	}
+	public static String getCurrentData() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		return sdf.format(new Date());
+	}
+	
+	public void omissionLyricsCrwal(){
+		
+		
+	}
+	
 }

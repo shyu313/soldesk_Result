@@ -20,14 +20,14 @@ import org.apache.http.client.ClientProtocolException;
 public class Lyrics {
 	
 	public static void main(String[] args) throws ClientProtocolException, IOException {
-		
 		countLyrics();
 	}
 	
 	// lyrics 폴더내 누락된 가사 번호 찾기
 	public static void countLyrics() throws IOException{
-		int startNo = 192614;
-		int finishNo = 400000;
+		// 19만~ 50만  : 31만개 스캔
+		int startNo = 190001;
+		int finishNo = 500000;
 		int count =1;
 		String omissionLyricsNo="";
 		BufferedReader reader=null;
@@ -35,8 +35,7 @@ public class Lyrics {
 		// 파일 유무 확인 
 		for(int no = startNo; no<finishNo; no++ ){
 			try {
-				reader = new BufferedReader(new FileReader("./lyrics/"+no+".txt"));
-
+				reader = new BufferedReader(new FileReader("/soldesk_Team_1_backup/test/lyrics/"+no+".txt"));
 			} catch (FileNotFoundException e) {								// 누락된 파일 
 				System.out.println("누락된 가사 번호 : " + no);
 				omissionLyricsNo += no+"/";
@@ -46,7 +45,7 @@ public class Lyrics {
 		};
 		
 		// 누락된 가사 저장
-		BufferedWriter writer = new BufferedWriter(new FileWriter("./errorReport/omissionLyrics.txt"));	
+		BufferedWriter writer = new BufferedWriter(new FileWriter("./errorReport/omissionLyrics_range"+startNo+"~"+finishNo+".txt"));	
 		String result[] = omissionLyricsNo.split("/");
 		for(String omissionNo : result){
 	 		writer.write(omissionNo);
