@@ -38,7 +38,7 @@ public class Test2 {
 		// 1. 가져오기전 시간 찍기
 		System.out.println(" Start Date : " + getCurrentData());
 		// 15만개 도전 
-		int noStart = 13981;					// 가사 크롤링 시작 번호
+		int noStart = 36741;					// 가사 크롤링 시작 번호
 		int noFinish = 161000;					// 가사 크롤링 끝 번호
 		// 오차 8개 : 112,115,162,244,246,365,386,466 => 검색이 특수한 경우 : 앨범, 번호, 피처링 등등 
 		// 특수 문자 에러 : 10029, 10078, 10159, 10165 
@@ -81,7 +81,6 @@ public class Test2 {
 
 			// 11. Jsoup으로 파싱해보자.
 			Document doc = Jsoup.parse(sb.toString());
-			
 			try {
 				String subject = doc.select("div.col-md-8").get(0).text().replace("'","").replace("<","").replace(">","").replace("`","").replace("*",""); 	// 제목
 				String lyrics = doc.select("div.col-md-8").get(1).text(); 	// 가사
