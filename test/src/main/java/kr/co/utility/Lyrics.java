@@ -30,7 +30,7 @@ public class Lyrics {
 		int finishNo = 500000;
 		int count =1;
 		String omissionLyricsNo="";
-		BufferedReader reader=null;
+		BufferedReader reader=null; 
 		
 		// 파일 유무 확인 
 		for(int no = startNo; no<finishNo; no++ ){
