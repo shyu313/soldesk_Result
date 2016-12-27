@@ -36,7 +36,7 @@ public class Dictionary {
 			// 전체 가사 파일 읽기
 			System.out.println("==========================================전체 가사 스캔 시작=========================================== ");
 			BufferedReader  lyricsReader=null;
-			for(int no = 1; no < 500000; no++){
+			for(int no = 1; no < 1000; no++){
 				System.out.println(no+" 번 째, 가사 스캔");
 				try {
 					lyricsReader = new BufferedReader(new FileReader("./lyrics/"+no+".txt"));
@@ -63,11 +63,24 @@ public class Dictionary {
 		 		for(String emotionWord : emotionWordArray){
 		 			if(lyricsWord.contains(emotionWord)){							// 가사에서 한 단어 또는 문장속에 감정단어를 포함하는 경우
 		 				System.out.println("포함 개수"+count);
-				 		resultLyrics +=  lyricsWord+"\n";							// 한 줄씩 분류
+				 		resultLyrics +=  lyricsWord+" ";								
 				 		count++;
 		 			}
 		 		}
 			}
+		 	String scanWord[] = resultLyrics.split(" ");								// 공백으로 분류함. 중복된 단어 및 문장 발생
+		 	resultLyrics="";																// 결과값 초기화
+		 	lyrics=""; 																		// 중복된 단어와 문장을 제외한 데이터로 가공 
+		 	
+//		 	for(String conflictWord : scanWord){
+//		 		for(int index=0; index<scanWord.length; index++){
+//		 			if(scanWord[index].equals(conflictWord)){					// 같은 단어, 문장인 경우 하나만 저장
+//		 				System.out.println(scanWord[index]+"/"+conflictWord+" : 같은 단어 발견함 중복 처리.");
+//		 				resultLyrics += 
+//		 			}
+//		 		}
+//		 	}
+		 	
 		 	
 		 	System.out.println("감정단어 포함 결과 출력");
 		 	BufferedWriter resultWriter = new BufferedWriter(new FileWriter("./emotion/emotionKeyWordResult.txt"));				// 에러 리포트 문서
