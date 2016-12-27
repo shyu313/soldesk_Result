@@ -42,7 +42,7 @@ public class Dictionary {
 					lyricsReader = new BufferedReader(new FileReader("./lyrics/"+no+".txt"));
 					while((line = lyricsReader.readLine()) != null) 
 					{
-						lyrics += line+" ";								
+						lyrics += line+" ";			 					
 					}
 				} catch (FileNotFoundException e) {
 					System.out.println("누락된 가사부분은 pass");
