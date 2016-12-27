@@ -2,6 +2,7 @@ package kr.co.test;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,19 +32,34 @@ public class Test2 {
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		// 1. 가져오기전 시간 찍기
 		System.out.println(" Start Date : " + getCurrentData());
-		int noStart = 36741;					// 가사 크롤링 시작 번호
-		int noFinish = 161000;					// 가사 크롤링 끝 번호
-		
+		//int noStart = 36741;					// 가사 크롤링 시작 번호
+		//int noFinish = 161000;					// 가사 크롤링 끝 번호
 		// 디버깅을 위한 Error Report 작성 
 		//System.out.println("Error Report Open");
 		//int errorNo=1, passedNo=1;																																	// 에러 개수, 패스된 가사 카운트
 		//BufferedWriter errorOut = new BufferedWriter(new FileWriter("./errorReport/Exception Lyrics_"+ noStart+"~"+noFinish+"_range.txt"));				// 에러 리포트 문서 
 		//BufferedWriter passedOut = new BufferedWriter(new FileWriter("./errorReport/Passed Lyrics_"+ noStart+"~"+noFinish+"_range.txt"));		// 패스된 가사 리포트 문서 
-	
 		
+		// 누락된 가사를 배열에 저장 
+		BufferedReader  reader = new BufferedReader(new FileReader("./errorReport/omissionLyrics2.txt"));
+		int count=1;
+		String omissionLyrics="";
+		String omissionLine="";
+		while((omissionLine = reader.readLine()) != null) 
+		{
+			omissionLyrics += omissionLine+"/";
+			System.out.println("누락된 가사 번호 : "+ omissionLine);
+			count++;
+		}
+		String omissionNo[] = omissionLyrics.split("/");
 		
+		System.out.println("누락된 가사 총 개수 : "+ omissionNo.length);
+		System.out.println("===================================크롤링 시작===========================================");
+		
+		count=1;
 		// 누락된 가사만 크롤링 테스트하기
-		for (int no = noStart; no <= noFinish; no++) {
+		for (String no : omissionNo) {
+			System.out.print("No."+count+" ");
 			// 2. 가져올 HTTP 주소 세팅
 			HttpPost http = new HttpPost("http://gasazip.com/" + no + "");
 
@@ -87,7 +103,7 @@ public class Test2 {
 				}
 			
 				if (metadata.contains("Unknown")) {							// 가수가 없는 경우 예외처리
-					System.out.println(no + " is pass. 문서에 저장합니다.");
+					System.out.println(no + " is pass..");
 //					passedOut.write("패스No."+passedNo+" / ");
 //					passedOut.write("가사No." + no +" is passed");
 //					passedOut.newLine();
@@ -135,7 +151,7 @@ public class Test2 {
 				}*/
 				String sourceUrl = "https://www.youtube.com" + href; 
 
-				BufferedWriter out = new BufferedWriter(new FileWriter("./lyrics/" + no + ".txt")); // 출력파일 만들기 : 번호.txt
+				BufferedWriter out = new BufferedWriter(new FileWriter("./omissionLyrics/" + no + ".txt")); // 출력파일 만들기 : 번호.txt
 				
 				
 				out.write("제목 : " + subject);
@@ -156,6 +172,7 @@ public class Test2 {
 //				errorOut.newLine();
 //				errorNo++;
 			}
+			count++;
 		}
 		//System.out.println("Error Report Close");
 //		errorOut.close();
@@ -216,10 +233,4 @@ public class Test2 {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		return sdf.format(new Date());
 	}
-	
-	public void omissionLyricsCrwal(){
-		
-		
-	}
-	
 }

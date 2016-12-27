@@ -14,60 +14,69 @@ import org.apache.http.client.ClientProtocolException;
 */
 
 public class Dictionary {
-
 	public static void main(String[] args)throws ClientProtocolException, IOException  {
 		System.out.println("감정 단어 분류 작업 시작 ");
-		try {
-			BufferedReader  dicWordReader = new BufferedReader(new FileReader("./dictionary/dictionaryword.txt"));
-			BufferedReader  lyricsReader = new BufferedReader(new FileReader("./lyrics.txt"));
-			BufferedWriter dicWordWriter = new BufferedWriter(new FileWriter("./dictionary/Exception word_range.txt"));				// 에러 리포트 문서 
-			String dicWord ="";				// 감정단어사전에 포함될 단어 
+			
+			BufferedReader  emotionWordReader = new BufferedReader(new FileReader("./dictionary/keyword.txt"));
+			String keyword ="";				// 감정사전 단어
 			String lyrics ="";
 			String line ="";
-			// 제외시킬 단어를 읽기
-			while((line = dicWordReader.readLine()) != null) 
+			int keywordcount=1;
+			// 감정사전 단어 읽기
+			while((line = emotionWordReader.readLine()) != null) 
 			{
-				dicWord += line+" ";
-				//System.out.println(line);
+				keyword += line+"\n";
+				System.out.println(keywordcount+" 감정단어 : "+line);
+				keywordcount++;
 			}
-			int count =0;
+			System.out.println("총 감정단어 개수 : "+ keywordcount);
+			emotionWordReader.close();
+
+			// 전체 가사를 한 스트링에 넣은 다음, 감정 단어를 포함하는 문장으로 분류
 			// 전체 가사 파일 읽기
-			while((line = lyricsReader.readLine()) != null) 
-			{
-				lyrics += line+"\n";
-				System.out.println(count);
-				count++;
+			System.out.println("==========================================전체 가사 스캔 시작=========================================== ");
+			BufferedReader  lyricsReader=null;
+			for(int no = 1; no < 500000; no++){
+				System.out.println(no+" 번 째, 가사 스캔");
+				try {
+					lyricsReader = new BufferedReader(new FileReader("./lyrics/"+no+".txt"));
+					while((line = lyricsReader.readLine()) != null) 
+					{
+						lyrics += line+" ";								
+					}
+				} catch (FileNotFoundException e) {
+					System.out.println("누락된 가사부분은 pass");
+				}finally {
+					lyricsReader.close();
+				}
+				
 			}
 			
-			dicWordReader.close();
-			lyricsReader.close();
+			String lyricsArray[] = lyrics.split(" ");						// 전체 가사를 공백을 기준으로 최소 (단어, 문장) 나눔	
 			
-			// 감정단어 제외 시키기 
-		 	String removeWord[] = dicWord.split(" ");
+			// 감정단어 포함 문장 분류 
+			String emotionWordArray[] = keyword.split("\n");		
 		 	String resultLyrics = "";
-		 	count=0;
-		 	System.out.println("감정단어 제외 시작");
-		 	for(String remove : removeWord){
-		 		lyrics =  lyrics.replace(remove, "");
-		 		System.out.println(count);
-		 		count++;
-		 		
+		 	int count=0;
+		 	System.out.println("==========================================감정단어를 포함하는 문장분류 시작=========================================== ");
+		 	for(String lyricsWord : lyricsArray){
+		 		for(String emotionWord : emotionWordArray){
+		 			if(lyricsWord.contains(emotionWord)){							// 가사에서 한 단어 또는 문장속에 감정단어를 포함하는 경우
+		 				System.out.println("포함 개수"+count);
+				 		resultLyrics +=  lyricsWord+"\n";							// 한 줄씩 분류
+				 		count++;
+		 			}
+		 		}
 			}
 		 	
-		 	resultLyrics = lyrics;
-		 	
-		 	System.out.println("감정단어 제외 결과");
-		 	BufferedWriter resultWriter = new BufferedWriter(new FileWriter("./emotion/exceptionWord.txt"));				// 에러 리포트 문서
+		 	System.out.println("감정단어 포함 결과 출력");
+		 	BufferedWriter resultWriter = new BufferedWriter(new FileWriter("./emotion/emotionKeyWordResult.txt"));				// 에러 리포트 문서
 		 	String resultWord[] = resultLyrics.split("\n");			// 한 줄씩 파일에 입력
 		 	for(String word : resultWord){
 		 		resultWriter.write(word);
 		 		resultWriter.newLine();
 		 	}
 		 	resultWriter.close();
-		 	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 }

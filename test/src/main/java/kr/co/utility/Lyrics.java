@@ -26,7 +26,7 @@ public class Lyrics {
 	// lyrics 폴더내 누락된 가사 번호 찾기
 	public static void countLyrics() throws IOException{
 		// 19만~ 50만  : 31만개 스캔
-		int startNo = 190001;
+		int startNo = 1;
 		int finishNo = 500000;
 		int count =1;
 		String omissionLyricsNo="";
@@ -35,7 +35,7 @@ public class Lyrics {
 		// 파일 유무 확인 
 		for(int no = startNo; no<finishNo; no++ ){
 			try {
-				reader = new BufferedReader(new FileReader("/soldesk_Team_1_backup/test/lyrics/"+no+".txt"));
+				reader = new BufferedReader(new FileReader("./lyrics/"+no+".txt"));
 			} catch (FileNotFoundException e) {								// 누락된 파일 
 				System.out.println("누락된 가사 번호 : " + no);
 				omissionLyricsNo += no+"/";
@@ -45,13 +45,12 @@ public class Lyrics {
 		};
 		
 		// 누락된 가사 저장
-		BufferedWriter writer = new BufferedWriter(new FileWriter("./errorReport/omissionLyrics_range"+startNo+"~"+finishNo+".txt"));	
+		BufferedWriter writer = new BufferedWriter(new FileWriter("./errorReport/omissionLyrics.txt"));	
 		String result[] = omissionLyricsNo.split("/");
 		for(String omissionNo : result){
 	 		writer.write(omissionNo);
 	 		writer.newLine();
 	 	}
-		writer.write("총 계수 : "+ count);
 		writer.close();		// 모든 번호를 저장한 뒤 닫기
 		
 		System.out.println("누락 총계 : "+ count);
