@@ -112,15 +112,15 @@ body a:hover {
   flex-flow: row wrap;
 }
 .content__left {
-  width: 15%;
+  width: 20%;
 }
 .content__middle {
-  width: 70%;
+  width: 80%;
 }
-.content__right {
-  width: 15%;
+/* .content__right {
+  width: 20%;
 }
-@media (max-width: 1400px) {
+@media (max-width: 900px) {
   .content__left {
     width: 20%;
   }
@@ -130,7 +130,7 @@ body a:hover {
   .content__right {
     display: none;
   }
-}
+} */
 @media (max-width: 768px) {
   .content__left {
     width: 100%;
