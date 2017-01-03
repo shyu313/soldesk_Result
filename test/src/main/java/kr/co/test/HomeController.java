@@ -18,9 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+	 
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -41,6 +41,8 @@ public class HomeController {
 	
 	@RequestMapping("/test/index.html")
 	public ModelAndView index() {
+		logger.debug("엔터셉터 테스트");
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index.html");
 		return mav;
