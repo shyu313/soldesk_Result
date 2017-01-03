@@ -156,34 +156,35 @@ stroke: #fff;
 		</div>
 
 		<!-- 메인에 해당하는 부분 -->
-		<div class="content__middle"> 
+		<div class="content__middle">
+		  <!-- 막대그래프 부분 -->
 		  <svg width="600" height="400"></svg>
 		  <script src="https://d3js.org/d3.v4.min.js"></script>
 		  <script>
 			var svg = d3.select("svg"),
 			margin = {top: 20, right: 20, bottom: 30, left: 40},
 			width = +svg.attr("width") - margin.left - margin.right,
-			height = +svg.attr("height") - margin.top - margin.bottom;
+			height = +svg.attr("height") - margin.top - margin.bottom; // 그래프 svg부분을 선택하고 크기조절
 			
 			var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-			y = d3.scaleLinear().rangeRound([height, 0]);
+			y = d3.scaleLinear().rangeRound([height, 0]); // x축, y축의 범위 설정
 			
 			var g = svg.append("g")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")"); // 그래프에 g 추가
 			
-			d3.tsv("data.tsv", function(d) {
+			d3.tsv("data.tsv", function(d) { // data.tsv 파일에 있는 데이터 불러오기
 			d.song = +d.song;
 			return d;
 			}, function(error, data) {
 			if (error) throw error;
 			
-			x.domain(data.map(function(d) { return d.emotion; }));
-			y.domain([0, d3.max(data, function(d) { return d.song; })]);
+			x.domain(data.map(function(d) { return d.emotion; }));       // x값은 tsv 데이터 중 emotion에 해당하는 값
+			y.domain([0, d3.max(data, function(d) { return d.song; })]); // y값은 tsv 데이터 중 song에 해당하는 값
 			
 			g.append("g")
 			  .attr("class", "axis axis--x")
 			  .attr("transform", "translate(0," + height + ")")
-			  .call(d3.axisBottom(x));
+			  .call(d3.axisBottom(x)); // x축 표시
 			
 			g.append("g")
 			  .attr("class", "axis axis--y")
@@ -193,7 +194,7 @@ stroke: #fff;
 			  .attr("y", 6)
 			  .attr("dy", "0.71em")
 			  .attr("text-anchor", "end")
-			  .text("song");
+			  .text("song"); // y축 표시
 			
 			g.selectAll(".bar")
 			.data(data)
@@ -202,9 +203,10 @@ stroke: #fff;
 			  .attr("x", function(d) { return x(d.emotion); })
 			  .attr("y", function(d) { return y(d.song); })
 			  .attr("width", x.bandwidth())
-			  .attr("height", function(d) { return height - y(d.song); });
+			  .attr("height", function(d) { return height - y(d.song); }); // 각 데이터를 막대그래프로 표시
 			});
 		  </script>
+		  <!-- 막대그래프 END -->
 		  </div>
 	</section>
 
