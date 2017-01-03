@@ -20,6 +20,14 @@
 			<span class="flow"><a href="../index.jsp"> <i class="ion-chevron-left"></i></a> </span>
 			<span class="flow"> <i class="ion-chevron-right disabled"></i> </span>
 		</div>
+		
+		<!-- 홈 이동  -->
+ 		<div class = "home-page">
+ 			<a href="/test/index.jsp" class="navigation__home__item">
+ 			<span>HOME</span>
+			</a>
+ 		</div>
+ 		
  		<!-- 
  		검색창
 		<div class="search">

@@ -25,7 +25,7 @@ xmlns:mvc="http://www.springframework.org/schema/mvc"
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.co.test" />
-	
+	<context:component-scan base-package="kr.co.utility" />
 	
 	<!--	<mvc:mapping path/>를 통해서 인터셉터가 동작할 URL을 지정
 			모든 요청에 동작하므로, 전체패스를 의미하는 "/**"로 설정

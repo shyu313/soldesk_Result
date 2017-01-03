@@ -34,4 +34,20 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<!-- 한글 필터 등록 : myweb 에서는 클래스를 직접 생성했지만, Spring 에서는 xml에 간단히 추가 가능 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>		<!-- .java 에서 임포트로 네이밍 검색함 -->
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>								<!-- 어떤 외부 url명령어 가 들어오더라도 필터를 거침 -->
+	</filter-mapping>
+
+
 </web-app>
