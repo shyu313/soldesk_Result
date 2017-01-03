@@ -37,7 +37,7 @@
      
 	 
 	<!-- Application Loggers -->
-	 <logger name="test" additivity="false">
+	 <logger name="kr.co.test" additivity="false">
         <level value="debug" />
         <appender-ref ref="console"/>
     </logger> 
