@@ -39,7 +39,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/test/index.html")
+	@RequestMapping("/test/index.do")
 	public ModelAndView index() {
 		logger.debug("엔터셉터 테스트");
 		
