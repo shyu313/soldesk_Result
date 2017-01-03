@@ -1,3 +1,4 @@
+/* Body 부분 Start*/
 body { 
   background: #181818;
   font-family: 'Roboto', sans-serif;
@@ -8,8 +9,10 @@ body a {
 body a:hover {
   color: #c8c8c8;
 }
+/* Body 부분 End*/
 
-.header {
+/* Header 부분 Start  */
+.header {											/*상단 메인 Bar*/
   background: #282828;
   padding: 10px;
   color: #aaaaaa;
@@ -18,7 +21,7 @@ body a:hover {
   flex-flow: row wrap;
   align-items: center;
 }
-.header .page-flows .flow {
+.header .page-flows .flow {					/* 상단 메인 Bar 페이지 이동 버튼*/
   font-size: 20px;
   color: #aaaaaa;
   margin: 0 10px;
@@ -29,7 +32,7 @@ body a:hover {
 .header .page-flows .flow .disabled {
   color: #5e5e5e;
 }
-.header .search {
+.header .search {								/* 상단 메인 bar 검색 부분 - 현재 주석 처리*/	
   margin-left: 1%;
 }
 .header .search input {
@@ -44,7 +47,7 @@ body a:hover {
   background-size: 10%;
   background-position: 5px;
 }
-.header .user {
+.header .user {									/* 상단 메인 bar 유저 정보 부분 */
   width: 300px;
   margin-left: auto;
   display: flex;
@@ -106,17 +109,22 @@ body a:hover {
   color: #c8c8c8;
   transition: all 0.2s ease;
 }
+/* Header 부분 End  */
 
+/* 왼쪽 드랍 메뉴, 메인 컨텐츠 부분 Start*/
 .content {
   display: flex;
   flex-flow: row wrap;
 }
-.content__left {
+.content__left {									/* 왼쪽 메뉴 bar*/
   width: 20%;
 }
-.content__middle {
+.content__middle {								/* 메인 컨텐츠 부분*/
   width: 80%;
 }
+
+/* 왼쪽 드랍 메뉴, 메인 컨텐츠 부분 End*/
+
 /* .content__right {
   width: 20%;
 }
@@ -1159,3 +1167,14 @@ button:hover {
   font-size: 13.2px;
   margin-bottom: 10px;
 }
+
+/* 그래프 스타일 START */
+.bar 				{ fill: steelblue; }
+.bar:hover 		{ fill: brown; }
+.axis--x path 		{ display: none; }
+text 				{ fill: #fff; }
+g path, g line 	{ stroke: #fff; }
+/* 그래프 스타일 END */
+
+
+

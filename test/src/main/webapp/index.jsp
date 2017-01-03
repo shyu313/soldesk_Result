@@ -11,27 +11,6 @@
 <link rel='stylesheet prefetch'	href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
 <link rel='stylesheet prefetch' href='css/nouislider.min.css'>
 <link rel="stylesheet" href="css/style.css">
-<style>
-.bar {
-  fill: steelblue;
-}
-
-.bar:hover {
-  fill: brown;
-}
-
-.axis--x path {
-  display: none;
-}
-
-text {
-fill: #fff;
-}
-
-g path, g line {
-stroke: #fff;
-}
-</style>
 </head>
 
 <body>
