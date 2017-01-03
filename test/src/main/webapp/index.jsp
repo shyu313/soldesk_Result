@@ -206,7 +206,7 @@ stroke: #fff;
 			  .attr("height", function(d) { return height - y(d.song); }); // 각 데이터를 막대그래프로 표시
 			});
 		  </script>
-		  <!-- 막대그래프 END -->
+		  <!-- 막대그래프 END --> 
 		  </div>
 	</section>
 
