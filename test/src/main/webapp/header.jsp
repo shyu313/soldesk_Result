@@ -17,13 +17,13 @@
 	<section class="header">
 		<!-- 왼쪽 상단 화살표 2개 -->
 		<div class="page-flows">
-			<span class="flow"><a href="../index.jsp"> <i class="ion-chevron-left"></i></a> </span>
+			<span class="flow"><a href="../index.do"> <i class="ion-chevron-left"></i></a> </span>
 			<span class="flow"> <i class="ion-chevron-right disabled"></i> </span>
 		</div>
 		
 		<!-- 홈 이동  -->
  		<div class = "home-page">
- 			<a href="/test/index.jsp" class="navigation__home__item">
+ 			<a href="/test/index.do" class="navigation__home__item">
  			<span>HOME</span>
 			</a>
  		</div>
@@ -60,8 +60,8 @@
 						<i class="ion-chevron-down"></i>
 					</button>
 					<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-						<li><a href="../user/Private.jsp">개인 정보</a></li>
-						<li><a href="../user/Customer.jsp">고객 센터</a></li>
+						<li><a href="../user/Private.do">개인 정보</a></li>
+						<li><a href="../user/Customer.do">고객 센터</a></li>
 						<li><a href="#">로그 아웃</a></li>
 					</ul>
 				</div>
@@ -81,11 +81,11 @@
 					</div>
 
 					<div class="collapse in" id="main">
-						<a href="../main/Search.jsp" class="navigation__list__item">
+						<a href="../main/Search.do" class="navigation__list__item">
 							<i class="ion-ios-browsers"></i>
 							<span>감성 검색</span>
 						</a>
-						<a href="../main/Share.jsp" class="navigation__list__item">
+						<a href="../main/Share.do" class="navigation__list__item">
 							<i class="ion-person-stalker"></i>
 							<span>감정 공유</span>
 						</a>
@@ -101,11 +101,11 @@
 					</div>
 
 					<div class="collapse in" id="yourMusic">
-						<a href="../music/Replay.jsp" class="navigation__list__item">
+						<a href="../music/Replay.do" class="navigation__list__item">
 							<i class="ion-headphone"></i>
 							<span>노래 다시듣기</span>
 						</a>
-						<a href="../music/Emotionlist.jsp" class="navigation__list__item">
+						<a href="../music/Emotionlist.do" class="navigation__list__item">
 							<i class="ion-ios-musical-notes"></i>
 							<span>감정 그래프</span>
 						</a>
@@ -120,15 +120,15 @@
 					</div>
 
 					<div class="collapse in" id="playlists">
-						<a href="../playlist/Toplist.jsp" class="navigation__list__item">
+						<a href="../playlist/Toplist.do" class="navigation__list__item">
 							<i class="ion-ios-musical-notes"></i>
 							<span>TOP 100</span>
 						</a>
-						<a href="../playlist/Emotion.jsp" class="navigation__list__item">
+						<a href="../playlist/Emotion.do" class="navigation__list__item">
 							<i class="ion-ios-musical-notes"></i>
 							<span>감성 보기</span>
 						</a>
-						<a href="../playlist/Randomplay.jsp" class="navigation__list__item">
+						<a href="../playlist/Randomplay.do" class="navigation__list__item">
 							<i class="ion-ios-musical-notes"></i>
 							<span>랜덤 듣기</span>
 						</a>

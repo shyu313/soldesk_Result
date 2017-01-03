@@ -25,6 +25,10 @@ xmlns:mvc="http://www.springframework.org/schema/mvc"
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.co.test" />
+	<context:component-scan base-package="kr.co.main" />
+	<context:component-scan base-package="kr.co.music" />
+	<context:component-scan base-package="kr.co.playlist" />
+	<context:component-scan base-package="kr.co.user" />
 	<context:component-scan base-package="kr.co.utility" />
 	
 	<!--	<mvc:mapping path/>를 통해서 인터셉터가 동작할 URL을 지정
