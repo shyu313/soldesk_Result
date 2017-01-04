@@ -11,12 +11,18 @@ public class DBOpen {
 		System.out.println("---DBOpen °´Ã¼ »ý¼ºµÊ");
 	}
 
-	public Connection getConnetion() {
+	public Connection getConnection() {
 		// My-SQL DB
-		String url = "jdbc:mysql://127.0.0.1:3306/mydb";
-		String user = "root";
+		//String url = "jdbc:mysql://127.0.0.1:3306/mydb";
+		//String user = "root";
+		//String password = "1234";
+		//String driver = "org.gjt.mm.mysql.Driver";
+		
+		//ORACLE
+		String url = "jdbc:oracle:thin:@127.0.0.1:1521/xe";
+		String user = "java1230";
 		String password = "1234";
-		String driver = "org.gjt.mm.mysql.Driver";
+		String driver = "oracle.jdbc.driver.OracleDriver";
 
 		Connection con = null;
 
