@@ -10,6 +10,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /*
  * Interceptor 를 사용하는 이유
+<<<<<<< HEAD
  	1) 운영시에 불필요한 로그가 계속 출력된다. 	
  		- 시스템을 개발하고 운영할 때, System.out.println()을 모두 찾아서 지워준다면 몰라도, 거의 대부분은 그냥 한다....ㅡ_ㅡ; 그러면 쓸모없는 로그로 아까운 리소스가 낭비된다.
 	2) 모든 로그를 지워버리면, 에러가 났을경우, 그 에러 원인을 찾기가 어려울 수도 있다. 
@@ -43,3 +44,4 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	  }
 	
 }
+

@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 	xmlns:mvc="http://www.springframework.org/schema/mvc">
 
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -47,7 +48,32 @@
             <beans:bean id="loggerInterceptor" class="kr.co.utility.LoggerInterceptor"></beans:bean>
         </mvc:interceptor>
     </mvc:interceptors>
+
+	<context:component-scan base-package="kr.co.main" />
+	<context:component-scan base-package="kr.co.music" />
+	<context:component-scan base-package="kr.co.playlist" />
+	<context:component-scan base-package="kr.co.user" />
+	<context:component-scan base-package="kr.co.utility" />
 	
+	<!--	<mvc:mapping path/>를 통해서 인터셉터가 동작할 URL을 지정
+			모든 요청에 동작하므로, 전체패스를 의미하는 "/**"로 설정
+	 		
+	 		중요!!! 
+			Interceptor는 Controller가 요청되기 전에 수행된다. 
+			즉, Interceptor는 DispatcherServlet과 같은 위치에 등록이 되어있어야지 정상적으로 수행이 된다. 
+		 	
+		 	web.xml 여기서 이미 DispatcherServlet을 정의하였다. 그리고 그 DispatcherServlet의 설정파일의 위치는 /WEB-INF/spring/appServlet 폴더 밑의 -context.xml 로 끝나는 모든 xml 파일이라고 명시한 것이다.
+			즉, servlet-context.xml에 interceptor를 설정함으로써, DispatcherServlet과 Interceptor를 같은 위치에 등록을 한것이다
+	 -->
+	  <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <beans:bean id="loggerInterceptor" class="kr.co.utility.LoggerInterceptor"></beans:bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+	
+	<beans:bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+
 	
 	
 </beans:beans>

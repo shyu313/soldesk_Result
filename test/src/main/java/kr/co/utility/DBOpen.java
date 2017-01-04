@@ -7,11 +7,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DBOpen {
+
 	public DBOpen() {
 		System.out.println("---DBOpen °´Ã¼ »ý¼ºµÊ");
 	}
 
-	public Connection getConnection() {
+	public Connection getConnetion() {
+
 		// My-SQL DB
 		//String url = "jdbc:mysql://127.0.0.1:3306/mydb";
 		//String user = "root";
