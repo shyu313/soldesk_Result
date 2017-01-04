@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.sentshare.SentMapper">
+	<!-- <resultMap type="SentShareDTO" id="SentShareMap">
+		<result column="bbsno" property="bbsno"/>
+		<result column="wname" property="wname"/>
+		<result column="subject" property="subject"/>
+		<result column="content" property="content"/>
+		<result column="readcnt" property="readcnt"/>
+		<result column="regdt" property="regdt"/>
+	</resultMap> -->
+	<select id="list" resultType="SentShareDTO">
+		SELECT bbsno, subject, wname, readcnt, regdt FROM sentshare ORDER BY bbsno DESC
+	</select>
+	
+	<insert id="create" parameterType="SentShareDTO">
+		<selectKey keyProperty="bbsno" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(bbsno), 0)+1 as bbsno FROM sentshare
+		</selectKey>
+		INSERT INTO sentshare(bbsno, wname, subject, content, readcnt, regdt) 
+		VALUES(#{bbsno}, #{wname}, #{subject}, #{content}, #{readcnt}, sysdate)
+	</insert>
+	
+	<select id="read" parameterType="int" resultType="SentShareDTO">
+		SELECT bbsno, subject, wname, content, readcnt, regdt FROM sentshare WHERE bbsno = #{bbsno}
+	</select>
+	
+	<delete id="delete" parameterType="SentShareDTO">
+		DELETE FROM sentshare WHERE bbsno = #{bbsno}
+	</delete>
+	
+	<update id="update" parameterType="SentShareDTO">
+		UPDATE sentshare SET subject = #{subject}, wname = #{wname}, content = #{content} WHERE bbsno = #{bbsno}
+	</update>
+	
+	<update id="readcnt" parameterType="int">
+		UPDATE sentshare SET readcnt = readcnt + 1 WHERE bbsno = #{bbsno}
+	</update>
+</mapper>
