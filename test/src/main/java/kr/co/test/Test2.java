@@ -32,8 +32,8 @@ public class Test2 {
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		// 1. 가져오기전 시간 찍기
 		System.out.println(" Start Date : " + getCurrentData());
-		//int noStart = 36741;					// 가사 크롤링 시작 번호
-		//int noFinish = 161000;					// 가사 크롤링 끝 번호
+		//int noStart = 560001;					// 가사 크롤링 시작 번호
+		//int noFinish = 580000;					// 가사 크롤링 끝 번호
 		// 디버깅을 위한 Error Report 작성 
 		//System.out.println("Error Report Open");
 		//int errorNo=1, passedNo=1;																																	// 에러 개수, 패스된 가사 카운트
