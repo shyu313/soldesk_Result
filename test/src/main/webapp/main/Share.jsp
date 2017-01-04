@@ -4,23 +4,41 @@
 
 	<a style="font:20">감정 공유 게시판!</a>
 	
-	<%-- <table>
+	<input type="button" value="글쓰기" onclick="location.href='../main/create.do'">
+	<table border="1" cellpadding="0" cellspacing="0" >
 		<tr>
-			<th>그룹번호</th>
-			<th>그룹명</th>
-			<th>명령</th>
+			<th><font color="#ffffff">번호</font></th>
+			<th><font color="#ffffff">제목</font></th>
+			<th><font color="#ffffff">작성자</font></th>
+			<th><font color="#ffffff">조회수</font></th>
+			<th><font color="#ffffff">등록일</font></th>
 		</tr>
 		<c:forEach var="dto" items="${list }">
 		<tr>
-			<td>${dto.mediagroupno }</td>
-			<td><a href="../media/list.do?mediagroupno=${dto.mediagroupno }">${dto.title }</a></td>
+			<td><font color="#ffffff">${dto.bbsno }</font></td>
 			<td>
-				<input type="button" value="수정" onclick="location.href='./update.do?mediagroupno=${dto.mediagroupno}'">
-				<input type="button" value="삭제" onclick="location.href='./delete.do?mediagroupno=${dto.mediagroupno}'">
+				<font color="#ffffff"><a href="read.do?bbsno=${dto.bbsno }">${dto.subject }</a></font>
+				<c:if test="${dto.readcnt==10}">
+					<img src="../images/hot.gif">
+				</c:if>
 			</td>
+			<td><font color="#ffffff">${dto.wname}</font></td>
+			<td><font color="#ffffff">${dto.readcnt}</font>
+			</td>
+			<td><font color="#ffffff">${dto.regdt}</font></td>
 		</tr>
 		</c:forEach>
-	</table> --%>
+	</table>
+	
+	<br><br>
+	
+	<select>
+		<option value="title">제목</option>
+		<option value="content">내용</option>
+		<option value="wname">작성자</option>
+	</select>
+	<input type="text" name="search">
+	<input type="button" value="검색">
 	
 	</div>
 
