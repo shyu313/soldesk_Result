@@ -29,12 +29,11 @@ public class HomeController {
 //		return "home";
 //	}
 	
-	// 결과 확인 http://localhost:9090/test/list.do
+	// 결과 확인 http://localhost:9090/test/index.do
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
 	@RequestMapping("/index.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView index() {
 		logger.debug("인터셉터 테스트");
-		System.out.println("sdsds테스트");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		return mav;

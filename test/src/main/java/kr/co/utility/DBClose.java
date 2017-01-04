@@ -8,10 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DBClose {
-	public DBClose() {
-		System.out.println("---DBClose °´Ã¼ »ý¼ºµÊ");
-	}
-
 	public void close(Connection con) {
 		try {
 			if (con != null)
