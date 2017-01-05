@@ -17,7 +17,7 @@ public class SentShareDAO {
 	public SentShareDAO() {
 		System.out.println("---SentShareDAO按眉 积己凳");
 	}
-	
+	 
 	// 皑己 傍蜡 累己
 	public int create(SentShareDTO dto){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);

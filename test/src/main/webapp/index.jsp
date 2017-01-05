@@ -9,7 +9,7 @@
     <link rel='stylesheet prefetch'	href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
     <link rel='stylesheet prefetch'	href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -180,7 +180,7 @@
 <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
 <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
 <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
-<script src="/js/index.js"></script>
+<script src="./js/index.js"></script>
 
 <!-- 유투브 플레이어 스크립트-->
 <script>
