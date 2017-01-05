@@ -12,10 +12,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="readcnt" property="readcnt"/>
 		<result column="regdt" property="regdt"/>
 	</resultMap> -->
+	
+	<!-- 감성 공유 리스트 쿼리  -->
 	<select id="list" resultType="SentShareDTO">
 		SELECT bbsno, subject, wname, readcnt, regdt FROM sentshare ORDER BY bbsno DESC
 	</select>
 	
+	<!-- 감성 공유 작성 쿼리 -->
 	<insert id="create" parameterType="SentShareDTO">
 		<selectKey keyProperty="bbsno" resultType="int" order="BEFORE">
 			SELECT NVL(MAX(bbsno), 0)+1 as bbsno FROM sentshare
@@ -24,14 +27,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(#{bbsno}, #{wname}, #{subject}, #{content}, #{readcnt}, sysdate)
 	</insert>
 	
+	<!-- 감성 공유 삭제 쿼리 -->
 	<select id="read" parameterType="int" resultType="SentShareDTO">
 		SELECT bbsno, subject, wname, content, readcnt, regdt FROM sentshare WHERE bbsno = #{bbsno}
 	</select>
 	
+	<!-- 감성 공유 삭제 처리 -->
 	<delete id="delete" parameterType="SentShareDTO">
 		DELETE FROM sentshare WHERE bbsno = #{bbsno}
 	</delete>
 	
+	<!-- 조회수 증가 처리 -->
 	<update id="update" parameterType="SentShareDTO">
 		UPDATE sentshare SET subject = #{subject}, wname = #{wname}, content = #{content} WHERE bbsno = #{bbsno}
 	</update>
