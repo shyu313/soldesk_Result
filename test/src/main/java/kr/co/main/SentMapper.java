@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import kr.co.main.SentShareDTO;
 
+// 감성 공유 매퍼(Mapper).
 public interface SentMapper {
 	// 인터페이스, 추상메소드로만 존재하며 MyBatis3을 호출하기 편리하도록 지원
 	// 매퍼에 들어가는 메소드명은 MyBatis의 XML 파일안의 id와 동일해야 한다 
 	// sent.xml
 		
 	//<select id="list">
-	public ArrayList<SentShareDTO> list();
+	public ArrayList<SentShareDTO> list();  // 감성 공유 목록 
 		
 	//<insert id="create">
 	public int create(SentShareDTO dto);
