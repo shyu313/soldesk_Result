@@ -18,35 +18,41 @@ public class SentShareDAO {
 		System.out.println("---SentShareDAO객체 생성됨");
 	}
 	
+	// 감성 공유 작성
 	public int create(SentShareDTO dto){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
 		int cnt=mapper.create(dto);
 		return cnt;
 	}
 	
+	// 감성 공유 목록
 	public ArrayList<SentShareDTO> list(){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
 		ArrayList<SentShareDTO> list = mapper.list();
 		return list;
 	}
 	
+	// 감성 공유 조회
 	public SentShareDTO read(int bbsno){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
 		return mapper.read(bbsno);
 	}
 	
+	// 감성 공유 삭제
 	public int delete(SentShareDTO dto){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
 		int cnt = mapper.delete(dto);
 		return cnt;
 	}
 	
+	// 감성 공유 수정 
 	public int update(SentShareDTO dto){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
 		int cnt = mapper.update(dto);
 		return cnt;
 	}
 	
+	// 조회수 증가
 	public void readcnt(int bbsno){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
 		mapper.readcnt(bbsno);
