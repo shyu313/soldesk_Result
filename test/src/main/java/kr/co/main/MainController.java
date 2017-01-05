@@ -46,6 +46,7 @@ public class MainController {
 		return mav;
 	} // Search() end
 	
+	// 감성 공유 리스트 컨트롤러
 	@RequestMapping("/main/Share.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView list(){
 		ModelAndView mav = new ModelAndView();
@@ -55,6 +56,7 @@ public class MainController {
 		return mav;
 	} // Share() end
 	
+	// 감성 공유 작성 폼 컨트롤러
 	@RequestMapping(value="/main/create.do", method=RequestMethod.GET)
 	public ModelAndView createForm(){
 		ModelAndView mav = new ModelAndView();
@@ -62,6 +64,7 @@ public class MainController {
 		return mav;
 	}
 	
+	// 감성 공유 처리 컨트롤러
 	@RequestMapping(value="/main/create.do", method=RequestMethod.POST)
 	public ModelAndView createProc(SentShareDTO dto){
 		ModelAndView mav = new ModelAndView();
@@ -70,6 +73,7 @@ public class MainController {
 		return mav;
 	}
 	
+	// 감성 공유 조회 컨트롤러
 	@RequestMapping(value="/main/read.do", method=RequestMethod.GET)
 	public ModelAndView read(int bbsno){
 		dao.readcnt(bbsno);
@@ -80,6 +84,7 @@ public class MainController {
 		return mav;
 	}//read() end
 	
+	// 감성 공유 삭제 폼 컨트롤러 
 	@RequestMapping(value="/main/delete.do", method=RequestMethod.GET)
 	public ModelAndView deleteForm(int bbsno){
 		ModelAndView mav = new ModelAndView();
@@ -89,6 +94,7 @@ public class MainController {
 		return mav;
 	}
 	
+	// 감성 공유 삭제 처리 컨트롤러
 	@RequestMapping(value="/main/delete.do", method=RequestMethod.POST)
 	public ModelAndView deleteProc(SentShareDTO dto){
 		ModelAndView mav = new ModelAndView();
@@ -97,6 +103,7 @@ public class MainController {
 		return mav;
 	}
 	
+	// 감성 공유 수정 폼 컨트롤러
 	@RequestMapping(value="/main/update.do", method=RequestMethod.GET)
 	public ModelAndView updateForm(int bbsno){
 		ModelAndView mav = new ModelAndView();
@@ -106,6 +113,7 @@ public class MainController {
 		return mav;
 	}
 	
+	// 감성 공유 수정 처리 컨트롤러
 	@RequestMapping(value="/main/update.do", method=RequestMethod.POST)
 	public ModelAndView updateProc(SentShareDTO dto){
 		ModelAndView mav = new ModelAndView();
