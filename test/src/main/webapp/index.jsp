@@ -181,5 +181,9 @@
 <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
 <script src="./js/index.js"></script>
 
+
+<!-- <script src="./js/d3_Bubble_Chart.js"></script>
+<script src="./js/d3_Bubble_Menu.js"></script>
+<script src="./js/youtube.js"></script> -->
 </body>
 </html>
