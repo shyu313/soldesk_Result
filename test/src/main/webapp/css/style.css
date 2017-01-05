@@ -1,3 +1,4 @@
+/*CSS 대작업 @media 쿼리에 의한 반응형 웹 스타일 적용하기 */
 /* Body 부분 Start*/
 body {
     background: #181818;
@@ -10,7 +11,7 @@ body a:hover {
     color: #c8c8c8;
 }
 /* Body 부분 End*/
- 
+
 /* Header 부분 Start  */
 .header {											/*상단 메인 Bar*/
     background: #282828;
@@ -118,46 +119,18 @@ body a:hover {
 .content__middle{								    /* 메인 컨텐츠 부분*/
     width: 50%;
 }
-
 .content__right{								    /* 유투브 재생 부분*/
     width: 30%;
 }
 #content__player{
     width: 100%;
 }
-
 #content__lyrics{								    /* 유투브 가사 부분*/
     width: 100%;
     height: 45%;
 }
 
-
-
-
 /* 왼쪽 드랍 메뉴, 메인 컨텐츠 부분 End*/
-
-/* .content__right {
-  width: 20%;
-}
-@media (max-width: 900px) {
-  .content__left {
-    width: 20%;
-  }
-  .content__middle {
-    width: 80%;
-  }
-  .content__right {
-    display: none;
-  }
-} */
-@media (max-width: 768px) {
-    .content__left {
-        width: 100%;
-    }
-    .content__middle {
-        width: 100%;
-    }
-}
 
 .navigation {
     padding: 15px;
@@ -195,31 +168,6 @@ body a:hover {
     display: block;
 }
 
-@media (max-width: 768px) {
-    .navigation {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-around;
-    }
-    .navigation__list {
-        margin-bottom: 0;
-        width: calc( 100% / 3 );
-        text-align: center;
-    }
-    .navigation__list__item {
-        width: 100%;
-        text-align: center;
-    }
-    .navigation__list__item i {
-        display: none;
-    }
-    .navigation__list__item span {
-        margin: 0 auto;
-    }
-    .navigation__list__item:hover {
-        border: none;
-    }
-}
 .playlist {
     padding: 15px;
     background: #282828;
@@ -245,12 +193,6 @@ body a:hover {
     font-size: 24px;
     color: white;
     margin-right: 15px;
-}
-
-@media (max-width: 768px) {
-    .playlist {
-        display: none;
-    }
 }
 .playing {
     background: #282828;
@@ -280,12 +222,6 @@ body a:hover {
     margin-left: auto;
     padding-right: 15px;
     color: #aaaaaa;
-}
-
-@media (max-width: 768px) {
-    .playing {
-        border-top: 1px solid #181818;
-    }
 }
 .current-track {
     background: #282828;
@@ -416,60 +352,6 @@ body a:hover {
 }
 .current-track__options .controls .volume #song-volume:hover .noUi-handle {
     display: block;
-}
-@media (max-width: 1400px) {
-    .current-track__actions {
-        width: 10%;
-    }
-    .current-track__progress {
-        width: 50%;
-    }
-    .current-track__options {
-        width: 40%;
-    }
-}
-@media (max-width: 980px) {
-    .current-track__actions {
-        width: 10%;
-    }
-    .current-track__progress {
-        width: 40%;
-    }
-    .current-track__options {
-        width: 50%;
-    }
-}
-@media (max-width: 768px) {
-    .current-track__actions {
-        width: 25%;
-    }
-    .current-track__progress {
-        width: 75%;
-    }
-    .current-track__options {
-        width: 100%;
-    }
-}
-@media (max-width: 480px) {
-    .current-track__actions {
-        width: 100%;
-        justify-content: space-around;
-        padding: 5px 0;
-    }
-    .current-track__progress {
-        width: 100%;
-        padding: 5px 0;
-    }
-    .current-track__options {
-        width: 100%;
-        padding: 5px 0;
-    }
-}
-
-@media (max-width: 768px) {
-    .current-track__action {
-        padding-top: 15px;
-    }
 }
 .artist {
     height: 617px;
@@ -687,50 +569,6 @@ body a:hover {
 .artist__content .overview__related {
     width: 30%;
 }
-@media (max-width: 1024px) {
-    .artist__content .overview__artist {
-        width: 100%;
-    }
-    .artist__content .overview__related {
-        width: 100%;
-        margin-top: 15px;
-    }
-}
-@media (max-width: 768px) {
-    .artist__content .overview__artist {
-        padding-right: 0;
-    }
-}
-
-@media (max-width: 768px) {
-    .artist {
-        overflow-y: auto;
-    }
-}
-@media (max-width: 522px) {
-    .artist__header {
-        height: auto;
-        flex-flow: column wrap;
-    }
-    .artist__header .artist__info {
-        margin-top: 0;
-        width: 100%;
-        display: flex;
-        flex-flow: column wrap;
-        align-items: center;
-        text-align: center;
-    }
-    .artist__header .artist__info .profile__img {
-        margin-right: 0;
-    }
-    .artist__header .artist__info__type {
-        margin-top: 10px;
-    }
-    .artist__header .artist__listeners {
-        width: 100%;
-        text-align: center;
-    }
-}
 .tracks {
     display: flex;
     flex-flow: column wrap;
@@ -841,24 +679,6 @@ body a:hover {
     font-size: 20px;
     color: #aaaaaa;
 }
-
-@media (max-width: 1200px) {
-    .tracks__heading__title {
-        width: auto;
-    }
-    .tracks__heading__popularity {
-        display: none;
-    }
-    .tracks .track__title {
-        width: auto !important;
-    }
-    .tracks .track__explicit {
-        display: none;
-    }
-    .tracks .track__popularity {
-        display: none;
-    }
-}
 .related-artists {
     display: flex;
     flex-flow: column wrap;
@@ -880,36 +700,6 @@ body a:hover {
 .related-artists .related-artist__name {
     margin-left: 15px;
     color: white;
-}
-
-@media (max-width: 1024px) {
-    .related-artists {
-        flex-flow: row wrap;
-    }
-    .related-artists .related-artist {
-        margin: 10px;
-        width: calc( (100% / 3) - 20px );
-    }
-}
-@media (max-width: 768px) {
-    .related-artists .related-artist {
-        margin: 5px;
-        width: calc( (100% / 2) - 10px );
-    }
-}
-@media (max-width: 480px) {
-    .related-artists .related-artist {
-        margin: 5px;
-        width: 20%;
-        background: none;
-    }
-    .related-artists .related-artist:hover {
-        background: none;
-        opacity: .6;
-    }
-    .related-artists .related-artist__name {
-        display: none;
-    }
 }
 .overview__albums {
     width: 100%;
@@ -989,12 +779,6 @@ body a:hover {
     width: 70%;
 }
 
-@media (max-width: 1200px) {
-    .album .tracks .track {
-        height: auto;
-        padding: 10px 0;
-    }
-}
 .social {
     padding: 15px;
     text-align: center;
@@ -1059,23 +843,6 @@ body a:hover {
 .media-cards .media-card__footer:hover {
     cursor: pointer;
 }
-
-@media (max-width: 1100px) {
-    .media-cards .media-card {
-        width: calc( (100% / 3) - 30px );
-    }
-}
-@media (max-width: 768px) {
-    .media-cards .media-card {
-        width: calc( (100% / 2) - 30px );
-    }
-}
-@media (max-width: 480px) {
-    .media-cards .media-card {
-        margin: 15px 0;
-        width: 100%;
-    }
-}
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -1083,29 +850,6 @@ body a:hover {
 ::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background: #373737;
-}
-
-@media (max-width: 650px) {
-    .header .window__actions {
-        width: 15%;
-    }
-    .header .page-flows {
-        width: 20%;
-        margin: 0;
-    }
-    .header .search {
-        width: 65%;
-        margin: 0;
-    }
-    .header .search input {
-        width: 100%;
-        background-size: 7%;
-    }
-    .header .user {
-        width: 100%;
-        margin-top: 15px;
-        justify-content: space-around;
-    }
 }
 .h1 {
     font-size: 36px;
