@@ -55,6 +55,21 @@ public class MainController {
 		return mav;
 	} // Share() end
 	
+	@RequestMapping(value="/main/create.do", method=RequestMethod.GET)
+	public ModelAndView createForm(){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("main/createForm");
+		return mav;
+	}
+	
+	@RequestMapping(value="/main/create.do", method=RequestMethod.POST)
+	public ModelAndView createProc(SentShareDTO dto){
+		ModelAndView mav = new ModelAndView();
+		int cnt = dao.create(dto);
+		mav.setViewName("redirect:/main/list.do"); // /mediagroup/msgView.jsp		
+		return mav;
+	}
+	
 	@RequestMapping(value="/main/read.do", method=RequestMethod.GET)
 	public ModelAndView read(int bbsno){
 		dao.readcnt(bbsno);
