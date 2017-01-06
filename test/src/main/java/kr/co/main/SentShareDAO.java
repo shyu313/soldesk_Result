@@ -57,4 +57,11 @@ public class SentShareDAO {
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
 		mapper.readcnt(bbsno);
 	}
+	
+	// ±Û ÀüÃ¼ °¹¼ö
+	public int getArticleCount(){
+		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
+		int cnt = mapper.getArticleCount();
+		return cnt;
+	}
 }

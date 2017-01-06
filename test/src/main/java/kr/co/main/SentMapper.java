@@ -25,4 +25,7 @@ public interface SentMapper {
 	public int update(SentShareDTO dto);
 	
 	public void readcnt(int bbsno);
+	
+	
+	public int getArticleCount(); // 글 전체 갯수
 }

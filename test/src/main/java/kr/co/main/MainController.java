@@ -21,6 +21,8 @@ public class MainController {
 	
 		@Autowired
 		private SentShareDAO dao;
+		
+		//int recordPerPage = 10;
 	//	@RequestMapping(value = "/", method = RequestMethod.GET)				
 //	public String home(Locale locale, Model model) {
 //		logger.info("Welcome home! The client locale is {}.", locale);
@@ -50,9 +52,12 @@ public class MainController {
 	@RequestMapping("/main/Share.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView list(){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main/list"); // /main/list.jsp
+		mav.setViewName("main/Share"); // /main/list.jsp
 		ArrayList<SentShareDTO> list = dao.list();
+		int cnt = dao.getArticleCount();
 		mav.addObject("list", list);
+		
+		mav.addObject("count", cnt); // 글 전체 갯수
 		return mav;
 	} // Share() end
 	
@@ -69,7 +74,7 @@ public class MainController {
 	public ModelAndView createProc(SentShareDTO dto){
 		ModelAndView mav = new ModelAndView();
 		int cnt = dao.create(dto);
-		mav.setViewName("redirect:/main/list.do"); // /mediagroup/msgView.jsp		
+		mav.setViewName("redirect:/main/Share.do"); // /mediagroup/msgView.jsp		
 		return mav;
 	}
 	
@@ -99,7 +104,7 @@ public class MainController {
 	public ModelAndView deleteProc(SentShareDTO dto){
 		ModelAndView mav = new ModelAndView();
 		int cnt = dao.delete(dto);
-		mav.setViewName("redirect:/main/list.do");
+		mav.setViewName("redirect:/main/Share.do");
 		return mav;
 	}
 	
@@ -118,7 +123,7 @@ public class MainController {
 	public ModelAndView updateProc(SentShareDTO dto){
 		ModelAndView mav = new ModelAndView();
 		int cnt = dao.update(dto);
-		mav.setViewName("redirect:/main/list.do");
+		mav.setViewName("redirect:/main/Share.do");
 		return mav;
 	}
 }

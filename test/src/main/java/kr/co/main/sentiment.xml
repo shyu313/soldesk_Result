@@ -14,8 +14,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap> -->
 	
 	<!-- 감성 공유 리스트 쿼리  -->
-	<select id="list" resultType="SentShareDTO">
+	<!-- <select id="list" resultType="SentShareDTO">
 		SELECT bbsno, subject, wname, readcnt, regdt FROM sentshare ORDER BY bbsno DESC
+	</select> -->
+	
+	<!-- 감성 공유 리스트 쿼리  -->
+	<select id="list" resultType="SentShareDTO">
+		<![CDATA[
+			SELECT a.* FROM ( 
+				SELECT b.* FROM ( 
+					SELECT * FROM sentshare ORDER BY bbsno desc 
+				) b 
+			) a WHERE a.bbsno <= 15 AND a.bbsno >= 6 ORDER BY bbsno desc
+		]]>
+		
+		<!-- SELECT bbsno, subject, wname, readcnt, regdt FROM sentshare WHERE bbsno = 1 -->
 	</select>
 	
 	<!-- 감성 공유 작성 쿼리 -->
@@ -37,12 +50,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM sentshare WHERE bbsno = #{bbsno}
 	</delete>
 	
-	<!-- 조회수 증가 처리 -->
+	<!-- 감성공유 수정 처리 -->
 	<update id="update" parameterType="SentShareDTO">
 		UPDATE sentshare SET subject = #{subject}, wname = #{wname}, content = #{content} WHERE bbsno = #{bbsno}
 	</update>
 	
+	<!-- 조회수 증가 -->
 	<update id="readcnt" parameterType="int">
 		UPDATE sentshare SET readcnt = readcnt + 1 WHERE bbsno = #{bbsno}
 	</update>
+	
+	<!-- 글 전체 갯수 보여주기 -->
+	<select id="getArticleCount" resultType="int">
+		SELECT COUNT(*) cnt FROM sentshare
+	</select>
 </mapper>
