@@ -16,8 +16,8 @@
         <link
         href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese'
         rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="./css/mediaQuery.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/mediaQuery.css">
         </head>
 
         <body>
@@ -31,7 +31,7 @@
 
         <!-- 홈 이동 -->
         <div class = "home-page">
-        <a href="index.do" class="navigation__home__item">
+        <a href="../index.do" class="navigation__home__item">
         <span>HOME</span>
         </a>
         </div>
@@ -68,8 +68,8 @@
         <i class="ion-chevron-down"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-        <li><a href="./user/Private.do">개인 정보</a></li>
-        <li><a href="./user/Customer.do">고객 센터</a></li>
+        <li><a href="../user/Private.do">개인 정보</a></li>
+        <li><a href="../user/Customer.do">고객 센터</a></li>
         <li><a href="#">로그 아웃</a></li>
         </ul>
         </div>
@@ -90,11 +90,11 @@
         </div>
 
         <div class="collapse in" id="main">
-        <a href="./main/Search.do" class="navigation__list__item">
+        <a href="../main/Search.do" class="navigation__list__item">
         <i class="ion-ios-browsers"></i>
         <span>감성 검색</span>
         </a>
-        <a href="./main/Share.do" class="navigation__list__item">
+        <a href="../main/Share.do" class="navigation__list__item">
         <i class="ion-person-stalker"></i>
         <span>감정 공유</span>
         </a>
@@ -111,11 +111,11 @@
         </div>
 
         <div class="collapse in" id="yourMusic">
-        <a href="./music/Replay.do" class="navigation__list__item">
+        <a href="../music/Replay.do" class="navigation__list__item">
         <i class="ion-headphone"></i>
         <span>노래 다시듣기</span>
         </a>
-        <a href="./music/Emotionlist.do" class="navigation__list__item">
+        <a href="../music/Emotionlist.do" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
         <span>감정 그래프</span>
         </a>
@@ -131,15 +131,15 @@
         </div>
 
         <div class="collapse in" id="playlists">
-        <a href="./playlist/Toplist.do" class="navigation__list__item">
+        <a href="../playlist/Toplist.do" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
         <span>TOP 100</span>
         </a>
-        <a href="./playlist/Emotion.do" class="navigation__list__item">
+        <a href="../playlist/Emotion.do" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
         <span>감성 보기</span>
         </a>
-        <a href="./playlist/Randomplay.do" class="navigation__list__item">
+        <a href="../playlist/Randomplay.do" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
         <span>랜덤 듣기</span>
         </a>
