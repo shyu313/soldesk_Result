@@ -78,6 +78,7 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         response.name + '님의 로그인을 환영합니다!';
+      
     });
   }
 </script>
@@ -88,7 +89,8 @@
   the FB.login() function when clicked.
 -->
 
-<div class="fb-login-button" data-max-rows="2" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
+<div class="fb-login-button" data-max-rows="2" data-size="xlarge" 
+data-show-faces="false" data-auto-logout-link="true"></div>
 
 <div id="status"></div>
 <div id="fb-root"></div>
