@@ -1,9 +1,14 @@
 function dashboard(id, fData){
     var barColor = 'steelblue';
-    function segColor(c){ return {low:"#807dba", mid:"#e08214",high:"#41ab5d"}[c]; }
+    //function segColor(c){ return {low:"#807dba", mid:"#e08214",high:"#41ab5d"}[c]; }
+
+    function segColor(c){ return {happy:"#E3CC55", sad:"#2A72BA",rage:"#EC5E44", disgust:"#0AA400",interest:"#AB748E"
+        , pain:"#7D2F22",fear:"#444344"}[c]; }
+
     
     // compute total for each state.
-    fData.forEach(function(d){d.total=d.freq.low+d.freq.mid+d.freq.high;});
+    fData.forEach(function(d){d.total=d.freq.happy+d.freq.sad+d.freq.rage+d.freq.disgust
+        +d.freq.interest+d.freq.pain+d.freq.fear;});
     
     // function to handle histogram.
     function histoGram(fD){
@@ -43,7 +48,7 @@ function dashboard(id, fData){
             .attr("height", function(d) { return hGDim.h - y(d[1]); })
             .attr('fill',barColor)
             .on("mouseover",mouseover)// mouseover is defined below.
-            //.on("mouseout",mouseout);// mouseout is defined below. 마우스 아웃 주석
+            .on("mouseout",mouseout);// mouseout is defined below. 마우스 아웃 주석
             
         //Create the frequency labels above the rectangles.
         bars.append("text").text(function(d){ return d3.format(",")(d[1])})
@@ -198,9 +203,9 @@ function dashboard(id, fData){
     }
     
     // calculate total frequency by segment for all state.
-    var tF = ['low','mid','high'].map(function(d){ 
-        return {type:d, freq: d3.sum(fData.map(function(t){ return t.freq[d];}))}; 
-    });    
+    var tF = ['happy','sad','rage','disgust','interest','pain','fear'].map(function(d){
+        return {type:d, freq: d3.sum(fData.map(function(t){ return t.freq[d];}))};
+    });
     
     // calculate total frequency by state for all segment.
     var sF = fData.map(function(d){return [d.State,d.total];});
@@ -214,31 +219,34 @@ function dashboard(id, fData){
 
 
 
-var freqData=[
-	{State:'top1',freq:{low:3453, mid:1319, high:249}}
-	,{State:'top2',freq:{low:1101, mid:412, high:674}}
-	,{State:'top3',freq:{low:932, mid:2149, high:418}}
-	,{State:'top4',freq:{low:832, mid:1152, high:1862}}
-	,{State:'top5',freq:{low:4481, mid:3304, high:948}}
-	,{State:'top6',freq:{low:1619, mid:167, high:1063}}
-	,{State:'top7',freq:{low:1819, mid:247, high:1203}}
-	,{State:'top8',freq:{low:4498, mid:3852, high:942}}
-	,{State:'top9',freq:{low:797, mid:1849, high:1534}}
-	,{State:'top10',freq:{low:162, mid:379, high:471}}
-	];
+/*
 
-/*var freqData=[
-    {State:'top1',freq:{happy:1, sad:2, rage:3, disgust:2, interest:3, pain:2, fear:3}}
-    ,{State:'top2',freq:{happy:1, sad:2, rage:3, disgust:2, interest:3, pain:2, fear:3}}
-    ,{State:'top3',freq:{happy:1, sad:2, rage:3, disgust:2, interest:3, pain:2, fear:3}}
-    ,{State:'top4',freq:{happy:1, sad:2, rage:3, disgust:2, interest:3, pain:2, fear:3}}
-    ,{State:'top5',freq:{happy:1, sad:2, rage:3, disgust:2, interest:3, pain:2, fear:3}}
-    ,{State:'top6',freq:{happy:1, sad:2, rage:3, disgust:2, interest:3, pain:2, fear:3}}
-    ,{State:'top7',freq:{happy:1, sad:2, rage:3, disgust:2, interest:3, pain:2, fear:3}}
-    ,{State:'top8',freq:{happy:1, sad:2, rage:3, disgust:2, interest:3, pain:2, fear:3}}
-    ,{State:'top9',freq:{happy:1, sad:2, rage:3, disgust:2, interest:3, pain:2, fear:3}}
-    ,{State:'top10',freq:{happy:1, sad:2, rage:3, disgust:2, interest:3, pain:2, fear:3}}
-];*/
+ var freqData=[
+ {State:'top1',freq:{low:3453, mid:1319, high:249}}
+ ,{State:'top2',freq:{low:1101, mid:412, high:674}}
+ ,{State:'top3',freq:{low:932, mid:2149, high:418}}
+ ,{State:'top4',freq:{low:832, mid:1152, high:1862}}
+ ,{State:'top5',freq:{low:4481, mid:3304, high:948}}
+ ,{State:'top6',freq:{low:1619, mid:167, high:1063}}
+ ,{State:'top7',freq:{low:1819, mid:247, high:1203}}
+ ,{State:'top8',freq:{low:4498, mid:3852, high:942}}
+ ,{State:'top9',freq:{low:797, mid:1849, high:1534}}
+ ,{State:'top10',freq:{low:162, mid:379, high:471}}
+ ];
+ */
+
+var freqData=[
+    {State:'top1',freq:{happy:10, sad:2, rage:0.8, disgust:0, interest:0, pain:0, fear:0}}
+    ,{State:'top2',freq:{happy:0, sad:20, rage:0, disgust:5, interest:0, pain:0, fear:9}}
+    ,{State:'top3',freq:{happy:0, sad:0, rage:33, disgust:20, interest:31, pain:0, fear:0}}
+    ,{State:'top4',freq:{happy:1, sad:2, rage:3, disgust:2, interest:0, pain:70, fear:2}}
+    ,{State:'top5',freq:{happy:100, sad:2, rage:3, disgust:2, interest:7, pain:22, fear:1}}
+    ,{State:'top6',freq:{happy:0, sad:90, rage:3, disgust:22, interest:15, pain:0, fear:0}}
+    ,{State:'top7',freq:{happy:15, sad:0, rage:33, disgust:22, interest:0, pain:0, fear:0}}
+    ,{State:'top8',freq:{happy:17, sad:2, rage:3, disgust:0, interest:0, pain:2, fear:0}}
+    ,{State:'top9',freq:{happy:1, sad:25, rage:3, disgust:2, interest:55, pain:1, fear:0}}
+    ,{State:'top10',freq:{happy:10, sad:10, rage:10, disgust:10, interest:10, pain:10, fear:10}}
+];
 
 
 	dashboard('#dashboard',freqData);
