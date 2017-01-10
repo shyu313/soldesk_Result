@@ -1,6 +1,8 @@
 /**
  * Created by Soldesk on 2017-01-04.
  */
+
+/* BubbleChart Start*/
 $(document).ready(function () {
     var bubbleChart = new d3.svg.BubbleChart({
         supportResponsive: true,
@@ -98,3 +100,4 @@ $(document).ready(function () {
             }]
     });
 });
+/* BubbleChart End*/

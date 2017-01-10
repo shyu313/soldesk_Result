@@ -957,3 +957,9 @@ g path, g line 	{ stroke: #fff; }
     background: #282828;
 }
 /* Bubble Chart End*/
+
+/* Bubble Menu Start*/
+.mainBubbleSVG{
+ 	width: 100%;
+}
+/* Bubble Menu End*/

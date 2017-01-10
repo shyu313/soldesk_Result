@@ -141,6 +141,7 @@
 
     <!-- 메인에 해당하는 부분  -->
     <div class="content__middle">
+    	<div id="mainBubble">  </div>
     </div>
     <!-- 유투브 플레이어 부분-->
     <div class="content__right">
@@ -179,11 +180,12 @@
 <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
 <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
 <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
-<script src="./js/index.js"></script>
+<!--<script src="./js/index.js"></script>-->
 
 
-<!-- <script src="./js/d3_Bubble_Chart.js"></script>
+<script src="./js/d3_Bubble_Chart.js"></script>
 <script src="./js/d3_Bubble_Menu.js"></script>
-<script src="./js/youtube.js"></script> -->
+<script src="./js/youtube.js"></script>
 </body>
 </html>
+

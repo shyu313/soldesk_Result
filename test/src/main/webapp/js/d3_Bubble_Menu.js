@@ -1,3 +1,6 @@
+
+/* Bubble Menu Start*/
+
 /**
  * Created by Soldesk on 2017-01-05.
  */
@@ -11,11 +14,11 @@ var svgContainer = d3.select("#mainBubble")
 
 var svg = d3.select("#mainBubble").append("svg")
     .attr("class", "mainBubbleSVG")
-    .attr("width", w)
+    .attr("width", "90%")
     .attr("height",h)
     .on("mouseleave", function() {return resetBubbles();});
 
-var mainNote = svg.append("text")
+/*var mainNote = svg.append("text")
     .attr("id", "bubbleItemNote")
     .attr("x", 10)
     .attr("y", w/2-15)
@@ -24,9 +27,9 @@ var mainNote = svg.append("text")
     .attr("alignment-baseline", "middle")
     .style("fill", "#888888")
     .text(function(d) {return "D3.js bubble menu developed by Shipeng Sun (sunsp.gis@gmail.com), Institute of Environment, University of Minnesota, and University of Springfield, Illinois.";});
+*/
 
-
-d3.json("main_bubble.json", function(error, root) {
+d3.json("../json/main_bubble.json", function(error, root) {
     console.log(error);
 
     var bubbleObj = svg.selectAll(".topBubble")
@@ -245,3 +248,4 @@ function activateBubble(d,i) {
 }
 
 window.onresize = resetBubbles;
+/* BubbleMenu End*/
