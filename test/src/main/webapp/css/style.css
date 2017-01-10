@@ -959,7 +959,45 @@ g path, g line 	{ stroke: #fff; }
 /* Bubble Chart End*/
 
 /* Bubble Menu Start*/
-.mainBubbleSVG{
- 	width: 100%;
-}
+  #mainBubble {
+      background: #181818;
+      box-shadow: 0 0 4px rgba(0,0,0,0);
+      font: 10px sans-serif;
+      height: 800px;
+      position: relative;
+      width: 80%;
+    }
+             
+    #mainBubble svg {
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+                         
+    #mainBubble circle.topBubble {
+      fill: #aaa;
+      stroke: #666;
+      stroke-width: 1.5px;
+     }
 /* Bubble Menu End*/
+
+/*Emotion Graph Start*/
+ rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #FFF;
+      }
+
+      text.axis-worktime {
+        fill: #FFF;
+      }
+/*Emotion Graph End*/

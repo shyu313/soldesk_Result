@@ -1,35 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
-
-<%@ include file ="../header.jsp" %>
-
- <style>
-      rect.bordered {
-        stroke: #E6E6E6;
-        stroke-width:2px;   
-      }
-
-      text.mono {
-        font-size: 9pt;
-        font-family: Consolas, courier;
-        fill: #aaa;
-      }
-
-      text.axis-workweek {
-        fill: #FFF;
-      }
-
-      text.axis-worktime {
-        fill: #FFF;
-      }
-    </style>
-    <script src="http://d3js.org/d3.v3.js"></script>
-  </head>
-  <body>
-    <div id="chart"></div>
-    <div id="dataset-picker">
-    </div>
-    <script type="text/javascript">
-      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+var margin = { top: 50, right: 0, bottom: 100, left: 30 },
           width = 960*0.8 - margin.left - margin.right,
           height = 430 - margin.top - margin.bottom,
           gridSize = Math.floor(width / 24),
@@ -139,9 +108,3 @@
         .on("click", function(d) {
           heatmapChart(d);
         });
-    </script>
-	</div>
-
-	
-<%@ include file ="../footer.jsp" %>
-	

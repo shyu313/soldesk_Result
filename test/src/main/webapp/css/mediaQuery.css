@@ -1,5 +1,3 @@
-/* 반응형 웹 미디어 쿼리 */
-
 @media (max-width: 900px) {
     .content__left {
         width: 20%;
@@ -212,6 +210,7 @@
     .media-cards .media-card {
         width: calc( (100% / 3) - 30px );
     }
+    
 }
 @media (max-width: 768px) {
     .media-cards .media-card {

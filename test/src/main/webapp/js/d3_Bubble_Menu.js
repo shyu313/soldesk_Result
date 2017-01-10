@@ -14,20 +14,10 @@ var svgContainer = d3.select("#mainBubble")
 
 var svg = d3.select("#mainBubble").append("svg")
     .attr("class", "mainBubbleSVG")
-    .attr("width", "90%")
+    .attr("width", w)
     .attr("height",h)
     .on("mouseleave", function() {return resetBubbles();});
 
-/*var mainNote = svg.append("text")
-    .attr("id", "bubbleItemNote")
-    .attr("x", 10)
-    .attr("y", w/2-15)
-    .attr("font-size", 12)
-    .attr("dominant-baseline", "middle")
-    .attr("alignment-baseline", "middle")
-    .style("fill", "#888888")
-    .text(function(d) {return "D3.js bubble menu developed by Shipeng Sun (sunsp.gis@gmail.com), Institute of Environment, University of Minnesota, and University of Springfield, Illinois.";});
-*/
 
 d3.json("../json/main_bubble.json", function(error, root) {
     console.log(error);
@@ -247,5 +237,4 @@ function activateBubble(d,i) {
     }
 }
 
-window.onresize = resetBubbles;
 /* BubbleMenu End*/
