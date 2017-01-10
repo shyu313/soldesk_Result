@@ -26,9 +26,9 @@ public class SentShareDAO {
 	}
 	
 	// 감성 공유 목록
-	public ArrayList<SentShareDTO> list(){
+	public ArrayList<SentShareDTO> list(SearchDTO searchDTO){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
-		ArrayList<SentShareDTO> list = mapper.list();
+		ArrayList<SentShareDTO> list = mapper.list(searchDTO);
 		return list;
 	}
 	
@@ -59,9 +59,9 @@ public class SentShareDAO {
 	}
 	
 	// 글 전체 갯수
-	public int getArticleCount(){
+	public int getArticleCount(SearchDTO searchDTO){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
-		int cnt = mapper.getArticleCount();
+		int cnt = mapper.getArticleCount(searchDTO);
 		return cnt;
 	}
 }

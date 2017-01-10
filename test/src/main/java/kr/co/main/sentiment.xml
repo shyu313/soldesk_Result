@@ -19,16 +19,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> -->
 	
 	<!-- 감성 공유 리스트 쿼리  -->
-	<select id="list" resultType="SentShareDTO">
+	<select id="list" parameterType="SearchDTO" resultType="SentShareDTO">
 		<![CDATA[
 			SELECT a.* FROM ( 
 				SELECT b.* FROM ( 
 					SELECT * FROM sentshare ORDER BY bbsno desc 
 				) b 
-			) a WHERE a.bbsno <= 15 AND a.bbsno >= 6 ORDER BY bbsno desc
-		]]>
-		
-		<!-- SELECT bbsno, subject, wname, readcnt, regdt FROM sentshare WHERE bbsno = 1 -->
+			) a 
+		]]>	
+		<!-- <![CDATA[a.bbsno <= 15 AND a.bbsno >= 6]]> -->
+		<if test="word != null">
+			<choose>
+				<when test="searchCondition == 0">
+					WHERE subject LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
+				</when>
+				<when test="searchCondition == 1">
+					WHERE content LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
+				</when>
+				<when test="searchCondition == 2">
+					WHERE wname LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
+				</when>
+			</choose>
+		</if>
+		<!-- <if test="word == null">
+			<![CDATA[
+				ORDER BY bbsno desc
+			]]>
+		</if> -->
 	</select>
 	
 	<!-- 감성 공유 작성 쿼리 -->
@@ -61,7 +78,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 글 전체 갯수 보여주기 -->
-	<select id="getArticleCount" resultType="int">
+	<select id="getArticleCount" parameterType="SearchDTO" resultType="int">
 		SELECT COUNT(*) cnt FROM sentshare
+		<if test="word != null">
+			<choose>
+				<when test="searchCondition == 0">
+					WHERE subject LIKE '%' || #{word} || '%'
+				</when>
+				<when test="searchCondition == 1">
+					WHERE content LIKE '%' || #{word} || '%'
+				</when>
+				<when test="searchCondition == 2">
+					WHERE wname LIKE '%' || #{word} || '%'
+				</when>
+			</choose>
+		</if>
 	</select>
 </mapper>

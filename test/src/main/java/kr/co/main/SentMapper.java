@@ -11,7 +11,7 @@ public interface SentMapper {
 	// sent.xml
 		
 	//<select id="list">
-	public ArrayList<SentShareDTO> list();  // 감성 공유 목록 
+	public ArrayList<SentShareDTO> list(SearchDTO searchDTO);  // 감성 공유 목록 
 		
 	//<insert id="create">
 	public int create(SentShareDTO dto);
@@ -26,6 +26,5 @@ public interface SentMapper {
 	
 	public void readcnt(int bbsno);
 	
-	
-	public int getArticleCount(); // 글 전체 갯수
+	public int getArticleCount(SearchDTO searchDTO); // 글 전체 갯수
 }

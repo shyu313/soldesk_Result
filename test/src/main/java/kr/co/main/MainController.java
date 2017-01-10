@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,24 +41,23 @@ public class MainController {
 	
 	// 결과 확인 http://localhost:9090/test/list.do
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
-	@RequestMapping("/main/Search.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
+	@RequestMapping("/main/search.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Search() {
 		logger.debug("검색 테스트");
 		System.out.println("루시테스트");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main/Search");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		mav.setViewName("main/search");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		return mav;
 	} // Search() end
 	
 	// 감성 공유 리스트 컨트롤러
-	@RequestMapping("/main/Share.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
-	public ModelAndView list(){
+	@RequestMapping("/main/share.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
+	public ModelAndView list(SearchDTO searchDTO, HttpServletRequest req){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main/Share"); // /main/list.jsp
-		ArrayList<SentShareDTO> list = dao.list();
-		int cnt = dao.getArticleCount();
+		mav.setViewName("main/share"); // /main/share.jsp
+		ArrayList<SentShareDTO> list = dao.list(searchDTO);
+		int cnt = dao.getArticleCount(searchDTO);		
 		mav.addObject("list", list);
-		
 		mav.addObject("count", cnt); // 글 전체 갯수
 		return mav;
 	} // Share() end
