@@ -1,3 +1,4 @@
+
 package kr.co.main;
 
 import java.text.DateFormat;
@@ -43,8 +44,7 @@ public class MainController {
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
 	@RequestMapping("/main/search.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Search() {
-		logger.debug("검색 테스트");
-		System.out.println("루시테스트");
+		logger.debug("search.do  테스트");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/search");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		return mav;
@@ -55,11 +55,11 @@ public class MainController {
 	public ModelAndView list(SearchDTO searchDTO, HttpServletRequest req){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/share"); // /main/share.jsp
-		ArrayList<SentShareDTO> list = dao.list(searchDTO);
+		/*ArrayList<SentShareDTO> list = dao.list(searchDTO);
 		int cnt = dao.getArticleCount(searchDTO);		
 		mav.addObject("list", list);
 		mav.addObject("count", cnt); // 글 전체 갯수
-		return mav;
+*/		return mav;
 	} // Share() end
 	
 	// 감성 공유 작성 폼 컨트롤러
@@ -75,7 +75,7 @@ public class MainController {
 	public ModelAndView createProc(SentShareDTO dto){
 		ModelAndView mav = new ModelAndView();
 		int cnt = dao.create(dto);
-		mav.setViewName("redirect:/main/Share.do"); // /mediagroup/msgView.jsp		
+		mav.setViewName("redirect:/main/share.do"); // /mediagroup/msgView.jsp		
 		return mav;
 	}
 	
@@ -105,7 +105,7 @@ public class MainController {
 	public ModelAndView deleteProc(SentShareDTO dto){
 		ModelAndView mav = new ModelAndView();
 		int cnt = dao.delete(dto);
-		mav.setViewName("redirect:/main/Share.do");
+		mav.setViewName("redirect:/main/share.do");
 		return mav;
 	}
 	
@@ -124,7 +124,7 @@ public class MainController {
 	public ModelAndView updateProc(SentShareDTO dto){
 		ModelAndView mav = new ModelAndView();
 		int cnt = dao.update(dto);
-		mav.setViewName("redirect:/main/Share.do");
+		mav.setViewName("redirect:/main/share.do");
 		return mav;
 	}
 }

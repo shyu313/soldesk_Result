@@ -17,21 +17,21 @@ public class UserController {
 	
 	// 결과 확인 http://localhost:9090/test/list.do
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
-	@RequestMapping("/user/Private.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
+	@RequestMapping("/user/private.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Private() {
 		logger.debug("검색 테스트");
 		System.out.println("개인 정보");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("user/Private");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		mav.setViewName("user/private");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		return mav;
 	} // Private() end
 	
-	@RequestMapping("/user/Customer.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
+	@RequestMapping("/user/customer.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Customer() {
 		logger.debug("검색 테스트");
 		System.out.println("고객 센터");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("user/Customer");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		mav.setViewName("user/customer");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		return mav;
 	} // index() end
 }
