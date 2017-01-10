@@ -8,7 +8,7 @@
 	* 게시글 상세보기 *<br>
 	<p>
 		<a href="./create.do">[쓰기]</a>
-		<a href="./list.do">[목록]</a>
+		<a href="./share.do">[목록]</a>
 	</p>
 	
 	<table border="1" cellpadding="0" cellspacing="0">
