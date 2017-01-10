@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class DBOpen {
 
-	public DBOpen() {
+	/*public DBOpen() {
 		System.out.println("---DBOpen °´Ã¼ »ý¼ºµÊ");
-	}
+	}*/
 
 	public Connection getConnetion() {
 

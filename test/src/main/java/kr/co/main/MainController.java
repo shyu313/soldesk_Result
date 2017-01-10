@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
 	public static Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-	
 		@Autowired
 		private SentShareDAO dao;
 		
@@ -44,7 +43,6 @@ public class MainController {
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
 	@RequestMapping("/main/search.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Search() {
-		logger.debug("search.do  테스트");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/search");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		return mav;
