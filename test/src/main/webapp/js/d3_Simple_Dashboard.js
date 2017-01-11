@@ -102,6 +102,7 @@ function dashboard(id, fData){
         return hG;
     }
 
+    
 
     // function to handle pieChart.
     // 원형그래프
