@@ -1,0 +1,29 @@
+
+{"name":"bubble", "children": 
+[
+  {"name":"기쁨","description":"asdf",
+    "children":[
+      {"name": "신나다","address":""},
+      {"name": "설레다","address":""},
+      {"name": "좋다","address":""}
+    ]},
+  {"name": "공포", "description": "Virtual Lab of Global Agriculture",
+    "children":[
+      {"name":"겁나다","address":""},
+      {"name":"살벌하다","address":""},
+      {"name":"초조하다","address":""}
+    ]},
+  {"name":"슬픔", "description":"Profiles of Country",
+    "children":[
+      {"name":"울다","address":""},
+      {"name":"먹먹함","address":""},
+      {"name":"한숨","address":""},
+      {"name":"씁슬하다","address":""}
+    ]},
+  {"name":"분노", "description":"Crop Data in 5 minutes grid",
+    "children":[
+      {"name":"분하다","address":""},
+      {"name":"증오하다","address":""},
+      {"name":"옘병","address":""}
+    ]}
+]}
