@@ -35,13 +35,13 @@ $(document).ready(function () {
             {
                 name: "central-click",
                 options: {
-                    text: "(See more detail)",
+                    text: "(more detail)",
                     style: {
                         "font-size": "12px",
                         "font-style": "italic",
                         "font-family": "Source Sans Pro, sans-serif",
                         //"font-weight": "700",
-                        "text-anchor": "middle",
+                        "text-anchor": "left",
                         "fill": "white"
                     },
                     attr: {dy: "65px"},

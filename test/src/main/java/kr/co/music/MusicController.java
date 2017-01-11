@@ -28,6 +28,8 @@ public class MusicController {
 	public ModelAndView Emotionlist() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("music/emotionlist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		
+		
 		return mav;
 	} // Emotionlist() end
 }
