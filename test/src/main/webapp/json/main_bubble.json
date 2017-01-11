@@ -1,28 +1,28 @@
 {"name":"bubble", "children": 
 [
-  {"name":"fear","description":"asdf",
+  {"name":"기쁨","description":"asdf",
     "children":[
-      {"name": "1234","address":"http://gli.environment.umn.edu", "note":"Global crop geography, including precipitation, temperature, crop area, etc."},
-      {"name": "asdf","address":"http://d3js.org"},
-      {"name": "qwer","address":"http://environment.umn.edu", "note":"Maize, wheat, rice, and soybean yields in 2000"}
+      {"name": "신나다","address":""},
+      {"name": "설레다","address":""},
+      {"name": "좋다","address":""}
     ]},
-  {"name": "����", "description": "Virtual Lab of Global Agriculture",
+  {"name": "공포", "description": "Virtual Lab of Global Agriculture",
     "children":[
-      {"name":"Excess Nutrient","address":"http://d3js.org","note":"Prototype Infographics on Excess Fertilizer Nutrients"},
-      {"name":"Yield Gap","address":"http://d3js.org", "note":"The gap between attainable yields and actual yields, with modeled yields assuming the percentage of gap closed."},
-      {"name":"Fertilizer","address":"http://sunsp.net"}
+      {"name":"겁나다","address":""},
+      {"name":"살벌하다","address":""},
+      {"name":"초조하다","address":""}
     ]},
-  {"name":"���", "description":"Profiles of Country",
+  {"name":"슬픔", "description":"Profiles of Country",
     "children":[
-      {"name":"Efficiency","address":"http://d3js.org"},
-      {"name":"Excess Nutrient","address":"http://d3js.org"},
-      {"name":"Economy","address":"http://d3js.org"},
-      {"name":"Agriculture","address":"http://uis.edu/ens"}
+      {"name":"울다","address":""},
+      {"name":"먹먹함","address":""},
+      {"name":"한숨","address":""},
+      {"name":"씁슬하다","address":""}
     ]},
-  {"name":"�г�", "description":"Crop Data in 5 minutes grid",
+  {"name":"분노", "description":"Crop Data in 5 minutes grid",
     "children":[
-      {"name":"Geography","address":"http://www.earthstat.org/"},
-      {"name":"Crop Land","address":"http://www.earthstat.org/"},
-      {"name":"Crop Yields","address":"http://www.earthstat.org/"}
+      {"name":"분하다","address":""},
+      {"name":"증오하다","address":""},
+      {"name":"옘병","address":""}
     ]}
 ]}
