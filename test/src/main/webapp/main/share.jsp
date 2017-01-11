@@ -21,7 +21,7 @@
 			<th><font color="#ffffff">조회수</font></th>
 			<th><font color="#ffffff">등록일</font></th>
 		</tr>
-		<c:forEach var="dto" items="${list }">
+		<c:forEach var="dto" items="${articleList }">
 		<tr>
 			<td><font color="#ffffff">${dto.bbsno }</font></td>
 			<td>
@@ -41,12 +41,35 @@
 	
 	<br><br>
 	
-	<c:if test="${count > 0 }">
+	<%-- <c:if test="${count > 0 }">
 		<a href="./share.do?pageNum=${startPage }">[이전]</a>
 		<c:forEach var="i" begin="1" end="${count/10 }">
 			<a href="./share.do?pageNum=${i }">[${i }]</a>
 		</c:forEach>
 		<a href="./share.do?pageNum=${startPage+11 }">[다음]</a>
+	</c:if> --%>
+	
+	<!-- 페이지 리스트 -->
+	<c:if test="${count>0 }">
+		<c:set var="pageCount" value="${totalPage }"/>
+		<c:set var="startPage" value="${startPage }"/>
+		<c:set var="endPage" value="${endPage }"/>
+		
+		<c:if test="${endPage>pageCount }">
+			<c:set var="endPage" value="${pageCount+1 }"/>
+		</c:if>
+		
+		<c:if test="${startPage>0 }">
+			<a href="./share.do?pageNum=${startPage }">[이전]</a>
+		</c:if>
+		
+		<c:forEach var="i" begin="${startPage+1 }" end="${endPage-1 }">
+			<a href="./share.do?pageNum=${i }">[${i }]</a>
+		</c:forEach>
+		
+		<c:if test="${endPage<pageCount }">
+			<a href="./share.do?pageNum=${startPage+11 }">[다음]</a>
+		</c:if>
 	</c:if>
 	<br><br>
 	
