@@ -1,6 +1,8 @@
 package kr.co.main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import kr.co.main.SentShareDTO;
 
@@ -11,7 +13,7 @@ public interface SentMapper {
 	// sent.xml
 		
 	//<select id="list">
-	public ArrayList<SentShareDTO> list(SearchDTO searchDTO);  // 감성 공유 목록 
+	public List<SentShareDTO> list(HashMap hashMap);  // 감성 공유 목록 
 		
 	//<insert id="create">
 	public int create(SentShareDTO dto);
