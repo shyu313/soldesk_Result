@@ -3,6 +3,8 @@ package kr.co.main;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,10 @@ public class SentShareDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-/*	public SentShareDAO() {
+	public SentShareDAO() {
 		System.out.println("---SentShareDAO객체 생성됨");
 	}
-*/	 
+	 
 	// 감성 공유 작성
 	public int create(SentShareDTO dto){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
@@ -26,9 +28,9 @@ public class SentShareDAO {
 	}
 	
 	// 감성 공유 목록
-	public ArrayList<SentShareDTO> list(SearchDTO searchDTO){
+	public List<SentShareDTO> list(HashMap hashMap){
 		SentMapper mapper = sqlSession.getMapper(SentMapper.class);
-		ArrayList<SentShareDTO> list = mapper.list(searchDTO);
+		List<SentShareDTO> list = mapper.list(hashMap);
 		return list;
 	}
 	

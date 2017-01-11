@@ -19,28 +19,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> -->
 	
 	<!-- 감성 공유 리스트 쿼리  -->
-	<select id="list" parameterType="SearchDTO" resultType="SentShareDTO">
+	<select id="list" parameterType="HashMap" resultType="SentShareDTO">
 		<![CDATA[
 			SELECT a.* FROM ( 
-				SELECT b.* FROM ( 
+				SELECT ROWNUM as RNUM, b.* FROM ( 
 					SELECT * FROM sentshare ORDER BY bbsno desc 
 				) b 
 			) a 
-		]]>	
-		<!-- <![CDATA[a.bbsno <= 15 AND a.bbsno >= 6]]> -->
+		]]> WHERE <![CDATA[a.RNUM >= #{startRow} AND a.RNUM <= #{endRow}]]>
 		<if test="word != null">
 			<choose>
 				<when test="searchCondition == 0">
-					WHERE subject LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
+					AND subject LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
 				</when>
 				<when test="searchCondition == 1">
-					WHERE content LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
+					AND content LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
 				</when>
 				<when test="searchCondition == 2">
-					WHERE wname LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
+					AND wname LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
 				</when>
 			</choose>
 		</if>
+		
 		<!-- <if test="word == null">
 			<![CDATA[
 				ORDER BY bbsno desc

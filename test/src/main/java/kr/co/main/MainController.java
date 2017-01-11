@@ -1,9 +1,11 @@
-
 package kr.co.main;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +17,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
 	public static Logger logger = LoggerFactory.getLogger(MainController.class);
+	
 	
 		@Autowired
 		private SentShareDAO dao;
@@ -35,7 +39,7 @@ public class MainController {
 //		String formattedDate = dateFormat.format(date);
 //		
 //		model.addAttribute("serverTime", formattedDate );
-//		 
+//		
 //		return "home";
 //	}
 	
@@ -43,6 +47,8 @@ public class MainController {
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
 	@RequestMapping("/main/search.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Search() {
+		logger.debug("검색 테스트");
+		System.out.println("루시테스트");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/search");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		return mav;
@@ -53,11 +59,67 @@ public class MainController {
 	public ModelAndView list(SearchDTO searchDTO, HttpServletRequest req){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/share"); // /main/share.jsp
-		/*ArrayList<SentShareDTO> list = dao.list(searchDTO);
-		int cnt = dao.getArticleCount(searchDTO);		
-		mav.addObject("list", list);
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		//ArrayList<SentShareDTO> list = dao.list(searchDTO);
+		int cnt = dao.getArticleCount(searchDTO);
+		
+		//페이징
+		int numPerPage=10;
+		int pagePerBlock=10;
+				
+		String pageNum=req.getParameter("pageNum");
+		if(pageNum==null){
+			pageNum="1";
+		}
+				
+		int currentPage=Integer.parseInt(pageNum);
+		int startRow=(currentPage-1)*numPerPage+1;
+		int endRow=currentPage*numPerPage;
+				
+		//페이지수
+		double totcnt = (double)cnt/numPerPage;
+		int totalPage = (int)Math.ceil(totcnt);
+				
+		double d_page = (double)currentPage/pagePerBlock;
+		int Pages = (int)Math.ceil(d_page)-1;
+		int startPage = Pages*pagePerBlock;
+		int endPage = startPage+pagePerBlock+1;
+		
+		hashMap.put("searchCondition",searchDTO.getSearchCondition());
+		hashMap.put("word", searchDTO.getWord());
+		hashMap.put("startRow", startRow);
+		hashMap.put("endRow", endRow);
+				
+		List<SentShareDTO> articleList=null;
+		if(cnt>0){
+			articleList=dao.list(hashMap);
+		}else{
+			articleList=Collections.EMPTY_LIST;
+		}
+				
+		int number=0;
+		number=cnt-(currentPage-1)*numPerPage;
+				
+		//mav.addObject("list", list);
 		mav.addObject("count", cnt); // 글 전체 갯수
-*/		return mav;
+		
+		mav.addObject("number", new Integer(number));
+		mav.addObject("pageNum", new Integer(currentPage));
+		mav.addObject("startRow", new Integer(startRow));
+		mav.addObject("endRow", new Integer(endRow));
+		mav.addObject("pageSize", new Integer(pagePerBlock));
+		mav.addObject("totalPage", new Integer(totalPage));
+		mav.addObject("startPage", new Integer(startPage));
+		mav.addObject("endPage", new Integer(endPage));
+		mav.addObject("articleList", articleList);
+		
+		//System.out.println(currentPage);
+		//System.out.println(startRow);
+		//System.out.println(endRow);
+		//System.out.println(totalPage);
+		//System.out.println(cnt);
+		System.out.println(Pages);
+		return mav;
 	} // Share() end
 	
 	// 감성 공유 작성 폼 컨트롤러
