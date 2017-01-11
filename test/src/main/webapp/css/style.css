@@ -1,5 +1,4 @@
-/*CSS ´ëÀÛ¾÷ @media Äõ¸®¿¡ ÀÇÇÑ ¹ÝÀÀÇü À¥ ½ºÅ¸ÀÏ Àû¿ëÇÏ±â */
-/* Body ºÎºÐ Start*/
+/* Body ï¿½Îºï¿½ Start*/
 body {
     background: #181818;
     font-family: 'Roboto', sans-serif;
@@ -10,10 +9,10 @@ body a {
 body a:hover {
     color: #c8c8c8;
 }
-/* Body ºÎºÐ End*/
+/* Body ï¿½Îºï¿½ End*/
 
-/* Header ºÎºÐ Start  */
-.header {											/*»ó´Ü ¸ÞÀÎ Bar*/
+/* Header ï¿½Îºï¿½ Start  */
+.header {											/*ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Bar*/
     background: #282828;
     padding: 10px;
     color: #aaaaaa;
@@ -22,7 +21,7 @@ body a:hover {
     flex-flow: row wrap;
     align-items: center;
 }
-.header .page-flows .flow {					/* »ó´Ü ¸ÞÀÎ Bar ÆäÀÌÁö ÀÌµ¿ ¹öÆ°*/
+.header .page-flows .flow {					/* ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Bar ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½Æ°*/
     font-size: 20px;
     color: #aaaaaa;
     margin: 0 10px;
@@ -33,7 +32,7 @@ body a:hover {
 .header .page-flows .flow .disabled {
     color: #5e5e5e;
 }
-.header .search {								/* »ó´Ü ¸ÞÀÎ bar °Ë»ö ºÎºÐ - ÇöÀç ÁÖ¼® Ã³¸®*/
+.header .search {								/* ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ bar ï¿½Ë»ï¿½ ï¿½Îºï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ Ã³ï¿½ï¿½*/
     margin-left: 1%;
 }
 .header .search input {
@@ -48,7 +47,7 @@ body a:hover {
     background-size: 10%;
     background-position: 5px;
 }
-.header .user {									/* »ó´Ü ¸ÞÀÎ bar À¯Àú Á¤º¸ ºÎºÐ */
+.header .user {									/* ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ bar ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ */
     width: 300px;
     margin-left: auto;
     display: flex;
@@ -110,27 +109,27 @@ body a:hover {
     color: #c8c8c8;
     transition: all 0.2s ease;
 }
-/* Header ºÎºÐ End  */
+/* Header ï¿½Îºï¿½ End  */
 
-/* ¿ÞÂÊ µå¶ø ¸Þ´º, ¸ÞÀÎ ÄÁÅÙÃ÷ ºÎºÐ Start*/
-.content__left {									/* ¿ÞÂÊ ¸Þ´º bar*/
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ Start*/
+.content__left {									/* ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ bar*/
     width: 20%;
 }
-.content__middle{								    /* ¸ÞÀÎ ÄÁÅÙÃ÷ ºÎºÐ*/
+.content__middle{								    /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½*/
     width: 50%;
 }
-.content__right{								    /* À¯Åõºê Àç»ý ºÎºÐ*/
+.content__right{								    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Îºï¿½*/
     width: 30%;
 }
 #content__player{
     width: 100%;
 }
-#content__lyrics{								    /* À¯Åõºê °¡»ç ºÎºÐ*/
+#content__lyrics{								    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½*/
     width: 100%;
     height: 45%;
 }
 
-/* ¿ÞÂÊ µå¶ø ¸Þ´º, ¸ÞÀÎ ÄÁÅÙÃ÷ ºÎºÐ End*/
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ End*/
 
 .navigation {
     padding: 15px;
@@ -927,7 +926,7 @@ button:hover {
     flex-flow: row wrap;
 }
 
-.section-bottom {                                    /* ¿ÞÂÊÇÏ´Ü ¹öºíÂ÷Æ® ºÎºÐ*/
+.section-bottom {                                    /* ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Îºï¿½*/
     text-transform: uppercase;
     letter-spacing: 1.25px;
     font-size: 13.2px;
@@ -937,13 +936,13 @@ button:hover {
 
 
 
-/* ±×·¡ÇÁ ½ºÅ¸ÀÏ START */
+/* ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ START */
 .bar 				{ fill: steelblue; }
 .bar:hover 		{ fill: brown; }
 .axis--x path 		{ display: none; }
 text 				{ fill: #fff; }
 g path, g line 	{ stroke: #fff; }
-/* ±×·¡ÇÁ ½ºÅ¸ÀÏ END */
+/* ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ END */
 
 
 /* Bubble Chart Start*/
@@ -1001,3 +1000,5 @@ g path, g line 	{ stroke: #fff; }
         fill: #FFF;
       }
 /*Emotion Graph End*/
+
+
