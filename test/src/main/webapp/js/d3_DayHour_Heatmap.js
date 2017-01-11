@@ -64,8 +64,8 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
               .attr("height", gridSize)
               .style("fill", colors[0])
           	  .on("click", function(d) {
-              alert("1234!!!");
-              });
+                alert("노래를 들은 시간 "+ d.hour  +"/"+" 들은 요일"+d.day);
+              }); 
 
           cards.transition().duration(1000)
               .style("fill", function(d) { return colorScale(d.value); });
@@ -111,7 +111,3 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
         .on("click", function(d) {
           heatmapChart(d);
         });
-
-    $('.rect').click(function(){
-        $('.rect').hide();
-    });

@@ -51,7 +51,7 @@ function dashboard(id, fData){
             .attr("width", x.rangeBand())
             .attr("height", function(d) { return hGDim.h - y(d[1]); })
             .attr('fill',barColor)
-            .on("mouseover",mouseover)// mouseover is defined below.
+            .on("click",mouseover)// mouseover is defined below.
             .on("mouseout",mouseout);// mouseout is defined below. 마우스 아웃 주석
 
         //Create the frequency labels above the rectangles.
@@ -126,8 +126,8 @@ function dashboard(id, fData){
 
             .each(function(d) { this._current = d; })
             .style("fill", function(d) { return segColor(d.data.type); })
-            .on("mouseover",mouseover);
-            //.on("mouseout",mouseout); 마우스 아웃 주석
+            .on("mouseover",mouseover)
+            .on("mouseout",mouseout); //마우스 아웃 주석
 
 
         // create function to update pie-chart. This will be used by histogram.
@@ -189,6 +189,7 @@ function dashboard(id, fData){
         // create the second column for each segment.
         // tbody의 tr의 두번째td 감정
         tr.append("g").text(function(d){ return d.type;});
+        tr.append("g").text(" "); // 공백추가
 
 /*
 
@@ -268,7 +269,7 @@ function dashboard(id, fData){
 
     // 임시 데이터값
     var freqData=[
-        {State:'top1',freq:{happy:10, sad:2, rage:0.8, disgust:0, interest:0, pain:0, fear:0}}
+        {State:'탑1',freq:{happy:10, sad:2, rage:0.8, disgust:0, interest:0, pain:0, fear:0}}
         ,{State:'top2',freq:{happy:0, sad:20, rage:0, disgust:5, interest:0, pain:0, fear:9}}
         ,{State:'top3',freq:{happy:0, sad:0, rage:33, disgust:20, interest:31, pain:0, fear:0}}
         ,{State:'top4',freq:{happy:1, sad:2, rage:3, disgust:2, interest:0, pain:70, fear:2}}

@@ -78,7 +78,9 @@ d3.json("../json/main_bubble.json", function(error, root) {
             .style("opacity",0.5)
             .style("fill", "#eee")
             .on("click", function(d,i) {
-                window.open(d.address);
+            	alert(d.keyword);
+               // window.open(d.address);
+           
             })
             .on("mouseover", function(d,i) {
                 //window.alert("say something");
@@ -106,7 +108,7 @@ d3.json("../json/main_bubble.json", function(error, root) {
             .attr("alignment-baseline", "middle")
             .text(function(d) {return d.name})
             .on("click", function(d,i) {
-                window.open(d.address);
+            	alert(d.keyword);
             });
 
     }

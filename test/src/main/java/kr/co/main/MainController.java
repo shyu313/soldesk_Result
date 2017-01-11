@@ -45,7 +45,7 @@ public class MainController {
 	
 	// 결과 확인 http://localhost:9090/test/list.do
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
-	@RequestMapping("/main/search.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
+	@RequestMapping(value="/main/search.do", produces = "application/json; charset=utf8")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Search() {
 		logger.debug("검색 테스트");
 		System.out.println("루시테스트");
