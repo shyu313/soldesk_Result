@@ -172,7 +172,7 @@ function dashboard(id, fData){
 
         // create table for legend.
         // 범례 테이블 생성
-        var legend = d3.select(id).append("table").attr('class','legend');
+        var legend = d3.select(id).append("table").attr('class','legend').attr("width",100+"%");
 
         // 범례 td
         //var tr = legend.append("tbody").selectAll("tr").data(lD).enter().append("tr");
