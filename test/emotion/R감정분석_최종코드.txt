@@ -1,0 +1,361 @@
+library(KoNLP)      # 문장의 명사,형태소 분석
+library(Ruchardet)  # 데이터셋의 인코딩을 알아내는 작업
+library(WriteXLS)   # XLS 형식 파일 생성
+library(stringr)    # 문자열 조작
+library(xlsx)       # XLSX파일 데이터로 저
+library(data.table) # 큰 데이터를 탐색, 연산, 병합
+library(plyr)       # 데이터 처리에 특화된 R 패키지
+
+
+#사용할 사전 선택
+useSejongDic() 
+useSystemDic() 
+
+# 사전에 없는 단어 추가
+buildDictionary("")
+
+########################## 불러온 사전 파일 형태소 만들기##########################################
+
+#현재 경로 확인
+getwd() 
+
+#현재 경로 수정
+setwd("C:/Users/all/Documents/KoNLP")
+
+
+# 사전 엑셀파일 불러오기
+dictable = read.xlsx2("dictionary.xlsx",1,stringsAsFactors=FALSE)
+
+# 점수를 기록할 엑셀파일(동일 파일 3번째 시트)
+result = read.xlsx2("dictionary.xlsx",2,stringsAsFactors=FALSE)
+
+
+#감정별 분류한 사전으로 분석후 저장할 테이블(동일파일 2번째 시트)
+sentiRES = read.xlsx2("dictionary.xlsx",2,stringsAsFactors=FALSE)
+
+# 사전을 감정별로 분류 ( 엑셀파일의 시트 번호로 구분)
+interestDIC = read.xlsx2("dictionary.xlsx",4,stringsAsFactors=FALSE)
+disgustDIC = read.xlsx2("dictionary.xlsx",5,stringsAsFactors=FALSE)
+painDIC = read.xlsx2("dictionary.xlsx",6,stringsAsFactors=FALSE)
+boringDIC = read.xlsx2("dictionary.xlsx",7,stringsAsFactors=FALSE)
+rageDIC = read.xlsx2("dictionary.xlsx",8,stringsAsFactors=FALSE)
+surpriseDIC = read.xlsx2("dictionary.xlsx",9,stringsAsFactors=FALSE)
+fearDIC = read.xlsx2("dictionary.xlsx",10,stringsAsFactors=FALSE)
+happyDIC = read.xlsx2("dictionary.xlsx",11,stringsAsFactors=FALSE)
+sadDIC = read.xlsx2("dictionary.xlsx",12,stringsAsFactors=FALSE)
+
+# 사전속 단어를 형태소로 분리
+for(idx in 1:600){
+  
+  #사전단어 형태소분석
+  tt = SimplePos22(dictable[idx,][1])
+  
+  #분리된 형태소 문자형 변환
+  tt <-as.character(tt)
+  
+  # '+' 기준으로 split
+  tt = strsplit(tt,"\\+")
+  
+  #list 만들기
+  tt <-unlist(tt)
+  
+  # n번째 행에 입력 
+  dictable[idx,][1] = tt[1]
+}
+
+# 감성반전 단어 추가 ( 단어,감정1만 추가하고 나머지는 공백)
+#                        (감정 사전의 테이블과 동일구조)
+but = data.frame("단어"     = c("지만/EC","하지만/MA"),
+                 "감정1"    = c("하지만","하지만"),
+                 "감정2"    = c("",""),
+                 "감정3"    = c("",""),
+                 "감정1점수"= c("",""))
+
+# 감정사전(dictable)에 '하지만' 단어(but) 추가하기
+finaldic=rbind(dictable,but)
+
+#현재 경로 확인
+getwd() 
+
+#현재 경로 수정
+setwd("C:/Users/all/Documents/KoNLP/lyrics3")
+
+# 가사파일 위치 지정
+# making directory as an object
+src_dir <- c("C:/Users/all/Documents/KoNLP/lyrics3") # 가사 파일 경로
+
+
+#폴더속 가사파일명 리스트로 담기
+# ex) src_file[1] 첫번째 가사파일명
+src_file <- list.files(src_dir) # list
+
+
+# 분석기 테스트를 위해 가사 직접 입력
+fileno1 = " "
+
+#직접 입력한 가사 형태소 분석
+gasa = SimplePos22(fileno1)
+
+# 가사파일 갯수
+length(src_file)
+
+# 노래가사확인 [] 안에 가사번호
+src_file[466926]
+readLines(src_file[])
+
+#cnt = 1 # 현재 횟수 체크번호 처음부터 할때만 cnt 1로 초기화
+#cnt는 result의 가장 마지막 행번호
+indexno = 1
+
+src_file[64]
+##############################반복시작함######################
+
+for(x in 127:length(src_file)){
+  # src_dir 폴더속 n번째 가사 불러옴
+  fileno = readLines(src_file[x])
+  
+  ## [1]제목 [2]가수 [3]가사 [4]유튜브링크
+  ## [3] 가사만 가져온다.
+  gasa = SimplePos22(fileno[3])
+  
+  
+  #직접입력했으면 여기서부터
+  #형태소 분석한 가사 목록
+  undata = unlist(gasa)
+  
+  #'+' 문자 기준 스플릿
+  gasa = strsplit(as.character(undata),'\\+')
+  
+  gasa = unlist(gasa)
+  
+  #문자화
+  gasa <-as.character(gasa)
+  
+  
+  # 감정점수를 누적할 변수 초기화
+  sad = 0; happy = 0;rage = 0; boring = 0;surprise = 0;fear = 0;disgust = 0;interest = 0;pain = 0
+
+  
+  ###########감정점수 채점
+  for(i in 1:length(gasa)){
+    for(all in 1:length(finaldic[,1])){
+      
+      
+      if(gasa[i] == finaldic[all,][1] ){
+        
+        
+        print(finaldic[all,2][1])
+        print(finaldic[all,5][1])
+        print(finaldic[all,1][1])
+        
+        bf = finaldic[all,]
+        
+        
+        if(bf[2] == '슬픔'){
+          sad = sad + as.double(bf[5])
+        }else if(bf[2] == '기쁨'){
+          happy = happy + as.double(bf[5])
+        }else if(bf[2] == '분노'){
+          rage = rage + as.double(bf[5])
+        }else if(bf[2] == '공포'){
+          fear = fear + as.double(bf[5])
+        }else if(bf[2] == '혐오'){
+          disgust = disgust + as.double(bf[5])
+        }else if(bf[2] == '흥미'){
+          interest = interest + as.double(bf[5])
+        }else if(bf[2] == '통증'){
+          pain = pain + as.double(bf[5])
+        }
+        
+        if(finaldic[all,][2] != '하지만'){
+          bn =  finaldic[all,][2]
+          bp =  finaldic[all,][5]
+          
+        }
+        if(finaldic[all,][2] == '하지만')  {
+          
+          if(bn == '슬픔'){
+            sad = sad - as.double(bp)
+          }
+          if(bn == '기쁨'){
+            happy = happy - as.double(bp)
+          }
+          if(bn == '분노'){
+            rage = rage - as.double(bp)
+          }
+          if(bn == '놀람'){
+            surprise = surprise - as.double(bp)
+          }
+          if(bn == '공포'){
+            fear = fear - as.double(bp)
+          }
+          if(bn == '흥미'){
+            interest = interest - as.double(bp)
+          }
+          if(bn == '통증'){
+            pain = pain - as.double(bp)
+          }
+          print(" '하지만' 에 의해 먼저 입력된 점수 다시 제거")
+          #'하지만'이전 감정점수 초기화 
+          #(한 곡이 끝나고 다음 곡의 첫 사전으로 분석된 단어가 
+          # 하지만일 경우를 대비 한 곡 분석 종료시 다시 초기화함)
+          bp = 0 #초기화
+          
+        }
+        
+      }
+    }
+  }
+  
+  
+  # 각 감정별 점수 출력
+  #sad;
+  #happy;
+  #rage;
+  #boring;
+  #surprise;
+  #fear;
+  #disgust;
+  #interest;
+  #pain;
+  
+  
+  
+  # result에 가사별 정보 입력
+  # [1]제목 [2]가수 [3]가사 [4]유튜브링크
+  fileno[1]
+  strsplit(fileno[1],"제목 : ")
+  
+  result[indexno,1]   = x #lyricsno
+  result[indexno,2]   = substr(fileno[1],6,str_length(fileno[1])) #제목
+  result[indexno,3]   = substr(fileno[2],6,str_length(fileno[2])) #가수
+  result[indexno,4]   = substr(fileno[3],6,str_length(fileno[3])) #가사
+  result[indexno,5]   = fileno[4]  #youtube URL
+  # 6은 재생 횟수
+  # 7은 추천 갯수
+  result[indexno,8]   = happy;      #기쁨점수
+  result[indexno,9]   = sad;        #슬픔점수
+  result[indexno,10]  = rage;       #분노점수
+  result[indexno,11]  = disgust;    #혐오점수
+  result[indexno,12]  = interest;   #흥미점수
+  result[indexno,13]  = pain;       #통증점수
+  result[indexno,14]  = fear;       #공포점수
+  result[indexno,15]  = src_file[x] # 가사파일이름
+  
+  # 다음곡 넘어갈때 bp초기화
+  bp = 0 #초기화
+
+  # 한곡 종료 메시지
+  print('현재')
+  print(indexno)
+  
+  #다음곡으로 넘어가기위해 +1
+  indexno = indexno + 1
+}
+
+#테이블을 xlsx(엑세)파일로 저장
+write.xlsx2(result,"result.xlsx")
+
+
+##&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+##&&&&&&&&&&&&&&&&&&&&&&&&&&&&&감정별 분석 점수 확인코드&&&&&&&&&&&&&&&&&&&&&&&&
+##&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+#     감정별 사전 사용 선 분류
+
+src_file[20000]
+
+# 노래가사확인 [] 안에 가사번호
+src_file[410677]
+readLines(src_file[])
+indexno = 1
+#cnt = 1 # 현재 횟수 체크번호 처음부터 할때만 cnt 1로 초기화
+#cnt는 result의 가장 마지막 행번호
+x
+for(x in 1197:25000){
+  # lyrics 폴더속 n번째 가사 불러옴
+  fileno = readLines(src_file[x])
+  
+  ## [1]제목 [2]가수 [3]가사 [4]유튜브링크
+  ## [3] 가사만 가져오
+  gasa = SimplePos22(fileno[3])
+  
+  
+  #직접입력했으면 여기서부터
+  #형태소 분석한 가사 목록
+  undata = unlist(gasa)
+  
+  #'+' 문자 기준 스플릿
+  gasa = strsplit(as.character(undata),'\\+')
+  
+  gasa = unlist(gasa)
+  
+  #문자화
+  gasa <-as.character(gasa)
+  
+  #감정별 점수 초기호
+  sad = 0; happy = 0;rage = 0; boring = 0;surprise = 0;fear = 0;disgust = 0;interest = 0;pain = 0
+  
+
+  ###########감정점수 채점
+  for(i in 1:length(gasa)){
+    for(all in 1:length(disgustDIC[,1])){
+      
+      
+      if(gasa[i] == disgustDIC[all,][1] ){
+        
+        # 사전과 일치한 감정,점수,단어
+        print(disgustDIC[all,2][1])
+        print(disgustDIC[all,5][1])
+        print(disgustDIC[all,1][1])
+        
+        bf = disgustDIC[all,]
+        
+        
+        if(bf[2] == '혐오'){
+          disgust = disgust + as.double(bf[5])
+        }
+        
+      }
+    }
+  }
+  
+  disgust; #점수 출력
+  
+  
+  # sentiRES 점수 입력
+  sentiRES[indexno,1]  = src_file[x]
+  sentiRES[indexno,2] = '혐오'
+  sentiRES[indexno,3] = disgust
+  
+  
+  print('현재 번호')
+  print(indexno)
+  
+  indexno = indexno + 1
+}
+
+
+#write.table(sentiRES,'data.txt')
+
+##&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+##&&&&&&&&&&&&&&&&&&&&&&&&&&&&&감정별 분석 점수 확인코드 끝 &&&&&&&&&&&&&&&&&&&&
+##&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+#data를 텍스트파일로 생
+write(unlist(data),"new_data.txt")
+
+# 흥미 점수내림차순 정렬
+interesttotal = interesttotal[order(-interesttotal$score),]
+
+
+write.table(interesttotal,'흥미.txt')
+
+wordcont = sort(happytotal,decreasing = T)
+
+getwd()
+
+# 출현빈도 상위 1000개
+write.table(interesttotal,'흥미.txt')
+
+write.table(Gsample,'gsample.xls')
