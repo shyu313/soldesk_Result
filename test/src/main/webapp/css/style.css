@@ -1,4 +1,4 @@
-/* Body �κ� Start*/
+/* Body 占싸븝옙 Start*/
 body {
     background: #181818;
     font-family: 'Roboto', sans-serif;
@@ -9,10 +9,10 @@ body a {
 body a:hover {
     color: #c8c8c8;
 }
-/* Body �κ� End*/
+/* Body 占싸븝옙 End*/
 
-/* Header �κ� Start  */
-.header {											/*��� ���� Bar*/
+/* Header 占싸븝옙 Start  */
+.header {											/*占쏙옙占� 占쏙옙占쏙옙 Bar*/
     background: #282828;
     padding: 10px;
     color: #aaaaaa;
@@ -21,7 +21,7 @@ body a:hover {
     flex-flow: row wrap;
     align-items: center;
 }
-.header .page-flows .flow {					/* ��� ���� Bar ������ �̵� ��ư*/
+.header .page-flows .flow {					/* 占쏙옙占� 占쏙옙占쏙옙 Bar 占쏙옙占쏙옙占쏙옙 占싱듸옙 占쏙옙튼*/
     font-size: 20px;
     color: #aaaaaa;
     margin: 0 10px;
@@ -32,7 +32,7 @@ body a:hover {
 .header .page-flows .flow .disabled {
     color: #5e5e5e;
 }
-.header .search {								/* ��� ���� bar �˻� �κ� - ���� �ּ� ó��*/
+.header .search {								/* 占쏙옙占� 占쏙옙占쏙옙 bar 占싯삼옙 占싸븝옙 - 占쏙옙占쏙옙 占쌍쇽옙 처占쏙옙*/
     margin-left: 1%;
 }
 .header .search input {
@@ -47,7 +47,7 @@ body a:hover {
     background-size: 10%;
     background-position: 5px;
 }
-.header .user {									/* ��� ���� bar ���� ���� �κ� */
+.header .user {									/* 占쏙옙占� 占쏙옙占쏙옙 bar 占쏙옙占쏙옙 占쏙옙占쏙옙 占싸븝옙 */
     width: 300px;
     margin-left: auto;
     display: flex;
@@ -109,27 +109,28 @@ body a:hover {
     color: #c8c8c8;
     transition: all 0.2s ease;
 }
-/* Header �κ� End  */
+/* Header 占싸븝옙 End  */
 
-/* ���� ��� �޴�, ���� ������ �κ� Start*/
-.content__left {									/* ���� �޴� bar*/
+/* 占쏙옙占쏙옙 占쏙옙占� 占쌨댐옙, 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싸븝옙 Start*/
+.content__left {									/* 占쏙옙占쏙옙 占쌨댐옙 bar*/
     width: 20%;
 }
-.content__middle{								    /* ���� ������ �κ�*/
+
+.content__middle{								    /* 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싸븝옙*/
     width: 50%;
 }
-.content__right{								    /* ������ ��� �κ�*/
+.content__right{								    /* 占쏙옙占쏙옙占쏙옙 占쏙옙占� 占싸븝옙*/
     width: 30%;
 }
 #content__player{
     width: 100%;
 }
-#content__lyrics{								    /* ������ ���� �κ�*/
+#content__lyrics{								    /* 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占싸븝옙*/
     width: 100%;
     height: 45%;
 }
 
-/* ���� ��� �޴�, ���� ������ �κ� End*/
+/* 占쏙옙占쏙옙 占쏙옙占� 占쌨댐옙, 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싸븝옙 End*/
 
 .navigation {
     padding: 15px;
@@ -926,7 +927,7 @@ button:hover {
     flex-flow: row wrap;
 }
 
-.section-bottom {                                    /* �����ϴ� ������Ʈ �κ�*/
+.section-bottom {                                    /* 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙占쏙옙트 占싸븝옙*/
     text-transform: uppercase;
     letter-spacing: 1.25px;
     font-size: 13.2px;
@@ -936,13 +937,13 @@ button:hover {
 
 
 
-/* �׷��� ��Ÿ�� START */
+/* 占쌓뤄옙占쏙옙 占쏙옙타占쏙옙 START */
 .bar 				{ fill: steelblue; }
 .bar:hover 		{ fill: brown; }
 .axis--x path 		{ display: none; }
 text 				{ fill: #fff; }
 g path, g line 	{ stroke: #fff; }
-/* �׷��� ��Ÿ�� END */
+/* 占쌓뤄옙占쏙옙 占쏙옙타占쏙옙 END */
 
 
 /* Bubble Chart Start*/

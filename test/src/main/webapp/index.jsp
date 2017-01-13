@@ -145,20 +145,12 @@
     </div>
     <!-- 유투브 플레이어 부분-->
     <div class="content__right">
-        <div id="content__player">   <!--  IFrameAPI 에 의해 식별된 div 는 iframe 로 대체 된다.-->
+        <div id="content__player" >   <!--  IFrameAPI 에 의해 식별된 div 는 iframe 로 대체 된다.-->
         </div>
         <div id="content__lyrics" style="overflow:scroll;">
-            ==================== Lyrics ====================
-            <br> 가사 입력<br> 가사 입력 <br> 가사 입력<br> 가사 입력
-            <br> 가사 입력<br> 가사 입력 <br> 가사 입력<br> 가사 입력
-            <br> 가사 입력<br> 가사 입력 <br> 가사 입력<br> 가사 입력
-            <br> 가사 입력<br> 가사 입력 <br> 가사 입력<br> 가사 입력
-            <br> 가사 입력<br> 가사 입력 <br> 가사 입력<br> 가사 입력
-            <br> 가사 입력<br> 가사 입력 <br> 가사 입력<br> 가사 입력
-            <br> 가사 입력<br> 가사 입력 <br> 가사 입력<br> 가사 입력
-            <br> 가사 입력<br> 가사 입력 <br> 가사 입력<br> 가사 입력
-            <br> 가사 입력<br> 가사 입력 <br> 가사 입력<br> 가사 입력
+        	<input text readonly value="${lyrics }" />
         </div>
+        
 
     </div>
 
