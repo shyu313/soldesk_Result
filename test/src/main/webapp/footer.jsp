@@ -43,6 +43,7 @@
     <!-- <script src="../js/d3_Bubble_Menu.js"></script> -->
     <script src="../js/d3_Simple_Dashboard.js"></script>
 	<script src="../js/youtube.js"></script>
+<script src="../js/facebook.js"></script>
 
     </body>
     </html>

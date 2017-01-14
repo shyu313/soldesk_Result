@@ -91,11 +91,11 @@
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
- 
+ <!-- 
 <fb:login-button scope="public_profile,email"  data-size="xlarge" data-auto-logout-link="true" onlogin="checkLoginState();">
 </fb:login-button>
  
-<div id="status">
+<div id="status"> -->
 </div>
  
 
@@ -104,20 +104,6 @@
 
 
 
-<!-- <script>
- 
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '662302497285882',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.8' // use graph api version 2.8
-  });
-
-  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.8&appId=662302497285882";
-
- -->
 	
 <%@ include file ="../footer.jsp" %>
 	

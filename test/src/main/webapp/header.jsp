@@ -43,22 +43,15 @@
 
         <!-- 로그인 시 회원 정보 -->
         <div class="user">
-        <div class="user__notifications">
-        <i class="ion-android-notifications"></i>
-        </div>
-
-        <div class="user__inbox">
-        <i class="ion-archive"></i>
-        </div>
+        
 
         <div class="user__info">
-        <span class="user__info__img">
-        <img src="../image/adam_proPic.jpg" alt="Profile Picture" class="img-responsive" />
-        </span>
-        <span class="user__info__name">
-        <span class="first">권</span>
-        <span class="last">혁준</span>
-        </span>
+				
+            <span class="user__info__name">
+				<span id="status"></span>
+					<span><fb:login-button scope="public_profile,email"  data-size="xlarge" data-auto-logout-link="true" onlogin="checkLoginState();"/>
+					</span>
+			</span>
         </div>
 
         <div class="user__actions">
@@ -70,7 +63,6 @@
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
         <li><a href="../user/private.do">개인 정보</a></li>
         <li><a href="../user/customer.do">고객 센터</a></li>
-        <li><a href="#">로그 아웃</a></li>
         </ul>
         </div>
         </div>
