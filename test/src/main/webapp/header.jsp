@@ -18,8 +18,10 @@
         rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/mediaQuery.css">
-        
-        
+        <link rel="stylesheet" href="../css/smart_editor2_in.css">
+        <link rel="stylesheet" href="../css/smart_editor2_items.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../js/HuskyEZCreator.js"></script>
         </head>
 
         <body>
@@ -27,7 +29,7 @@
         <section class="header">
         <!-- 왼쪽 상단 화살표 2개 -->
         <div class="page-flows">
-         <span class="flow"><a href="javascript:history.back();"> <i class="ion-chevron-left"></i> </a></span>
+        <span class="flow"> <i class="ion-chevron-left"></i> </span>
         <span class="flow"> <i class="ion-chevron-right disabled"></i> </span>
         </div>
 
@@ -45,13 +47,22 @@
 
         <!-- 로그인 시 회원 정보 -->
         <div class="user">
-        
+        <div class="user__notifications">
+        <i class="ion-android-notifications"></i>
+        </div>
+
+        <div class="user__inbox">
+        <i class="ion-archive"></i>
+        </div>
 
         <div class="user__info">
-				
-            <span class="user__info__name">
-				<span id="status"></span>
-			</span>
+        <span class="user__info__img">
+        <img src="../image/adam_proPic.jpg" alt="Profile Picture" class="img-responsive" />
+        </span>
+        <span class="user__info__name">
+        <span class="first">권</span>
+        <span class="last">혁준</span>
+        </span>
         </div>
 
         <div class="user__actions">
@@ -61,9 +72,9 @@
         <i class="ion-chevron-down"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-               <li><a href="../user/customer.do">고객 센터</a></li>
-        <li><span><fb:login-button scope="public_profile,email"  data-size="xlarge" data-auto-logout-link="true" onlogin="checkLoginState();"/>
-		</span></li>
+        <li><a href="../user/private.do">개인 정보</a></li>
+        <li><a href="../user/customer.do">고객 센터</a></li>
+        <li><a href="#">로그 아웃</a></li>
         </ul>
         </div>
         </div>
