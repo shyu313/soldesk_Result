@@ -21,10 +21,8 @@ $(document).ready(function () {
                 {text: "분노", count: "170"},
                 {text: "슬픔", count: "123"},
                 {text: "즐거움", count: "12"},
-                {text: "외로움", count: "170"},
-                {text: "배고픔", count: "382"},
-                {text: "부정적", count: "10"},
-                {text: "긍정적", count: "170"},
+                {text: "흥미", count: "170"},
+                {text: "고통", count: "382"},
             ],
             eval: function (item) {return item.count;},
             classed: function (item) {return item.text.split(" ").join("");}

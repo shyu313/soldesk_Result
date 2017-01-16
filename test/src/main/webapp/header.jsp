@@ -18,6 +18,8 @@
         rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/mediaQuery.css">
+        
+        
         </head>
 
         <body>

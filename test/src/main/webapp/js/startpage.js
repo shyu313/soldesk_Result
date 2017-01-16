@@ -2,7 +2,7 @@
 var items = [
     'Welcome To Emotionary',
     'Find Your Emotion',
-    'Emotion Music',
+    'Find Emotion Musics',
 ];
 var app = document.getElementById('app');
 var count = 0;
