@@ -7,7 +7,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
           colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
           days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
           times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-          datasets = ["data.tsv"];
+          datasets = ["data.csv"];
 
       var svg = d3.select("#chart").append("svg")
           .attr("width", width + margin.left + margin.right)
@@ -35,8 +35,8 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
             .attr("transform", "translate(" + gridSize / 2 + ", -6)")
             .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
 
-      var heatmapChart = function(tsvFile) {
-        d3.tsv(tsvFile,
+      var heatmapChart = function(csvFile) {
+        d3.csv(csvFile,
         function(d) {
           return {
             day: +d.day,

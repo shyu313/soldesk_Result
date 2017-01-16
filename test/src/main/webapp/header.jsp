@@ -25,7 +25,7 @@
         <section class="header">
         <!-- 왼쪽 상단 화살표 2개 -->
         <div class="page-flows">
-        <span class="flow"> <i class="ion-chevron-left"></i> </span>
+         <span class="flow"><a href="javascript:history.back();"> <i class="ion-chevron-left"></i> </a></span>
         <span class="flow"> <i class="ion-chevron-right disabled"></i> </span>
         </div>
 

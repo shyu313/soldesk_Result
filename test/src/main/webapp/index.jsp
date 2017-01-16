@@ -18,7 +18,7 @@
 <section class="header">
     <!-- 왼쪽 상단 화살표 2개 -->
     <div class="page-flows">
-        <span class="flow"> <i class="ion-chevron-left"></i> </span>
+        <span class="flow"><a href="javascript:history.back();"> <i class="ion-chevron-left"></i> </a></span>
         <span class="flow"> <i class="ion-chevron-right disabled"></i> </span>
     </div>
 
@@ -166,8 +166,8 @@
 <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
 <!--<script src="./js/index.js"></script>-->
 <script src="./js/d3_Bubble_Chart.js"></script>
-<!-- <script src="./js/d3_Bubble_Menu.js"></script> -->
-<script src="./js/youtube.js"></script>
+<!-- <script src="./js/d3_Bubble_Menu.js"></script>
+ --><script src="./js/youtube.js"></script>
 <script src="./js/facebook.js"></script>
 </body>
 </html>
