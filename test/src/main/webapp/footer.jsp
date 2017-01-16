@@ -44,6 +44,7 @@
  -->    <script src="../js/d3_Simple_Dashboard.js"></script>
 	<script src="../js/youtube.js"></script>
 	<script src="../js/facebook.js"></script>
-
+	<script src="../js/startpage.js"></script>
+	
     </body>
     </html>

@@ -11,6 +11,8 @@
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/mediaQuery.css">
+    <link rel="stylesheet" href="./css/startpage.css"> 
+    
 </head>
 
 <body>
@@ -133,6 +135,11 @@
 
     <!-- 메인에 해당하는 부분  -->
     <div class="content__middle">
+    
+    	<div id="wrap">
+		<div id="app"></div>
+		</div>
+    
     	<div id="mainBubble">  </div>
     </div>
     <!-- 유투브 플레이어 부분-->
@@ -169,6 +176,8 @@
 <!-- <script src="./js/d3_Bubble_Menu.js"></script>
  --><script src="./js/youtube.js"></script>
 <script src="./js/facebook.js"></script>
+<script src="./js/startpage.js"></script>
+
 </body>
 </html>
 

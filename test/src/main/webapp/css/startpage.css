@@ -1,0 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Prompt:900);
+html {
+  font-family: 'Prompt', sans-serif;
+  background-color: #000;
+  color: #fff;
+  font-size: 5vw;
+}
+
+#wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+}
+
+#app {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
