@@ -37,7 +37,7 @@
 
     /** 현재 활성화된 요소에 적용할 배경이미지 지정 */
     .selected {
-        background: #2288dd !important;
+        background: #65669a !important;
         color: #fff !important;
         
         /*그라디언트 지정*/
@@ -49,12 +49,13 @@
     /** 내용 영역 */
     .content {
         margin: 0;
-        background: #D4D0C8;
+        background: #8a816c;
         padding: 10px;
         height: 200px;
         overflow-y: auto;
         border-radius: 5px;
         -webkit-border-radius: 5px;
+        color : #ffffff;
 }
 
 

@@ -12,11 +12,8 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/mediaQuery.css">
     <link rel="stylesheet" href="./css/startpage.css"> 
-    
 </head>
-
-<body>
-   
+<body>  
 <section class="header">
     <!-- 왼쪽 상단 화살표 2개 -->
     <div class="page-flows">
@@ -38,14 +35,10 @@
 
     <!-- 로그인 시 회원 정보 -->
     <div class="user">
-        
-
-        <div class="user__info">
-				
+        <div class="user__info">				
             <span class="user__info__name">
-					<span id="status"></span>
-					<span><fb:login-button scope="public_profile,email"  data-size="xlarge" data-auto-logout-link="true" onlogin="checkLoginState();"/>
-					</span>
+            		<span>      </span>
+					<span id="status" style="text-align:right; color:#ffffff"></span>
 				</span>
         </div>
 
@@ -55,14 +48,14 @@
                     <i class="ion-chevron-down"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                    <li><a href="./user/private.do">개인 정보</a></li>
                     <li><a href="./user/customer.do">고객 센터</a></li>
+                    <li><span><fb:login-button scope="public_profile,email"  data-size="xlarge" data-auto-logout-link="true" onlogin="checkLoginState();"/>
+					</span></li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
-
 <!-- 본문 -->
 <section class="section-middle">
     <!-- 왼쪽의 메뉴 부분 -->
@@ -73,7 +66,6 @@
                 <div class="navigation__list__header" role="button" data-toggle="collapse" href="#main" aria-expanded="true" aria-controls="main">
                     Main
                 </div>
-
                 <div class="collapse in" id="main">
                     <a href="./main/search.do" class="navigation__list__item">
                         <i class="ion-ios-browsers"></i>
@@ -83,7 +75,6 @@
                         <i class="ion-person-stalker"></i>
                         <span>감정 공유</span>
                     </a>
-
                 </div>
             </div>
             <!-- / -->
