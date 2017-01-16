@@ -48,7 +48,7 @@
                     <i class="ion-chevron-down"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                    <li><a href="./user/customer.do">고객 센터</a></li>
+                    <li><a href="./user/customer.do">FAQ</a></li>
                     <li><span><fb:login-button scope="public_profile,email"  data-size="xlarge" data-auto-logout-link="true" onlogin="checkLoginState();"/>
 					</span></li>
                 </ul>

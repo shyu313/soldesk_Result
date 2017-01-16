@@ -3,7 +3,7 @@
 <%@ include file ="../header.jsp" %>
 <link rel="stylesheet" type="text/css" href="../css/faq.css"/>
 
-
+<h2 style ="color:#ffffff">FAQ</h2>
   
   <start>
         <li class="collapsible">
