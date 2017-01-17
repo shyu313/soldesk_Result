@@ -17,5 +17,7 @@
   
     <div id="chart"></div>
   
+  
 <%@ include file ="../footer.jsp" %>
-	
+
+<script src="../js/d3_DayHour_Heatmap.js"></script>

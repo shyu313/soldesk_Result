@@ -126,8 +126,8 @@ function dashboard(id, fData){
 
             .each(function(d) { this._current = d; })
             .style("fill", function(d) { return segColor(d.data.type); })
-            .on("mouseover",mouseover)
-            .on("mouseout",mouseout); //마우스 아웃 주석
+            .on("mouseover",mouseover);
+            //.on("mouseout",mouseout); //마우스 아웃 주석
 
 
         // create function to update pie-chart. This will be used by histogram.

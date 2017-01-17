@@ -15,10 +15,11 @@ public class DBOpen {
 	public Connection getConnetion() {
 
 		// My-SQL DB
-		String url = "umj64-006.cafe24.com/bardciel";
+		String url = "jdbc:mysql://umj64-006.cafe24.com/bardciel";
 		String user = "bardciel";
 		String password = "kobata11";
-		String driver = "org.gjt.mm.mysql.Driver";
+		//String driver = "org.gjt.mm.mysql.Driver";
+		String driver = "com.mysql.jdbc.Driver";
 		
 		//ORACLE
 		/*String url = "jdbc:oracle:thin:@127.0.0.1:1521/xe";

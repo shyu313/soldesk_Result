@@ -27,7 +27,7 @@
 			<td>
 				<font color="#ffffff"><a href="read.do?bbsno=${dto.bbsno }">${dto.subject }</a></font>
 				<c:if test="${dto.readcnt==10}">
-					<img src="../images/hot.gif">
+					<img src="../image/hot.gif">
 				</c:if>
 			</td>
 			<td><font color="#ffffff">${dto.wname}</font></td>
@@ -84,22 +84,5 @@
 	</form>
 	</center>
 	</div>
-
-	<script>
-		var searchCondition = "${param.searchCondition}"
-		jQuery(document).ready(function($){
-			$(".sel option:selected").val();
-			if(searchCondition == 0){
-				$(".sel").val("0");
-			}
-			else if(searchCondition == 1){
-				$(".sel").val("1");
-			}
-			else if(searchCondition == 2){
-				$(".sel").val("2");
-			}
-		});
-	</script>
-	
 <%@ include file ="../footer.jsp" %>
 	

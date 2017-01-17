@@ -25,9 +25,15 @@
     <br>==================================================================================== Footer ===========================================================================================
     </section>
 
+	<!-- Etc Script -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-    <!-- D3 Bubble Chart Script-->
+    <script src="../js/share.js"></script>
+	<script src="../js/youtube.js"></script>
+	
+	
+    <!-- D3 Script-->
     <script src="http://phuonghuynh.github.io/js/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
@@ -38,13 +44,13 @@
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
-    <script src="../js/d3_DayHour_Heatmap.js"></script>
     <script src="../js/d3_Bubble_Chart.js"></script>
-<!--    	<script src="../js/d3_Bubble_Menu.js"></script>
- -->    <script src="../js/d3_Simple_Dashboard.js"></script>
-	<script src="../js/youtube.js"></script>
-	<script src="../js/facebook.js"></script>
-	<script src="../js/startpage.js"></script>
-	
+    <script src="../js/d3_Simple_Dashboard.js"></script>
+
+	<!-- smartEdit Script -->
+    <script type="text/javascript" charset="utf-8" src="../js/smartEdit/HuskyEZCreator.js"></script> 	
+ 	
+
     </body>
     </html>
+    

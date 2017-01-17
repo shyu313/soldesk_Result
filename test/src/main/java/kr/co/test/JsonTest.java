@@ -16,6 +16,7 @@ public class JsonTest {
 	public static void main(String[] args) {
 		DBOpen dbopen = new DBOpen();
 		
+		/*
 		// 최종 완성될 JSONObject 선언(전체)
 		JSONObject jsonObject = new JSONObject();
 		// person의 JSON정보를 담을 Array 선언
@@ -25,6 +26,7 @@ public class JsonTest {
 		JSONObject freq = new JSONObject();
 		JSONObject emotion = new JSONObject();
 		String top = "탑1";
+		*/
 		
 		Connection con=null;
 		PreparedStatement pstmt = null;
@@ -41,10 +43,11 @@ public class JsonTest {
 			if(rs.next()){
 				System.out.println(rs.toString());
 			}
+			System.out.println("@@@@@@@@@@@@@@@@@@");
 				
 		} catch (SQLException e) {
 		}
-		
+		/*
 		emotion.put("happy", 7);
 		emotion.put("sad", 6);
 		emotion.put("rage", 5);
@@ -60,7 +63,7 @@ public class JsonTest {
 		
 		
 		top10Array.add(state);
-		
+		*/
 /*	System.out.println(top10Array);*/
 		/*System.out.println(	state.get(0) );
 		String str	 = state.get(1).toString();

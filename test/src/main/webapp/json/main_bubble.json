@@ -1,29 +1,28 @@
-
 {"name":"bubble", "children": 
 [
-  {"name":"±â»İ","description":"asdf",
+  {"name":"ê¸°ì¨","description":"asdf",
     "children":[
-      {"name": "½Å³ª´Ù","address":""},
-      {"name": "¼³·¹´Ù","address":""},
-      {"name": "ÁÁ´Ù","address":""}
+      {"name": "ì‹ ë‚˜ë‹¤","address":""},
+      {"name": "ì„¤ë ˆë‹¤","address":""},
+      {"name": "ì¢‹ë‹¤","address":""}
     ]},
-  {"name": "°øÆ÷", "description": "Virtual Lab of Global Agriculture",
+  {"name": "ê³µí¬", "description": "Virtual Lab of Global Agriculture",
     "children":[
-      {"name":"°Ì³ª´Ù","address":""},
-      {"name":"»ì¹úÇÏ´Ù","address":""},
-      {"name":"ÃÊÁ¶ÇÏ´Ù","address":""}
+      {"name":"ê²ë‚˜ë‹¤","address":""},
+      {"name":"ì‚´ë²Œí•˜ë‹¤","address":""},
+      {"name":"ì´ˆì¡°í•˜ë‹¤","address":""}
     ]},
-  {"name":"½½ÇÄ", "description":"Profiles of Country",
+  {"name":"ìŠ¬í””", "description":"Profiles of Country",
     "children":[
-      {"name":"¿ï´Ù","address":""},
-      {"name":"¸Ô¸ÔÇÔ","address":""},
-      {"name":"ÇÑ¼û","address":""},
-      {"name":"¾¹½½ÇÏ´Ù","address":""}
+      {"name":"ìš¸ë‹¤","address":""},
+      {"name":"ë¨¹ë¨¹í•¨","address":""},
+      {"name":"í•œìˆ¨","address":""},
+      {"name":"ì”ìŠ¬í•˜ë‹¤","address":""}
     ]},
-  {"name":"ºĞ³ë", "description":"Crop Data in 5 minutes grid",
+  {"name":"ë¶„ë…¸", "description":"Crop Data in 5 minutes grid",
     "children":[
-      {"name":"ºĞÇÏ´Ù","address":""},
-      {"name":"Áõ¿ÀÇÏ´Ù","address":""},
-      {"name":"¿¼º´","address":""}
+      {"name":"ë¶„í•˜ë‹¤","address":""},
+      {"name":"ì¦ì˜¤í•˜ë‹¤","address":""},
+      {"name":"ì˜˜ë³‘","address":""}
     ]}
 ]}

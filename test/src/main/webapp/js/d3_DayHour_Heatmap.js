@@ -45,10 +45,12 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
           };
         },
         function(error, data) {
+        	
           var colorScale = d3.scale.quantile()
               .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
               .range(colors);
-
+          
+          
           var cards = svg.selectAll(".hour")
               .data(data, function(d) {return d.day+':'+d.hour;});
 
@@ -111,3 +113,6 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
         .on("click", function(d) {
           heatmapChart(d);
         });
+
+      
+      

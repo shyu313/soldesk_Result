@@ -9,8 +9,8 @@ nhn.husky.SE2M_Configuration = nhn.husky.SE2M_Configuration || {};
  * 스마트에디터2에서 접근하는 JS, IMG 디렉토리
  */
 nhn.husky.SE2M_Configuration.Editor = {
-	sJsBaseURL : './js_src',
-	sImageBaseURL : './image/img'
+	sJsBaseURL : './js/smartEdit',
+	sImageBaseURL : '../image/smartEdit'
 };
 
 /**
@@ -24,14 +24,14 @@ nhn.husky.SE2M_Configuration.LazyLoad = {
  * CSS LazyLoad를 위한 경로
  */
 nhn.husky.SE2M_Configuration.SE2B_CSSLoader = {
-	sCSSBaseURI : "css"
+	sCSSBaseURI : "../css"
 };
 
 /**
  * 편집영역 설정
  */
 nhn.husky.SE2M_Configuration.SE_EditingAreaManager = {
-	sCSSBaseURI : "css",
+	sCSSBaseURI : "../css",
 	sBlankPageURL : "smart_editor2_inputarea.html",
 	sBlankPageURL_EmulateIE7 : "smart_editor2_inputarea_ie8.html",
 	aAddtionalEmulateIE7 : [] // IE8 default 사용, IE9 ~ 선택적 사용

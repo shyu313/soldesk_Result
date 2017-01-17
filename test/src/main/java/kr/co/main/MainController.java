@@ -48,7 +48,6 @@ public class MainController {
 	@RequestMapping(value="/main/search.do", produces = "application/json; charset=utf8")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Search() {
 		logger.debug("검색 테스트");
-		System.out.println("루시테스트");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/search");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		return mav;

@@ -90,7 +90,6 @@ d3.json("../json/main_bubble.json", function(error, root) {
                 } else {
                     noteText = d.note;
                 }
-                d3.select("#bubbleItemNote").text(noteText);
             })
             .append("svg:title")
             .text(function(d) { return d.address; });
@@ -123,12 +122,8 @@ resetBubbles = function () {
     h = Math.ceil(w/nTop*2);
     svgContainer.style("height",h+"px");
 
-    mainNote.attr("y",h-15);
-
     svg.attr("width", w);
     svg.attr("height",h);
-
-    d3.select("#bubbleItemNote").text("D3.js bubble menu developed by Shipeng Sun (sunsp.gis@gmail.com), Institute of Environment, University of Minnesota, and University of Springfield, Illinois.");
 
     var t = svg.transition()
         .duration(650);
