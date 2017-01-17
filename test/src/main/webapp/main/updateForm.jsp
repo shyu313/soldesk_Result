@@ -23,7 +23,7 @@
 	        });
 			         
 	        //전송버튼 클릭이벤트
-	        /* $("#savebutton").click(function(){
+	        $("#cs1").click(function(){
 	            //id가 smarteditor인 textarea에 에디터에서 대입
 	            editor_object.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
 			             
@@ -31,7 +31,7 @@
 			             
 	            //폼 submit
 	            $("#frm").submit();
-	        }); */
+	        });
 	    });
 		
 		function statusChangeCallback(response) {
@@ -148,7 +148,7 @@
 	<tr>
 		<td colspan="2" align="center">
 			<!-- <input type="button" value="쓰기" onClick="bbsCheck(this.form)"> -->
-			<input type="submit" value="쓰기">
+			<input type="submit" id="cs1" value="쓰기">
 			<input type="reset" value="취소" onclick="location.href='share.do';">
 		</td>
 	</tr>

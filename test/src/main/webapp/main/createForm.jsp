@@ -22,7 +22,7 @@
 	        });
 			         
 	        //전송버튼 클릭이벤트
-	        /* $("#savebutton").click(function(){
+	        $("#savebutton").click(function(){
 	            //id가 smarteditor인 textarea에 에디터에서 대입
 	            editor_object.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
 			             
@@ -30,7 +30,7 @@
 			             
 	            //폼 submit
 	            $("#frm").submit();
-	        }); */
+	        });
 	    });
 		
 		function statusChangeCallback(response) {
@@ -129,7 +129,7 @@
 	</tr>
 	<tr>
 		<th><font color="#FFFFFF">제목</font></th>
-		<td><input type="text" name="subject" size="84"></td>
+		<td><input type="text" name="subject" size="100"></td>
 	</tr>
 	<tr>
 		<th><font color="#FFFFFF">내용</font></th>
