@@ -31,21 +31,6 @@ public class MainController {
 	
 		@Autowired
 		private SentShareDAO dao;
-		
-		//int recordPerPage = 10;
-	//	@RequestMapping(value = "/", method = RequestMethod.GET)				
-//	public String home(Locale locale, Model model) {
-//		logger.info("Welcome home! The client locale is {}.", locale);
-//		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		String formattedDate = dateFormat.format(date);
-//		
-//		model.addAttribute("serverTime", formattedDate );
-//		
-//		return "home";
-//	}
 	
 	// 결과 확인 http://localhost:9090/test/list.do
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
@@ -116,11 +101,6 @@ public class MainController {
 		mav.addObject("endPage", new Integer(endPage));
 		mav.addObject("articleList", articleList);
 		
-		//System.out.println(currentPage);
-		//System.out.println(startRow);
-		//System.out.println(endRow);
-		//System.out.println(totalPage);
-		//System.out.println(cnt);
 		System.out.println(Pages);
 		return mav;
 	} // Share() end

@@ -1,6 +1,6 @@
 package kr.co.dto;
 
-public class mediaDTO {
+public class MediaDTO {
 	
 	private int lyricsNo;				// 가사 번호 
 	private String title;					// 가사 제목
@@ -17,8 +17,9 @@ public class mediaDTO {
 	private int pain;						// 고통
 	private int fear;						// 무서움
 	private int rage; 					// 분노 
+	private int RNUM;				// 조회 결과 순서
 	
-	public mediaDTO() {
+	public MediaDTO() {
 	}
 	public int getLyricsNo() {
 		return lyricsNo;
@@ -110,16 +111,23 @@ public class mediaDTO {
 	public void setRage(int rage) {
 		this.rage = rage;
 	}
+	public int getRNUM() {
+		return RNUM;
+	}
+	public void setRNUM(int RNUM) {
+		this.RNUM = RNUM;
+	}
 	@Override
 	public String toString() {
-		return "MusicDTO [lyricsNo=" + lyricsNo + ", title=" + title + ", singer=" + singer + ", url=" + url + ", bpm="
+		return "MediaDTO [lyricsNo=" + lyricsNo + ", title=" + title + ", singer=" + singer + ", url=" + url + ", bpm="
 				+ bpm + ", playCnt=" + playCnt + ", recCnt=" + recCnt + ", lyrics=" + lyrics + ", happy=" + happy
 				+ ", sad=" + sad + ", disgust=" + disgust + ", interest=" + interest + ", pain=" + pain + ", fear="
-				+ fear + ", rage=" + rage + "]";
+				+ fear + ", rage=" + rage + ", rowNum=" + RNUM + ", getLyricsNo()=" + getLyricsNo() + ", getTitle()="
+				+ getTitle() + ", getSinger()=" + getSinger() + ", getUrl()=" + getUrl() + ", getBpm()=" + getBpm()
+				+ ", getPlayCnt()=" + getPlayCnt() + ", getRecCnt()=" + getRecCnt() + ", getLyrics()=" + getLyrics()
+				+ ", getHappy()=" + getHappy() + ", getSad()=" + getSad() + ", getDisgust()=" + getDisgust()
+				+ ", getInterest()=" + getInterest() + ", getPain()=" + getPain() + ", getFear()=" + getFear()
+				+ ", getRage()=" + getRage() + ", getRowNum()=" + getRNUM() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-	
-	
-	
-	
-	
 }

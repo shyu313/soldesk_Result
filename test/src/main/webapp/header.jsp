@@ -127,7 +127,7 @@
         <div class="collapse in" id="playlists">
         <a href="../playlist/toplist.do" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
-        <span>TOP 100</span>
+        <span>TOP 10</span>
         </a>
         <a href="../playlist/emotion.do" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.dao.MediaDAO;
-import kr.co.dto.mediaDTO;
+import kr.co.dto.MediaDTO;
 
 /**
  * Handles requests for the application home page.
@@ -35,8 +35,10 @@ public class HomeController {
 	public ModelAndView index() throws IOException {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
-	 	mediaDTO musicDTO = musicDAO.read(255);		// lyricsNo 255 야생화
+	 	
+		MediaDTO musicDTO = musicDAO.read(255);		// lyricsNo 255 야생화
 	 	logger.debug( "\n가수 : "+  musicDTO.getTitle() +"\n가사 : "+ musicDTO.getLyrics());
+	 	
 	 	String url[] = musicDTO.getUrl().split("="); 		 	// www.youtube.com/watch?v=OxgiiyLp5pk  = 기준으로 videoId 구분
 	 	String lyrics=musicDTO.getLyrics();
 		String line="";

@@ -28,6 +28,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</choose>
 		</if> -->
 	</select>
+	<!-- 전체 음악 리스트 쿼리  -->
+	<select id="toplist"  resultType="MediaDTO">
+		<![CDATA[
+			select @RNUM := @RNUM +1 AS RNUM, t.*
+			from
+				( select * from bardciel.media order by playCnt desc LIMIT 0, 10 ) t, 
+				(select @RNUM := 0) R
+		]]> 
+		</select>
+	
 	
 	<!-- 음악 정보 등록 쿼리 -->
 	<insert id="create" parameterType="MediaDTO">

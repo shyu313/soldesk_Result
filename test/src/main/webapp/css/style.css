@@ -1,5 +1,5 @@
 
-/* Body 占싸븝옙 Start*/
+/* Body �뜝�떥釉앹삕 Start*/
 body {
     background: #181818;
     font-family: 'Roboto', sans-serif;
@@ -11,10 +11,10 @@ body a {
 body a:hover {
     color: #c8c8c8;
 }
-/* Body 占싸븝옙 End*/
+/* Body �뜝�떥釉앹삕 End*/
 
-/* Header 占싸븝옙 Start  */
-.header {											/*占쏙옙占� 占쏙옙占쏙옙 Bar*/
+/* Header �뜝�떥釉앹삕 Start  */
+.header {											/*�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕 Bar*/
     background: #282828;
     padding: 10px;
     color: #aaaaaa;
@@ -23,7 +23,7 @@ body a:hover {
     flex-flow: row wrap;
     align-items: center;
 }
-.header .page-flows .flow {					/* 占쏙옙占� 占쏙옙占쏙옙 Bar 占쏙옙占쏙옙占쏙옙 占싱듸옙 占쏙옙튼*/
+.header .page-flows .flow {					/* �뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕 Bar �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떛�벝�삕 �뜝�룞�삕�듉*/
     font-size: 20px;
     color: #aaaaaa;
     margin: 0 10px;
@@ -34,7 +34,7 @@ body a:hover {
 .header .page-flows .flow .disabled {
     color: #5e5e5e;
 }
-.header .search {								/* 占쏙옙占� 占쏙옙占쏙옙 bar 占싯삼옙 占싸븝옙 - 占쏙옙占쏙옙 占쌍쇽옙 처占쏙옙*/
+.header .search {								/* �뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕 bar �뜝�떙�궪�삕 �뜝�떥釉앹삕 - �뜝�룞�삕�뜝�룞�삕 �뜝�뙇�눦�삕 泥섇뜝�룞�삕*/
     margin-left: 1%;
 }
 .header .search input {
@@ -49,7 +49,7 @@ body a:hover {
     background-size: 10%;
     background-position: 5px;
 }
-.header .user {									/* 占쏙옙占� 占쏙옙占쏙옙 bar 占쏙옙占쏙옙 占쏙옙占쏙옙 占싸븝옙 */
+.header .user {									/* �뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕 bar �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떥釉앹삕 */
     width: 300px;
     margin-left: auto;
     display: flex;
@@ -111,22 +111,22 @@ body a:hover {
     color: #c8c8c8;
     transition: all 0.2s ease;
 }
-/* Header 占싸븝옙 End  */
+/* Header �뜝�떥釉앹삕 End  */
 
-/* 占쏙옙占쏙옙 占쏙옙占� 占쌨댐옙, 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싸븝옙 Start*/
-.content__left {									/* 占쏙옙占쏙옙 占쌨댐옙 bar*/
+/* �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝占� �뜝�뙣�뙋�삕, �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떥釉앹삕 Start*/
+.content__left {									/* �뜝�룞�삕�뜝�룞�삕 �뜝�뙣�뙋�삕 bar*/
     width: 20%;
 }
-.content__middle{								    /* 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싸븝옙*/
+.content__middle{								    /* �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떥釉앹삕*/
     width: 50%;
 }
-.content__right{								    /* 占쏙옙占쏙옙占쏙옙 占쏙옙占� 占싸븝옙*/
+.content__right{								    /* �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝占� �뜝�떥釉앹삕*/
     width: 30%;
 }
 #content__player{
     width: 100%;
 }
-#content__lyrics{								    /* 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占싸븝옙*/
+#content__lyrics{								    /* �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떥釉앹삕*/
     width: 100%;
     height: 45%;
 }
@@ -135,7 +135,7 @@ body a:hover {
     height: 100%;
 }
 
-/* 占쏙옙占쏙옙 占쏙옙占� 占쌨댐옙, 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싸븝옙 End*/
+/* �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝占� �뜝�뙣�뙋�삕, �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떥釉앹삕 End*/
 
 .navigation {
     padding: 15px;
@@ -932,7 +932,7 @@ button:hover {
     flex-flow: row wrap;
 }
 
-.section-bottom {                                    /* 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙占쏙옙트 占싸븝옙*/
+.section-bottom {                                    /* �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�듃 �뜝�떥釉앹삕*/
     text-transform: uppercase;
     letter-spacing: 1.25px;
     font-size: 13.2px;
@@ -942,13 +942,13 @@ button:hover {
 
 
 
-/* 占쌓뤄옙占쏙옙 占쏙옙타占쏙옙 START */
+/* �뜝�뙎琉꾩삕�뜝�룞�삕 �뜝�룞�삕���뜝�룞�삕 START */
 .bar 				{ fill: steelblue; }
 .bar:hover 		{ fill: brown; }
 .axis--x path 		{ display: none; }
 text 				{ fill: #fff; }
 g path, g line 	{ stroke: #fff; }
-/* 占쌓뤄옙占쏙옙 占쏙옙타占쏙옙 END */
+/* �뜝�뙎琉꾩삕�뜝�룞�삕 �뜝�룞�삕���뜝�룞�삕 END */
 
 
 /* Bubble Chart Start*/
@@ -1006,10 +1006,3 @@ g path, g line 	{ stroke: #fff; }
         fill: #FFF;
       }
 /*Emotion Graph End*/
-
-
-/* Dashboard Start*/
-
-
-
-/* Dashboard End*/

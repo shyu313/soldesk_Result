@@ -9,15 +9,13 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 var player; 
-
-	var id = "<%=videoId %>";
- 
-  
-  
+var viedoId = document.getElementsById("ppp").value;		// 
 //DB 에서 url 을 받아 와야 함 
 function onYouTubeIframeAPIReady() {
+	
+	alert(viedoId+"test");
 	player = new YT.Player('content__player', {
-		videoId: "OxgiiyLp5pk",                             <!-- videoId : url 의 동영상 재생 아이디-->
+		videoId: viedoId,                             <!-- videoId : url 의 동영상 재생 아이디-->
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
