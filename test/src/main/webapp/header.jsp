@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="../css/mediaQuery.css">
         <link rel="stylesheet" href="../css/smart_editor2_in.css">
         <link rel="stylesheet" href="../css/smart_editor2_items.css">
-        
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
         
         
         </head>

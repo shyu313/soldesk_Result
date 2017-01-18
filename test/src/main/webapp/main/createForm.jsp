@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file ="../header.jsp" %>
-	<script>
+	<script<%--  src="<c:url value='https://code.jquery.com/jquery-1.11.0.min.js'/>" --%>>
 		$(function(){
 	        //전역변수선언
 	        var editor_object = [];
