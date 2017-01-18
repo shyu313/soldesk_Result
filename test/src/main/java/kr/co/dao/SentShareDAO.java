@@ -1,4 +1,4 @@
-package kr.co.main;
+package kr.co.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +10,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import kr.co.dto.SearchDTO;
+import kr.co.dto.SentShareDTO;
+import kr.co.main.SentMapper;
+
 @Component
 public class SentShareDAO {
 	
@@ -17,7 +21,7 @@ public class SentShareDAO {
 	private SqlSession sqlSession;
 
 	public SentShareDAO() {
-		System.out.println("---SentShareDAO按眉 积己凳");
+		
 	}
 	 
 	// 皑己 傍蜡 累己

@@ -24,12 +24,15 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="kr.co.test" />
-	<context:component-scan base-package="kr.co.main" />
+	<!-- 전체 패키지를 스캔하도록 설정 -->
+	<context:component-scan base-package="kr.co.*" /> 
+	<!-- <context:component-scan base-package="kr.co.main" />
 	<context:component-scan base-package="kr.co.music" />
 	<context:component-scan base-package="kr.co.playlist" />
 	<context:component-scan base-package="kr.co.user" />
 	<context:component-scan base-package="kr.co.utility" />
+	<context:component-scan base-package="kr.co.dao" /> -->
+	
 	
 	<!--	<mvc:mapping path/>를 통해서 인터셉터가 동작할 URL을 지정
 			모든 요청에 동작하므로, 전체패스를 의미하는 "/**"로 설정

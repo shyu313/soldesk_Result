@@ -138,7 +138,7 @@
         <div id="content__player" >   <!--  IFrameAPI 에 의해 식별된 div 는 iframe 로 대체 된다.-->
         </div>
         <div id="content__lyrics" style="overflow:scroll;">
-        	<text readonly value="${lyrics }" class="lyrics"  />
+        	<div class="lyrics" >${lyrics }</div>
         </div>
         
 

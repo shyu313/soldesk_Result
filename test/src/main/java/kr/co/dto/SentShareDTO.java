@@ -1,4 +1,4 @@
-package kr.co.main;
+package kr.co.dto;
 
 public class SentShareDTO {
 	private int bbsno;

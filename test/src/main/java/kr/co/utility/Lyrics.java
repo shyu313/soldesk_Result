@@ -15,6 +15,7 @@ import org.apache.http.client.ClientProtocolException;
  * 1. 누락된 가사 검색 기능	:	countLyrics(int, int)
  * 2. 팝송 가사 구분 기능		:	searchPOP(int, int)
  * 3.  파일 쓰기 함수			:    lyricsWrite(String, String, int )
+ * 
  */
 
 public class Lyrics {

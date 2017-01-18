@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import kr.co.main.SentShareDTO;
+import kr.co.dto.SearchDTO;
+import kr.co.dto.SentShareDTO;
 
 // 감성 공유 매퍼(Mapper).
 public interface SentMapper {
