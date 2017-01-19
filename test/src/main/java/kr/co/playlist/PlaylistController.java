@@ -40,15 +40,13 @@ public class PlaylistController {
 	public ModelAndView play(MediaDTO mediaDTO) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("playlist/toplist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
-
+		List<MediaDTO> musicList=mediaDAO.toplist(); 
 		mediaDTO = mediaDAO.read(mediaDTO.getLyricsNo());
 		String url[]=mediaDTO.getUrl().split("=");
 		
 		mav.addObject("videoId", url[1]);
 		mav.addObject("lyrics", mediaDTO.getLyrics());
-		logger.debug("\nurl : " + url[1]+ "\n가사: "+ mediaDTO.getLyrics());
-		
-		
+		mav.addObject("topList", musicList);
 		
 		return mav;
 	} // play() end
