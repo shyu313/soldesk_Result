@@ -122,7 +122,7 @@
             <!--  Bubble Chart-->
             <script>
 			var point0 =  '${jsonEmotion.happy }';
-			var point1 =  '${jsonEmotion.disgust }';
+			var point1 =  '${jsonEmotion.disgust }'; 
 			var point2 =  '${jsonEmotion.fear }';
 			var point3 =  '${jsonEmotion.interest }';
 			var point4 =  '${jsonEmotion.pain }';
