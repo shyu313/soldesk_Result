@@ -126,7 +126,7 @@
         <div class="collapse in" id="playlists">
         <a href="../playlist/toplist.do" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
-        <span>TOP 10</span>
+        <span>Music TOP 10</span>
         </a>
         <a href="../playlist/emotion.do" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
@@ -140,6 +140,7 @@
         </div>
         </div>
         <!-- Bubble Chart-->
+        <script> var id = '${music }'</script>	 <!--  count = 해당 감정의 총 갯수 -->
         <div class="bubbleChart"></div>
 
         </section>

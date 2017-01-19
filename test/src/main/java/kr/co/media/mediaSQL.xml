@@ -5,28 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.co.media.MediaMapper">
 	<!-- 전체 음악 리스트 쿼리  -->
-	<select id="list" parameterType="HashMap" resultType="MediaDTO">
+	<select id="list" resultType="MediaDTO">
 		<![CDATA[
-			SELECT a.* FROM (
-									select @RNUM := @RNUM +1 AS RNUM, t.*
-									from
-										( select * from bardciel.media order by lyricsNo desc ) t, 
-										(select @RNUM := 0) R
-						) a 
-		]]> WHERE <![CDATA[a.RNUM >= #{startRow} AND a.RNUM <= #{endRow}]]>
-		<!-- <if test="word != null">
-			<choose>
-				<when test="searchCondition == 0">
-					AND subject LIKE '%' || #{word} || '%' ORDER BY lyricsNo DESC
-				</when>
-				<when test="searchCondition == 1">
-					AND content LIKE '%' || #{word} || '%' ORDER BY lyricsNo DESC
-				</when>
-				<when test="searchCondition == 2">
-					AND wname LIKE '%' || #{word} || '%' ORDER BY lyricsNo DESC
-				</when>
-			</choose>
-		</if> -->
+			select @RNUM := @RNUM +1 AS RNUM, t.*
+			from
+				( select * from bardciel.media ) t, 
+				(select @RNUM := 0) R
+		]]> 
 	</select>
 	<!-- 전체 음악 리스트 쿼리  -->
 	<select id="toplist"  resultType="MediaDTO">

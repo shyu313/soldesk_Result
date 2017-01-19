@@ -1,5 +1,6 @@
 package kr.co.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,9 +25,9 @@ public class MediaDAO extends AbstractDAO{
 		}
 		
 		// 노래 조회 리스트
-		public List<MediaDTO> list(HashMap hashMap){
+		public List<MediaDTO> list(){
 			MediaMapper mapper = sqlSession.getMapper(MediaMapper.class);
-			List<MediaDTO> list = mapper.list(hashMap);
+			List<MediaDTO> list = mapper.list();
 			return list;
 		}
 		

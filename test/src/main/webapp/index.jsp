@@ -107,7 +107,7 @@
                 <div class="collapse in" id="playlists">
                     <a href="./playlist/toplist.do" class="navigation__list__item">
                         <i class="ion-ios-musical-notes"></i>
-                        <span>TOP 10</span>
+                        <span>Music TOP 10</span>
                     </a>
                     <a href="./playlist/emotion.do" class="navigation__list__item">
                         <i class="ion-ios-musical-notes"></i>
@@ -120,6 +120,15 @@
                 </div>
             </div>
             <!--  Bubble Chart-->
+            <script>
+			var point0 =  '${jsonEmotion.happy }';
+			var point1 =  '${jsonEmotion.disgust }';
+			var point2 =  '${jsonEmotion.fear }';
+			var point3 =  '${jsonEmotion.interest }';
+			var point4 =  '${jsonEmotion.pain }';
+			var point5 =  '${jsonEmotion.rage }';
+			var point6 =  '${jsonEmotion.sad }';
+            </script>	
             <div class="bubbleChart"></div>
         </section>
     </div>

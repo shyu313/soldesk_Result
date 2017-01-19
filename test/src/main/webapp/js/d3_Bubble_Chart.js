@@ -12,21 +12,19 @@ $(document).ready(function () {
         innerRadius: 600 / 3.5,
         //outerRadius: => use @default
         radiusMin: 50,
-        //radiusMax: use @default
+        radiusMax: 50, //@default
         //intersectDelta: use @default
         //intersectInc: use @default
         //circleColor: use @default
         data: {
             items: [
-                {text: "행복", count: "236"},
-                {text: "우울", count: "382"},
-                {text: "분노", count: "170"},
-                {text: "슬픔", count: "123"},
-                {text: "즐거움", count: "12"},
-                {text: "외로움", count: "170"},
-                {text: "배고픔", count: "382"},
-                {text: "부정적", count: "10"},
-                {text: "긍정적", count: "170"},
+                {text: "행복", count: point0},
+                {text: "혐오", count: point1},
+                {text: "무서움", count: point2},
+                {text: "흥미", count: point3},
+                {text: "고통", count: point4},
+                {text: "화남", count: point5},
+                {text: "슬픔", count: point6},
             ],
             eval: function (item) {return item.count;},
             classed: function (item) {return item.text.split(" ").join("");}

@@ -34,19 +34,22 @@ public class JsonTest {
 		ResultSet rs = null;
 		con = dbopen.getConnetion();
 		sql=new StringBuffer();
-		sql.append(" select * from bardciel.media order by playCnt desc limit 0,10 ");
+		sql.append(" select emotion, word from bardciel.emotionDIC  ");
 		
 		try {
 			pstmt = con.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
-				System.out.println(rs.toString());
+			int count =1;
+			while(rs.next()){
+				System.out.print(count+ rs.getString(1));
+				System.out.println(" : "+ rs.getString(2));
+				count++;
 			}
-			System.out.println("@@@@@@@@@@@@@@@@@@");
+			
 				
 		} catch (SQLException e) {
 		}
+		
 		/*
 		emotion.put("happy", 7);
 		emotion.put("sad", 6);
