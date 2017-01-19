@@ -1,4 +1,4 @@
-package kr.co.test;
+package kr.co.utility;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
