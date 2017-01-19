@@ -48,27 +48,26 @@
 
         <!-- 로그인 시 회원 정보 -->
         <div class="user">
-                <div class="user__info">
-        	<span class="user__info__name">
-        		<span id="status"></span>
-       		</span>
+        <div class="user__info">				
+            <span class="user__info__name">
+            		<span>      </span>
+					<span id="status" style="text-align:right; color:#ffffff"></span>
+				</span>
         </div>
 
         <div class="user__actions">
-        <div class="dropdown">
-        <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="true">
-        <i class="ion-chevron-down"></i>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-        <li><a href="../user/customer.do">FAQ</a>
-        </li>
-        <li><span><fb:login-button scope="public_profile,email"  data-size="xlarge" data-auto-logout-link="true" onlogin="checkLoginState();"/>
-        </span></li> 
-        </ul>
+            <div class="dropdown">
+                <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <i class="ion-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                    <li><a href="../user/customer.do">FAQ</a></li>
+                    <li><span><fb:login-button scope="public_profile,email"  data-size="xlarge" data-auto-logout-link="true" onlogin="checkLoginState();"/>
+					</span></li>
+                </ul>
+            </div>
         </div>
-        </div>
-        </div>
+    </div>
         </section>
 
         <!-- 본문 -->
