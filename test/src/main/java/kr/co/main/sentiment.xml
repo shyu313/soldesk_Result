@@ -17,13 +17,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="word != null">
 			<choose>
 				<when test="searchCondition == 0">
-					AND subject LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
+					AND subject LIKE CONCAT('%', #{word}, '%') ORDER BY bbsno DESC
 				</when>
 				<when test="searchCondition == 1">
-					AND content LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
+					AND content LIKE CONCAT('%', #{word}, '%') ORDER BY bbsno DESC
 				</when>
 				<when test="searchCondition == 2">
-					AND wname LIKE '%' || #{word} || '%' ORDER BY bbsno DESC
+					AND wname LIKE CONCAT('%', #{word}, '%') ORDER BY bbsno DESC
 				</when>
 			</choose>
 		</if>
@@ -70,13 +70,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="word != null">
 			<choose>
 				<when test="searchCondition == 0">
-					WHERE subject LIKE '%' || #{word} || '%'
+					WHERE subject LIKE CONCAT('%', #{word}, '%')
 				</when>
 				<when test="searchCondition == 1">
-					WHERE content LIKE '%' || #{word} || '%'
+					WHERE content LIKE CONCAT('%', #{word}, '%')
 				</when>
 				<when test="searchCondition == 2">
-					WHERE wname LIKE '%' || #{word} || '%'
+					WHERE wname LIKE CONCAT('%', #{word}, '%')
 				</when>
 			</choose>
 		</if>

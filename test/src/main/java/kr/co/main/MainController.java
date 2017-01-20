@@ -73,8 +73,11 @@ public class MainController {
 		int startPage = Pages*pagePerBlock;
 		int endPage = startPage+pagePerBlock+1;
 		
-		hashMap.put("searchCondition",searchDTO.getSearchCondition());
-		hashMap.put("word", searchDTO.getWord());
+		String word = req.getParameter("word");
+		String searchCondition = req.getParameter("searchCondition");
+		
+		hashMap.put("searchCondition", searchCondition);
+		hashMap.put("word", word);
 		hashMap.put("startRow", startRow);
 		hashMap.put("endRow", endRow);
 				
