@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.dao.DictionaryDAO;
 import kr.co.dao.MediaDAO;
 import kr.co.dao.SentShareDAO;
+import kr.co.dto.DictionaryDTO;
 import kr.co.dto.MediaDTO;
 import kr.co.dto.SearchDTO;
 import kr.co.dto.SentShareDTO;
@@ -31,7 +33,8 @@ import kr.co.utility.Utility;
 @Controller
 public class MainController {
 	public static Logger logger = LoggerFactory.getLogger(MainController.class);
-	
+	@Autowired
+	private DictionaryDAO dicDAO;
 	@Autowired
 	private MediaDAO mediaDAO;
 	@Autowired
@@ -41,12 +44,18 @@ public class MainController {
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
 	@RequestMapping(value="/main/search.do", produces = "application/json; charset=utf8")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Search() {
-		logger.debug("검색 테스트");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/search");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
 		mav.addObject("jsonEmotion",jsonEmotion);
+		logger.debug(" 감정검색 TEST ");
+		
+		List<DictionaryDTO> emotionDICList = dicDAO.selectList("selectList");					// 이전과 다른 방법
+		JSONObject jsonBubbleMenu = Utility.getJsonBubbleMenu(emotionDICList);
+		
+		
+		
 		
 		return mav;
 	} // Search() end
