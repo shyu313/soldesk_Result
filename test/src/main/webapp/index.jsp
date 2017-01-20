@@ -143,6 +143,10 @@
     	<div id="mainBubble">  </div>
     </div>
     <!-- 유투브 플레이어 부분-->
+     <script>									 <!--  변수가 .js 내에서 동작이 안됨. jsp 내에서 선언한다.-->
+    	var id = '${videoId}'
+		if(!id){	id = "OxgiiyLp5pk" }		 // 이전의 재생중인 영상이 없거나 초기값인경우 '야생화' 재생
+    </script>	
     <div class="content__right">
         <div id="content__player" >   <!--  IFrameAPI 에 의해 식별된 div 는 iframe 로 대체 된다.-->
         </div>

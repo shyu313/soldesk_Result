@@ -50,10 +50,10 @@ public class HomeController {
 		while(iterator.hasNext()){
 			MediaDTO dto = iterator.next();
 			if(dto.getHappy()>15)		{count[0]++;}		// 0 ±â»Ý
-			if(dto.getDisgust()>15)	{count[1]++;}		// 1 Çø¿À
-			if(dto.getFear()>15)		{count[2]++;}		// 2 °øÆ÷
-			if(dto.getInterest()>15)	{count[3]++;}		// 3 Èï¹Ì
-			if(dto.getPain()>15)		{count[4]++;}		// 4 ¾ÆÇÄ
+			if(dto.getDisgust()>15)		{count[1]++;}		// 1 Çø¿À
+			if(dto.getFear()>15)			{count[2]++;}		// 2 °øÆ÷
+			if(dto.getInterest()>15)		{count[3]++;}		// 3 Èï¹Ì
+			if(dto.getPain()>15)			{count[4]++;}		// 4 ¾ÆÇÄ
 			if(dto.getRage()>15)		{count[5]++;}		// 5 ºÐ³ë
 			if(dto.getSad()>15)			{count[6]++;}		// 6 ½½ÇÄ
 		}

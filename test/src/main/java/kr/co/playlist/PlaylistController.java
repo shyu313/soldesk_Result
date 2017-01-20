@@ -43,7 +43,7 @@ public class PlaylistController {
 		List<MediaDTO> musicList=mediaDAO.toplist(); 
 		mediaDTO = mediaDAO.read(mediaDTO.getLyricsNo());
 		String url[]=mediaDTO.getUrl().split("=");
-		
+		//logger.debug("URL : " +url[1]);
 		mav.addObject("videoId", url[1]);
 		mav.addObject("lyrics", mediaDTO.getLyrics());
 		mav.addObject("topList", musicList);

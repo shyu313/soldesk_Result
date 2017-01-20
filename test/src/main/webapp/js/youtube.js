@@ -12,11 +12,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player; 
 //DB 에서 url 을 받아 와야 함 
 function onYouTubeIframeAPIReady() {
-
-	
-
 	player = new YT.Player('content__player', {
-		videoId: id,                             <!-- videoId : url 의 동영상 재생 아이디-->
+		videoId: id,                             
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
