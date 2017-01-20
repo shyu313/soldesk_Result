@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.dao.MediaDAO;
 import kr.co.dto.MediaDTO;
+import kr.co.utility.Utility;
 
 @Controller
 public class PlaylistController {
@@ -26,13 +28,18 @@ public class PlaylistController {
 	
 	// 결과 확인 http://localhost:9090/test/list.do
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
-	@RequestMapping("/playlist/toplist.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
+	@RequestMapping("/playlist/toplist.do")												// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Toplist() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("playlist/toplist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
-	 	List<MediaDTO> musicList=mediaDAO.toplist(); 
-	 	//logger.debug( "\n가수 : "+  musicDTO.getTitle() +"\n가사 : "+ musicDTO.getLyrics());
-		mav.addObject("topList", musicList);
+		mav.setViewName("playlist/toplist");												// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
+		
+		List<MediaDTO> topList=mediaDAO.toplist(); 
+		mav.addObject("topList", topList);
+		
 		
 		return mav;
 	} // Toplist() end
@@ -40,13 +47,16 @@ public class PlaylistController {
 	public ModelAndView play(MediaDTO mediaDTO) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("playlist/toplist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
-		List<MediaDTO> musicList=mediaDAO.toplist(); 
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
+		List<MediaDTO> topList=mediaDAO.toplist(); 
 		mediaDTO = mediaDAO.read(mediaDTO.getLyricsNo());
 		String url[]=mediaDTO.getUrl().split("=");
-		//logger.debug("URL : " +url[1]);
 		mav.addObject("videoId", url[1]);
 		mav.addObject("lyrics", mediaDTO.getLyrics());
-		mav.addObject("topList", musicList);
+		mav.addObject("topList", topList);
 		
 		return mav;
 	} // play() end
@@ -55,6 +65,11 @@ public class PlaylistController {
 	public ModelAndView Randomplay() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("playlist/randomplay");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
+		
 		return mav;
 	} // Randomplay() end
 	
@@ -62,6 +77,10 @@ public class PlaylistController {
 	public ModelAndView Emotion() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("playlist/emotion");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
 		return mav;
 	} // Emotion() end
 }

@@ -140,7 +140,15 @@
         </div>
         </div>
         <!-- Bubble Chart-->
-        <script> var id = '${music }'</script>	 <!--  count = 해당 감정의 총 갯수 -->
+         <script>
+			var point0 =  '${jsonEmotion.happy }';
+			var point1 =  '${jsonEmotion.disgust }'; 
+			var point2 =  '${jsonEmotion.fear }';
+			var point3 =  '${jsonEmotion.interest }';
+			var point4 =  '${jsonEmotion.pain }';
+			var point5 =  '${jsonEmotion.rage }';
+			var point6 =  '${jsonEmotion.sad }';
+            </script>	
         <div class="bubbleChart"></div>
 
         </section>

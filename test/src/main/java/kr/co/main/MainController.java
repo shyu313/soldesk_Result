@@ -10,6 +10,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +21,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.dao.MediaDAO;
 import kr.co.dao.SentShareDAO;
+import kr.co.dto.MediaDTO;
 import kr.co.dto.SearchDTO;
 import kr.co.dto.SentShareDTO;
+import kr.co.utility.Utility;
  
 @Controller
 public class MainController {
 	public static Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-	
-		@Autowired
-		private SentShareDAO dao;
+	@Autowired
+	private MediaDAO mediaDAO;
+	@Autowired
+	private SentShareDAO dao;
 	
 	// 결과 확인 http://localhost:9090/test/list.do
 	//@RequestMapping(value="index.do", method = RequestMethod.GET)
@@ -39,6 +44,10 @@ public class MainController {
 		logger.debug("검색 테스트");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/search");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
 		return mav;
 	} // Search() end
 	
@@ -47,6 +56,10 @@ public class MainController {
 	public ModelAndView list(SearchDTO searchDTO, HttpServletRequest req){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/share"); // /main/share.jsp
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		//ArrayList<SentShareDTO> list = dao.list(searchDTO);
 		int cnt = dao.getArticleCount(searchDTO);
@@ -113,6 +126,10 @@ public class MainController {
 	public ModelAndView createForm(){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/createForm");
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
 		return mav;
 	}
 	
@@ -122,6 +139,10 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		int cnt = dao.create(dto);
 		mav.setViewName("redirect:/main/share.do"); // /mediagroup/msgView.jsp		
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
 		return mav;
 	}
 	
@@ -131,6 +152,11 @@ public class MainController {
 		dao.readcnt(bbsno);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/read");
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
+		
 		SentShareDTO dto = dao.read(bbsno);
 		mav.addObject("dto", dto);
 		return mav;
@@ -141,6 +167,10 @@ public class MainController {
 	public ModelAndView deleteForm(int bbsno){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/deleteForm");
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
 		SentShareDTO dto = dao.read(bbsno);
 		mav.addObject("dto", dto);
 		return mav;
@@ -152,6 +182,10 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		int cnt = dao.delete(dto);
 		mav.setViewName("redirect:/main/share.do");
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
 		return mav;
 	}
 	
@@ -160,6 +194,10 @@ public class MainController {
 	public ModelAndView updateForm(int bbsno){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/updateForm");
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
 		SentShareDTO dto = dao.read(bbsno);
 		mav.addObject("dto", dto);
 		return mav;
@@ -171,6 +209,10 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		int cnt = dao.update(dto);
 		mav.setViewName("redirect:/main/share.do");
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
 		return mav;
 	}
 }
