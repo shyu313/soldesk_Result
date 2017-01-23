@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import kr.co.dao.MediaDAO;
 import kr.co.dto.DictionaryDTO;
+import kr.co.dto.HistoryDTO;
 import kr.co.dto.MediaDTO;
 import kr.co.test.HomeController;
 
@@ -84,7 +85,36 @@ public class Utility {
 		logger.debug(jsonEmotion.toString());
 		return jsonEmotion;
 	}
-	
+
+	public static JSONObject getHistoryMusic(List<HistoryDTO> musicList  ){				 
+		Iterator<HistoryDTO> iterator = musicList.iterator();
+		String emotionType[] ={"happy","disgust","fear","interest","pain","rage","sad"};
+		int count[] = new int[7];//7가지 감정
+		 
+		while(iterator.hasNext()){
+			HistoryDTO dto = iterator.next();
+			if(dto.getEmotion()=="happy") {count[0]++;}
+			if(dto.getEmotion()=="disgust") {count[1]++;}
+			if(dto.getEmotion()=="fear") {count[2]++;}
+			if(dto.getEmotion()=="interest") {count[3]++;}
+			if(dto.getEmotion()=="pain") {count[4]++;}
+			if(dto.getEmotion()=="rage") {count[5]++;}
+			if(dto.getEmotion()=="sad") {count[6]++;}
+		}
+		
+		// 최종 완성될 JSONObject 선언(전체)
+		JSONObject jsonObject = new JSONObject();
+		// person의 JSON정보를 담을 Array 선언
+		JSONArray jsonArray = new JSONArray();
+		// person의 한명 정보가 들어갈 JSONObject 선언
+		JSONObject jsonHistory = new JSONObject();
+		for(int i=0; i<emotionType.length; i++){
+			jsonHistory.put(emotionType[i], count[i]);
+			
+		}
+		logger.debug(jsonHistory.toString());
+		return jsonHistory;
+	}
 	
 	
 	/*Bubble Menu 관련 메소드*/

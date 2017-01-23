@@ -4,7 +4,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
           gridSize = Math.floor(width / 24),
           legendElementWidth = gridSize*2,
           buckets = 9,
-          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4"], // alternatively colorbrewer.YlGnBu[9]
           days = ["기쁨", "슬픔", "분노", "혐오", "흥미", "고통", "공포"],
           times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
           datasets = ["data.csv"];
@@ -66,7 +66,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
               .attr("height", gridSize)
               .style("fill", colors[0])
           	  .on("click", function(d) {
-                alert("노래를 들은 시간 : "+ d.hour  +" / "+" 감정 : "+d.day);
+                alert("노래를 들은 시간 : "+ d.hour  +" / "+" 감정 : "+d.day+" / "+" 횟수 : "+d.value);
               }); 
 
           cards.transition().duration(1000)
