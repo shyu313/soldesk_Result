@@ -101,7 +101,7 @@ public class Utility {
 		//  지루함, 놀람 빠져 있다. - 버블 차트에 추가 해야하는지 의논
 		while(iterator.hasNext()){								
 			DictionaryDTO dto = iterator.next();
-				if(dto.getEmotion().equals("기쁨")){
+			if(dto.getEmotion().equals("기쁨")){
 				listOfEmotionWord[0].add(dto.getWord());
 			}
 			if(dto.getEmotion().equals("혐오")){
@@ -123,29 +123,68 @@ public class Utility {
 				listOfEmotionWord[6].add(dto.getWord());
 			}
 		}
-		logger.debug(String.valueOf(listOfEmotionWord[0].size()));
-		logger.debug(String.valueOf(listOfEmotionWord[1].size()));
-		logger.debug(String.valueOf(listOfEmotionWord[2].size()));
-		logger.debug(String.valueOf(listOfEmotionWord[3].size()));
-		logger.debug(String.valueOf(listOfEmotionWord[4].size()));
-		logger.debug(String.valueOf(listOfEmotionWord[5].size()));
-		logger.debug(String.valueOf(listOfEmotionWord[6].size()));
-		
-		/*for(String emotion:emotionType){
-			logger.debug(emotion + " : ");
-			for(int index=0; index<3; index++){
-				logger.debug(String.valueOf( randomEmotion.nextInt(547)));
-			}
-		}*/
 		
 		
-		// person의 한명 정보가 들어갈 JSONObject 선언
+		// bubble circle 한개 정보가 들어갈 JSONObject 선언
 		JSONObject jsonEmotion = new JSONObject();
 		for(int i=0; i<emotionType.length; i++){
 			jsonEmotion.put("test", "test");
 			
 		}
-		logger.debug(jsonEmotion.toString());
+		//logger.debug(jsonEmotion.toString());
 		return jsonEmotion;
+	}
+	
+	
+	/*simple dashBoard 관련 메소드*/
+	// 감정별 점수 json 객체로 반환
+	@SuppressWarnings("unchecked")
+	public static JSONArray getJsonTopMusic(List<MediaDTO> mediaDTOList){
+		//최종 완성될 JSONObject 선언(전체)
+		JSONArray jsonTopMusic = new JSONArray();
+
+		Iterator<MediaDTO> iteratorMedia = mediaDTOList.iterator();
+		//String emotionType[] ={"Happy","Disgust","Fear","Interest","Pain","Rage","Sad"};
+		ArrayList<Integer> listOfTopTenEmotion[] = new ArrayList[7];			// 한곡당 감정 점수를 담을 배열
+		
+		for(int index=0; index<listOfTopTenEmotion.length; index++){
+			listOfTopTenEmotion[index] = new ArrayList<Integer>();
+		}
+		
+		// 한곡 당 감정별 점수를 ArrayList에 저장
+		while(iteratorMedia.hasNext()){
+			MediaDTO dto = iteratorMedia.next();
+			listOfTopTenEmotion[0].add(dto.getHappy());
+			listOfTopTenEmotion[1].add(dto.getSad());
+			listOfTopTenEmotion[2].add(dto.getRage());
+			listOfTopTenEmotion[3].add(dto.getDisgust());
+			listOfTopTenEmotion[4].add(dto.getInterest());
+			listOfTopTenEmotion[5].add(dto.getPain());
+			listOfTopTenEmotion[6].add(dto.getFear());
+		}// end while
+	
+		for(ArrayList<Integer> point : listOfTopTenEmotion){
+			logger.debug(String.valueOf(point));
+		}
+	
+		// 노래 한곡을 JSONObject 형태로 저장
+		for(int i=0; i<10;i++){																// 전체 10곡 
+			JSONObject innerJson = new JSONObject();								// #1 innerJson <감정 7가지 점수 >
+			JSONObject outterJson = new JSONObject();	
+			innerJson.put("happy", listOfTopTenEmotion[0].get(i));
+			innerJson.put("sad", listOfTopTenEmotion[1].get(i));
+			innerJson.put("rage", listOfTopTenEmotion[2].get(i));
+			innerJson.put("disgust", listOfTopTenEmotion[3].get(i));
+			innerJson.put("interest", listOfTopTenEmotion[4].get(i));
+			innerJson.put("pain", listOfTopTenEmotion[5].get(i));
+			innerJson.put("fear", listOfTopTenEmotion[6].get(i));
+			outterJson.put("freq", innerJson);											// #2 outterJson index2
+			outterJson.put("State", "Top"+(i+1));										// #2 outterJson index1
+			jsonTopMusic.add(outterJson);
+		}
+		
+		logger.debug(jsonTopMusic.toJSONString());
+		return jsonTopMusic;
+		
 	}
 } // class end

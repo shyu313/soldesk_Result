@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,12 +33,19 @@ public class PlaylistController {
 	public ModelAndView Toplist() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("playlist/toplist");												// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
-		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		//bubbleChart를 보여주기위해  전체 노래 정보 조회
+		List<MediaDTO> musicList= mediaDAO.list();										 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
 		mav.addObject("jsonEmotion",jsonEmotion);
+		 
+		// dash board 부분 
+		List<MediaDTO> topList= mediaDAO.toplist();										//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		
+		//logger.debug(String.valueOf(topList.size()));
 		
 		
-		List<MediaDTO> topList=mediaDAO.toplist(); 
+		JSONArray jsonTopTen = Utility.getJsonTopMusic(topList);	 
+		mav.addObject("jsonTopTen",jsonTopTen);
 		mav.addObject("topList", topList);
 		
 		
