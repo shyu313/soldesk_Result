@@ -104,15 +104,14 @@
         </div>
 
         <div class="collapse in" id="yourMusic">
-        <a href="http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://localhost:9090/test/music/replay.do" class="navigation__list__item">
-                    </a>
-                        <i class="ion-headphone"></i>
-                        <span>노래 다시듣기</span>
-                    </a>
-                    <a href="http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://localhost:9090/test/music/emotionlist.do" class="navigation__list__item">
-                        <i class="ion-ios-musical-notes"></i>
-                        <span>감정 그래프</span>
-                    </a>
+	       <a href="http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://localhost:9090/test/music/replay.do" class="navigation__list__item">
+	            <i class="ion-headphone"></i>
+	            <span>노래 다시듣기</span>
+	        </a>
+	        <a href="http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://localhost:9090/test/music/emotionlist.do" class="navigation__list__item">
+	            <i class="ion-ios-musical-notes"></i>
+	            <span>감정 그래프</span>
+	        </a>
         </div>
         </div>
         <!-- / -->

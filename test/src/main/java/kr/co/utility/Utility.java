@@ -213,7 +213,7 @@ public class Utility {
 			jsonTopMusic.add(outterJson);
 		}
 		
-		logger.debug(jsonTopMusic.toJSONString());
+		logger.debug(jsonTopMusic.get(0).toString());
 		return jsonTopMusic;
 		
 	}
