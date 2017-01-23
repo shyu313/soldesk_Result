@@ -75,11 +75,11 @@
 	
 	<form name="frm" action="./share.do">
 	<select name="searchCondition" class="sel">
-		<option value="0">제목</option>
-		<option value="1">내용</option>
-		<option value="2">작성자</option>
+		<option value="0" <c:if test="${searchCondition == 0 }">selected</c:if>>제목</option>
+		<option value="1" <c:if test="${searchCondition == 1 }">selected</c:if>>내용</option>
+		<option value="2" <c:if test="${searchCondition == 2 }">selected</c:if>>작성자</option>
 	</select>
-	<input type="text" name="word" value="${param.word}">
+	<input type="text" name="word" value="${word}">
 	<input type="submit" value="검색">
 	</form>
 	</center>

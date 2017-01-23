@@ -125,6 +125,8 @@ public class MainController {
 		mav.addObject("startPage", new Integer(startPage));
 		mav.addObject("endPage", new Integer(endPage));
 		mav.addObject("articleList", articleList);
+		mav.addObject("word", word);
+		mav.addObject("searchCondition", searchCondition);
 		
 		System.out.println(Pages);
 		return mav;
