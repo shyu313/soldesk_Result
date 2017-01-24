@@ -21,7 +21,7 @@ var svg = d3.select("#mainBubble").append("svg")
 //d3.json("../json/main_bubble", function(error, root) {
     //console.log(error);
 	var root = JSON.parse(jsonBubbleMenu ); 						// d3 대신 Json 파싱함수 사용
-    var bubbleObj = svg.selectAll(".topBubble")
+	var bubbleObj = svg.selectAll(".topBubble")
         .data(root.children)
         .enter().append("g")
         .attr("id", function(d,i) {return "topBubbleAndText_" + i});
@@ -139,12 +139,13 @@ var svg = d3.select("#mainBubble").append("svg")
              		alert("같은 단어 : " + d.name);
              	}else if(word[0]==""){												// 처음 공백인 경우
                 	document.getElementById("#1").value=d.name;
-                	
-            	}else if(word[1]==""){
+             	}else if(word[1]==""){
             		document.getElementById("#2").value=d.name;
-            	}else if(word[2]==""){
+            		//document.getElementById("#emotion2").value
+             	}else if(word[2]==""){
             		document.getElementById("#3").value=d.name;
-            	}else {															// 공백이 아닌 경우
+            		//document.getElementById("#emotion3").value
+             	}else {															// 공백이 아닌 경우
             		var random = Math.floor(Math.random() * 3) + 1;
             		document.getElementById("#"+random).value=d.name;
             		//alert("랜덤 위치 : " + random);

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import kr.co.dto.DictionaryDTO;
 import kr.co.dto.MediaDTO;
 import kr.co.media.MediaMapper;
 
@@ -37,6 +38,13 @@ public class MediaDAO extends AbstractDAO{
 			List<MediaDTO> toplist = mapper.toplist();
 			return toplist;
 		}
+		// 감정단어 조회 결과 리스트
+		public List<MediaDTO> searchEmotionList(List<Object> paramDICList){
+			MediaMapper mapper = sqlSession.getMapper(MediaMapper.class);
+			List<MediaDTO> searchEmotionList = mapper.searchEmotionList(paramDICList);
+			return searchEmotionList;
+		}
+		
 		
 		
 		// 노래 조회

@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				(select @RNUM := 0) R
 		]]> 
 	</select>
-	<!-- 전체 음악 리스트 쿼리  -->
+	<!-- top10 리스트 쿼리  -->
 	<select id="toplist"  resultType="MediaDTO">
 		<![CDATA[
 			select @RNUM := @RNUM +1 AS RNUM, t.*
@@ -23,6 +23,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]> 
 		</select>
 	
+	  
+	<!-- 감정검색 리스트 쿼리  -->
+	<select id="searchEmotionList"  parameterType="java.util.List"  resultType="MediaDTO">
+		
+		<![CDATA[
+			select @RNUM := @RNUM +1 AS RNUM, t.*
+			from
+		]]> 
+				  	
+							( select * from bardciel.media 
+							<foreach collection="list" item="element" index="index" >
+								WHERE emotion = #{element.emotion} AND point >= #{element.point}  
+							</foreach>
+							)t, 
+		<![CDATA[	
+				(select @RNUM := 0) R
+		]]> 
+		</select>
 	
 	<!-- 음악 정보 등록 쿼리 -->
 	<insert id="create" parameterType="MediaDTO">

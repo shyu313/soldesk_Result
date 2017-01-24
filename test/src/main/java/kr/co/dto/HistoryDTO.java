@@ -6,6 +6,7 @@ public class HistoryDTO {
 	private String title;
 	private String time;
 	private String emotion;
+	private int historyNo;
 	
 	public String getUserId() {
 		return userId;
@@ -30,6 +31,12 @@ public class HistoryDTO {
 	}
 	public void setEmotion(String emotion) {
 		this.emotion = emotion;
+	}
+	public int getHistoryNo() {
+		return historyNo;
+	}
+	public void setHistoryNo(int historyNo) {
+		this.historyNo = historyNo;
 	}
 	
 	

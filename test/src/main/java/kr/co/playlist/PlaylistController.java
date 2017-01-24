@@ -45,8 +45,8 @@ public class PlaylistController {
 		
 		
 		JSONArray jsonTopTen = Utility.getJsonTopMusic(topList);	 
-		mav.addObject("jsonTopTen",jsonTopTen);
-		mav.addObject("topList", topList);
+		mav.addObject("jsonTopTen",jsonTopTen);											// DashBoard JsonObj
+		mav.addObject("topList", topList);														// top 10 ¸®½ºÆ® 
 		
 		
 		return mav;

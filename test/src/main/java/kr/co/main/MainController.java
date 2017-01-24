@@ -2,12 +2,16 @@ package kr.co.main;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 
+import javax.management.AttributeList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONObject;
@@ -45,14 +49,67 @@ public class MainController {
 	@RequestMapping(value="/main/search.do", produces = "application/json; charset=utf8")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Search() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main/search");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
-		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
-		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.setViewName("main/search");															// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		List<MediaDTO> musicList= mediaDAO.list();												// media 테이블 전체 노래 정보, 감정단어 검색에도 사용
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 				// bubbleChar data : jsonEmotion 
 		mav.addObject("jsonEmotion",jsonEmotion);
 		
-		List<DictionaryDTO> emotionDICList = dicDAO.selectList("selectList");					// 이전과 다른 방법
-		JSONObject jsonBubbleMenu = Utility.getJsonBubbleMenu(emotionDICList);
+		List<DictionaryDTO> emotionDICList = dicDAO.selectList("selectList");					// emotionDIC 테이블 감정 단어 정보
+		JSONObject jsonBubbleMenu = Utility.getJsonBubbleMenu(emotionDICList);			// BubbleMenu data : jsonEmotion 
 		mav.addObject("jsonBubbleMenu",jsonBubbleMenu);
+		
+		
+		
+		
+		return mav;
+	} // Search() end
+	
+	@RequestMapping(value="/main/search.do", produces = "application/json; charset=utf8", method=RequestMethod.POST )								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
+	public ModelAndView Search(String word1, String word2, String word3 ) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("main/search");															// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		List<MediaDTO> musicList= mediaDAO.list();												// media 테이블 전체 노래 정보, 감정단어 검색에도 사용
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 				// bubbleChar data : jsonEmotion 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
+		List<DictionaryDTO> emotionDICList = dicDAO.selectList("selectList");					// emotionDIC 테이블 감정 단어 정보
+		JSONObject jsonBubbleMenu = Utility.getJsonBubbleMenu(emotionDICList);			// BubbleMenu data : jsonEmotion 
+		mav.addObject("jsonBubbleMenu",jsonBubbleMenu);
+		
+		Iterator<DictionaryDTO> emotionDICIterator= emotionDICList.iterator();				// 감정사전에서 키워드 비교
+		List<Object> paramDICList = new AttributeList();												// AttributeList() 뭔지 모르겠음 , List<DictionaryDTO> 할당방법?
+		
+		logger.debug(word1);
+		logger.debug(word2);
+		logger.debug(word3);
+		String inputWord[] = {word1,word2,word3};
+		
+		
+		// 3글자 이상에서 ~하다 제거 
+		while(emotionDICIterator.hasNext()){
+			DictionaryDTO dto = emotionDICIterator.next();
+			String dicWord;
+			if(dto.getWord().length()>4){
+				dicWord = dto.getWord().replace("하다",	 "");
+			}else{
+				dicWord = dto.getWord();
+			}
+			
+			for(String word: inputWord){
+				if(dicWord.equals(word)){
+					paramDICList.add(dto);
+				}
+			}
+		}
+		Iterator iter = paramDICList.iterator();
+		while(iter.hasNext()){
+			logger.debug(iter.next().toString());
+		}
+		
+		
+		List<MediaDTO> emotionList= mediaDAO.searchEmotionList(paramDICList); 												// 감정단어 검색 결과 리스트
+		 
+		logger.debug(emotionList.toString());
 		return mav;
 	} // Search() end
 	

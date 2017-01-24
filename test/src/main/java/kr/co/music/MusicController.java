@@ -2,6 +2,7 @@ package kr.co.music;
  
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
  
@@ -30,8 +31,11 @@ public class MusicController {
 	public ModelAndView Replay(HistoryDTO historyDTO) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("music/replay");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
-		List<HistoryDTO> musicList= historyDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
-		//JSONObject jsonEmotion = Utility.getHistoryMusic(musicList);	 
+		String username = "Ciel Lu";
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		hashMap.put("username", username);
+		
+		List<HistoryDTO> musicList= historyDAO.list(hashMap);		
 		mav.addObject("list",musicList);
 
 		return mav;
@@ -41,9 +45,16 @@ public class MusicController {
 	public ModelAndView Emotionlist() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("music/emotionlist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
-		List<HistoryDTO> musicList= historyDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
-		//JSONObject jsonEmotion = Utility.getHistoryMusic(musicList);	 
+		String username = "Ciel Lu";
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		hashMap.put("username", username);
+		
+		List<HistoryDTO> musicList= historyDAO.list(hashMap);		
+		mav.addObject("list",musicList);					
+		/*List<HistoryDTO> musicList= historyDAO.datelist();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+*/		//JSONObject jsonEmotion = Utility.getHistoryMusic(musicList);	 
 		mav.addObject("list",musicList);
+		
 
 		return mav;
 	} // Emotionlist() end
