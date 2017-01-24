@@ -4,10 +4,10 @@
 	<input text value="#1"> </input text>
 	<input text > </input text>
 	<input text> </input text>
-	<script>
-		var jsonBubbleMenu = '${jsonBubbleMenu }'	
 	
-		alert(jsonBubbleMenu)
+	<script>	
+		// mainBubble div 를 생성하기 전에 데이터를 받아야 하므로 스크립트 삽입
+		var jsonBubbleMenu = '${jsonBubbleMenu }'
 	</script>
 	
 	<div id="mainBubble"></div>

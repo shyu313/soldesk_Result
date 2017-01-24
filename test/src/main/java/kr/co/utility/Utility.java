@@ -175,7 +175,7 @@ public class Utility {
 		JSONObject jsonSubBubble = null;						// #1 서브 버블 	<감정 단어>랜덤 	: 감정단어 만큼 주소 할당 필요
 		
 	
-		for(int emotion=0; emotion<1; emotion++){
+		for(int emotion=0; emotion<emotionType.length; emotion++){
 			  int wordSize 	= listOfEmotionWord[emotion].size();				// 감정별 저장된 단어 갯수 
 			  jsonMainBubble = new JSONObject();								// #2, #5 감정별 주소 할당 7개
 			  jsonSubArray  = new JSONArray();								

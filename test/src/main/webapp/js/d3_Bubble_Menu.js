@@ -19,9 +19,9 @@ var svg = d3.select("#mainBubble").append("svg")
     .on("mouseleave", function() {return resetBubbles();});
 
 
-d3.json(jsonBubbleMenu, function(error, root) {
-    console.log(error);
-
+//d3.json("../json/main_bubble", function(error, root) {
+    //console.log(error);
+	var root = JSON.parse(jsonBubbleMenu ); 						// d3 대신 Json 파싱함수 사용
     var bubbleObj = svg.selectAll(".topBubble")
         .data(root.children)
         .enter().append("g")
@@ -113,7 +113,7 @@ d3.json(jsonBubbleMenu, function(error, root) {
     }
 
 
-});
+//});
 
 resetBubbles = function () {
     w = window.innerWidth*0.68*0.95;
