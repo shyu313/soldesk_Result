@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file ="../header.jsp" %>
-<form id="searchForm">
-	<input type="text" id="#1" >
-	<input type="text" id="#2">
-	<input type="text" id="#3"> 
-	<input type="button" value="검색" onclick="">
+<form method="post" action="./search.do" name="searchForm" id="searchForm">
+	<input type="text" id="#1"  name="word1">
+	<input type="text" id="#2"  name="word2">
+	<input type="text" id="#3"  name="word3"> 
+	<input type="submit" value="검색">
 </form>
 	
 	<script>	

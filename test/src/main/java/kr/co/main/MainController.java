@@ -45,14 +45,37 @@ public class MainController {
 	@RequestMapping(value="/main/search.do", produces = "application/json; charset=utf8")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Search() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main/search");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
-		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
-		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.setViewName("main/search");															// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		List<MediaDTO> musicList= mediaDAO.list();												// media 테이블 전체 노래 정보, 감정단어 검색에도 사용
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 				// bubbleChar data : jsonEmotion 
 		mav.addObject("jsonEmotion",jsonEmotion);
 		
-		List<DictionaryDTO> emotionDICList = dicDAO.selectList("selectList");					// 이전과 다른 방법
-		JSONObject jsonBubbleMenu = Utility.getJsonBubbleMenu(emotionDICList);
+		List<DictionaryDTO> emotionDICList = dicDAO.selectList("selectList");					// emotionDIC 테이블 감정 단어 정보
+		JSONObject jsonBubbleMenu = Utility.getJsonBubbleMenu(emotionDICList);			// BubbleMenu data : jsonEmotion 
 		mav.addObject("jsonBubbleMenu",jsonBubbleMenu);
+		
+		
+		
+		
+		return mav;
+	} // Search() end
+	
+	@RequestMapping(value="/main/search.do", produces = "application/json; charset=utf8", method=RequestMethod.POST )								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
+	public ModelAndView Search(String word1, String word2, String word3 ) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("main/search");															// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		List<MediaDTO> musicList= mediaDAO.list();												// media 테이블 전체 노래 정보, 감정단어 검색에도 사용
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 				// bubbleChar data : jsonEmotion 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
+		List<DictionaryDTO> emotionDICList = dicDAO.selectList("selectList");					// emotionDIC 테이블 감정 단어 정보
+		JSONObject jsonBubbleMenu = Utility.getJsonBubbleMenu(emotionDICList);			// BubbleMenu data : jsonEmotion 
+		mav.addObject("jsonBubbleMenu",jsonBubbleMenu);
+		
+		logger.debug(word1);
+		logger.debug(word2);
+		logger.debug(word3);
+		
 		return mav;
 	} // Search() end
 	
