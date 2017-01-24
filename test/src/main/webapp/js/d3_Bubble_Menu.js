@@ -19,7 +19,7 @@ var svg = d3.select("#mainBubble").append("svg")
     .on("mouseleave", function() {return resetBubbles();});
 
 
-d3.json("../json/main_bubble.json", function(error, root) {
+d3.json(jsonBubbleMenu, function(error, root) {
     console.log(error);
 
     var bubbleObj = svg.selectAll(".topBubble")

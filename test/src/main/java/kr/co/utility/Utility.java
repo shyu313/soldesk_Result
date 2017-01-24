@@ -82,7 +82,7 @@ public class Utility {
 			jsonEmotion.put(emotionType[i], count[i]);
 			
 		}
-		logger.debug(jsonEmotion.toString());
+		//logger.debug(jsonEmotion.toString());
 		return jsonEmotion;
 	}
 
@@ -112,7 +112,7 @@ public class Utility {
 			jsonHistory.put(emotionType[i], count[i]);
 			
 		}
-		logger.debug(jsonHistory.toString());
+		//logger.debug(jsonHistory.toString());
 		return jsonHistory;
 	}
 	
@@ -123,7 +123,7 @@ public class Utility {
 	public static JSONObject getJsonBubbleMenu(List<DictionaryDTO> dictionaryList  ){				 
 		Iterator<DictionaryDTO> iterator = dictionaryList.iterator();
 		Random randomEmotion = new Random();
-		String emotionType[] ={"happy","disgust","fear","interest","pain","rage","sad"};
+		String emotionType[] ={"기쁨","혐오","공포","흥미","고통","분노","슬픔"};
 		ArrayList<String> listOfEmotionWord[] = new ArrayList[7];			// 감정별 단어를 담을 배열
 		for(int index=0; index<listOfEmotionWord.length; index++){
 			listOfEmotionWord[index] = new ArrayList<String>();
@@ -154,15 +154,66 @@ public class Utility {
 			}
 		}
 		
+		/*
+		 * 		json 형태 
+		 *  	#1 #2 #3 jsonObject , 
+		 *  	#4 #5 	JsonArray  
+		 * 
+		 * 	#3{ name:"bubble", children : 
+		 * 		#4[
+		 *  		 #2{ name:"", description:"", children: 
+		 *  		#5[
+		 *  				#1{ name:"", address:""}, #1{ name:"", address:""}, #1{ name:"", address:""}
+		 *  			]
+		 * 		 ]
+		 */
+																		// 추가할 jsonObject 는 필요한 data 개수<감정타입 7개, 감정단어 3개> 만큼 할당 되어야 한다.
+		JSONObject jsonBubbleMenu = new JSONObject();	// #3 최종 반환값  
+		JSONArray jsonMainArray =new JSONArray();			// #4 메인 버블	Array					: add로 jsonMainBubble 객체 추가 
+		JSONObject jsonMainBubble = null;						// #2 메인 버블	<감정 타입> 		: 감정타입 만큼 주소 할당 필요
+		JSONArray jsonSubArray =null;							// #5 서브 버블	Array					: 감정타입 만큼 주소 할당 필요
+		JSONObject jsonSubBubble = null;						// #1 서브 버블 	<감정 단어>랜덤 	: 감정단어 만큼 주소 할당 필요
 		
-		// bubble circle 한개 정보가 들어갈 JSONObject 선언
-		JSONObject jsonEmotion = new JSONObject();
-		for(int i=0; i<emotionType.length; i++){
-			jsonEmotion.put("test", "test");
-			
+	
+		for(int emotion=0; emotion<1; emotion++){
+			  int wordSize 	= listOfEmotionWord[emotion].size();				// 감정별 저장된 단어 갯수 
+			  jsonMainBubble = new JSONObject();								// #2, #5 감정별 주소 할당 7개
+			  jsonSubArray  = new JSONArray();								
+			 
+			  for(int i=0; i<3; i++){													// 단어 3개 선택 
+				 jsonSubBubble = new JSONObject();							// #1 감정단어별 주소 할당
+				 int wordIndex	= randomEmotion.nextInt(wordSize);			// 랜덤함수로 단어 인덱스 선정
+				 String word;
+				  
+				  logger.debug("감정타입:"+String.valueOf(emotion));
+				  if( listOfEmotionWord[emotion].get(wordIndex).length()<4){	// ~하다 동사 제거	단, 3글자 제외 ex) 위하다		
+					  word = listOfEmotionWord[emotion].get(wordIndex);		
+				  }else{
+					  word = listOfEmotionWord[emotion].get(wordIndex).replace("하다", "");		
+				  }
+				  
+				  logger.debug("word:"+word);
+				  jsonSubBubble.put("name", word);								// #1 감정단어
+				  jsonSubBubble.put("address", "주소");
+				  jsonSubArray.add(jsonSubBubble);								// jsonSubBubble 참조전달 이기 때문에 중복 저장됨. 할당 필요 
+			  }
+			  jsonMainBubble.put("name", emotionType[emotion]);			// #2 감정타입 
+			  jsonMainBubble.put("description", "설명");
+			  jsonMainBubble.put("children", jsonSubArray);					
+			  
+			  logger.debug("#2 jsonMainBubble : "+ jsonMainBubble.toJSONString());			
+			  
+			  jsonMainArray.add(jsonMainBubble);								// #4 메인 버블 배열
+			 logger.debug("#4 jsonMainArray :  " + jsonMainArray.toJSONString());
+			 
+			 jsonBubbleMenu.put("children", jsonMainArray);					// mainBubble childern 										
+			 
 		}
-		//logger.debug(jsonEmotion.toString());
-		return jsonEmotion;
+		jsonBubbleMenu.put("name", "bubble");									// #3 최종 반환 json
+		logger.debug("#3 jsonBubbleMenu : "+jsonBubbleMenu.toJSONString());
+	
+		
+		return jsonBubbleMenu;
 	}
 	
 	
@@ -193,9 +244,9 @@ public class Utility {
 			listOfTopTenEmotion[6].add(dto.getFear());
 		}// end while
 	
-		for(ArrayList<Integer> point : listOfTopTenEmotion){
+	/*	for(ArrayList<Integer> point : listOfTopTenEmotion){
 			logger.debug(String.valueOf(point));
-		}
+		}*/
 	
 		// 노래 한곡을 JSONObject 형태로 저장
 		for(int i=0; i<10;i++){																// 전체 10곡 
@@ -213,7 +264,7 @@ public class Utility {
 			jsonTopMusic.add(outterJson);
 		}
 		
-		logger.debug(jsonTopMusic.get(0).toString());
+		//logger.debug(jsonTopMusic.get(0).toString());
 		return jsonTopMusic;
 		
 	}

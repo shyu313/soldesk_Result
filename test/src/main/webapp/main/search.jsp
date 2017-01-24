@@ -4,6 +4,12 @@
 	<input text value="#1"> </input text>
 	<input text > </input text>
 	<input text> </input text>
+	<script>
+		var jsonBubbleMenu = '${jsonBubbleMenu }'	
+	
+		alert(jsonBubbleMenu)
+	</script>
+	
 	<div id="mainBubble"></div>
 	
 	<!-- 탑 리스트 -->

@@ -49,14 +49,10 @@ public class MainController {
 		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
 		mav.addObject("jsonEmotion",jsonEmotion);
-		logger.debug(" 감정검색 TEST ");
 		
 		List<DictionaryDTO> emotionDICList = dicDAO.selectList("selectList");					// 이전과 다른 방법
 		JSONObject jsonBubbleMenu = Utility.getJsonBubbleMenu(emotionDICList);
-		
-		
-		
-		
+		mav.addObject("jsonBubbleMenu",jsonBubbleMenu);
 		return mav;
 	} // Search() end
 	
