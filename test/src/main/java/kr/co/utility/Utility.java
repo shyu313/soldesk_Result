@@ -167,12 +167,12 @@ public class Utility {
 		 *  			]
 		 * 		 ]
 		 */
-																		// 추가할 jsonObject 는 필요한 data 개수<감정타입 7개, 감정단어 3개> 만큼 할당 되어야 한다.
-		JSONObject jsonBubbleMenu = new JSONObject();	// #3 최종 반환값  
+																			// 추가할 jsonObject 는 필요한 data 개수<감정타입 7개, 감정단어 3개> 만큼 할당 되어야 한다.
+		JSONObject jsonBubbleMenu = new JSONObject();		// #3 최종 반환값  
 		JSONArray jsonMainArray =new JSONArray();			// #4 메인 버블	Array					: add로 jsonMainBubble 객체 추가 
 		JSONObject jsonMainBubble = null;						// #2 메인 버블	<감정 타입> 		: 감정타입 만큼 주소 할당 필요
-		JSONArray jsonSubArray =null;							// #5 서브 버블	Array					: 감정타입 만큼 주소 할당 필요
-		JSONObject jsonSubBubble = null;						// #1 서브 버블 	<감정 단어>랜덤 	: 감정단어 만큼 주소 할당 필요
+		JSONArray jsonSubArray =null;								// #5 서브 버블	Array					: 감정타입 만큼 주소 할당 필요
+		JSONObject jsonSubBubble = null;							// #1 서브 버블 	<감정 단어>랜덤 	: 감정단어 만큼 주소 할당 필요
 		
 	
 		for(int emotion=0; emotion<emotionType.length; emotion++){

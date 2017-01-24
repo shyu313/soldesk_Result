@@ -2,6 +2,10 @@
 
 <%@ include file ="../header.jsp" %>
 <form method="post" action="./search.do" name="searchForm" id="searchForm">
+	<input type="hidden" id="#emotion1"  name="word1Emotion">
+	<input type="hidden" id="#emotion2"  name="word2Emotion">
+	<input type="hidden" id="#emotion3"  name="word3Emotion">
+	
 	<input type="text" id="#1"  name="word1">
 	<input type="text" id="#2"  name="word2">
 	<input type="text" id="#3"  name="word3"> 
@@ -11,7 +15,7 @@
 	<script>	
 		// mainBubble div 를 생성하기 전에 데이터를 받아야 하므로 스크립트 삽입
 		var jsonBubbleMenu = '${jsonBubbleMenu }'
-	</script>
+		</script>
 	
 	<div id="mainBubble"></div>
 	

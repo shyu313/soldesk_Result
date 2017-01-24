@@ -266,9 +266,9 @@ function dashboard(id, fData){
      ,{State:'top10',freq:{low:162, mid:379, high:471}}
      ];
      */
-/*
+
     // 임시 데이터값
-    var freqData=[
+    /*var freqData=[
         {State:'탑1',freq:{happy:10, sad:2, rage:0.8, disgust:0, interest:0, pain:0, fear:0}}
         ,{State:'top2',freq:{happy:0, sad:20, rage:0, disgust:5, interest:0, pain:0, fear:9}}
         ,{State:'top3',freq:{happy:0, sad:0, rage:33, disgust:20, interest:31, pain:0, fear:0}}
@@ -280,7 +280,12 @@ function dashboard(id, fData){
         ,{State:'top9',freq:{happy:1, sad:25, rage:3, disgust:2, interest:55, pain:1, fear:0}}
         ,{State:'top10',freq:{happy:10, sad:10, rage:10, disgust:10, interest:10, pain:10, fear:10}}
     ];
-*/
+    */
+
+    
+    
+    alert(freqData);
+
 
 
 	dashboard('#dashboard',freqData);
