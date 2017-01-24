@@ -185,14 +185,14 @@ public class Utility {
 				 int wordIndex	= randomEmotion.nextInt(wordSize);			// 랜덤함수로 단어 인덱스 선정
 				 String word;
 				  
-				  logger.debug("감정타입:"+String.valueOf(emotion));
+				  //logger.debug("감정타입:"+String.valueOf(emotion));
 				  if( listOfEmotionWord[emotion].get(wordIndex).length()<4){	// ~하다 동사 제거	단, 3글자 제외 ex) 위하다		
 					  word = listOfEmotionWord[emotion].get(wordIndex);		
 				  }else{
 					  word = listOfEmotionWord[emotion].get(wordIndex).replace("하다", "");		
 				  }
 				  
-				  logger.debug("word:"+word);
+				 // logger.debug("word:"+word);
 				  jsonSubBubble.put("name", word);								// #1 감정단어
 				  jsonSubBubble.put("address", "주소");
 				  jsonSubArray.add(jsonSubBubble);								// jsonSubBubble 참조전달 이기 때문에 중복 저장됨. 할당 필요 
@@ -201,16 +201,16 @@ public class Utility {
 			  jsonMainBubble.put("description", "설명");
 			  jsonMainBubble.put("children", jsonSubArray);					
 			  
-			  logger.debug("#2 jsonMainBubble : "+ jsonMainBubble.toJSONString());			
+			  //logger.debug("#2 jsonMainBubble : "+ jsonMainBubble.toJSONString());			
 			  
 			  jsonMainArray.add(jsonMainBubble);								// #4 메인 버블 배열
-			 logger.debug("#4 jsonMainArray :  " + jsonMainArray.toJSONString());
+			 //logger.debug("#4 jsonMainArray :  " + jsonMainArray.toJSONString());
 			 
 			 jsonBubbleMenu.put("children", jsonMainArray);					// mainBubble childern 										
 			 
 		}
 		jsonBubbleMenu.put("name", "bubble");									// #3 최종 반환 json
-		logger.debug("#3 jsonBubbleMenu : "+jsonBubbleMenu.toJSONString());
+		//logger.debug("#3 jsonBubbleMenu : "+jsonBubbleMenu.toJSONString());
 	
 		
 		return jsonBubbleMenu;

@@ -8,7 +8,6 @@ var w = window.innerWidth*0.68*0.95;
 var h = Math.ceil(w*0.7);
 var oR = 0;
 var nTop = 0;
-
 var svgContainer = d3.select("#mainBubble")
     .style("height", h+"px");
 
@@ -78,9 +77,29 @@ var svg = d3.select("#mainBubble").append("svg")
             .style("opacity",0.5)
             .style("fill", "#eee")
             .on("click", function(d,i) {
-            	alert(d.keyword);
-               // window.open(d.address);
-           
+            	// input text에 들어갈 3개 키워드, 클릭시 마다 참조해야하기때문에 지역변수 선언
+            	var word =
+            		[
+            			document.getElementById("#1").value,
+            			document.getElementById("#2").value,
+            			document.getElementById("#3").value
+            		];  
+            
+            	if( word[0]===d.name || word[1]===d.name || word[2]===d.name  ) {										// 다른 단어를 클릭한 경우
+             		//document.getElementById("#1").value=d.name;
+             		alert("같은 단어 : " + d.name);
+             	}else if(word[0]==""){												// 처음 공백인 경우
+                	document.getElementById("#1").value=d.name;
+                	
+            	}else if(word[1]==""){
+            		document.getElementById("#2").value=d.name;
+            	}else if(word[2]==""){
+            		document.getElementById("#3").value=d.name;
+            	}else {															// 공백이 아닌 경우
+            		var random = Math.floor(Math.random() * 3) + 1;
+            		document.getElementById("#"+random).value=d.name;
+            		//alert("랜덤 위치 : " + random);
+            	}
             })
             .on("mouseover", function(d,i) {
                 //window.alert("say something");
@@ -101,13 +120,35 @@ var svg = d3.select("#mainBubble").append("svg")
             .style("opacity",0.5)
             .attr("text-anchor", "middle")
             .style("fill", function(d,i) { return colVals(iB); }) // #1f77b4
-            .attr("font-size", 6)
+            .attr("font-size", 10)
             .attr("cursor","pointer")
             .attr("dominant-baseline", "middle")
             .attr("alignment-baseline", "middle")
             .text(function(d) {return d.name})
             .on("click", function(d,i) {
-            	alert(d.keyword);
+            	// input text에 들어갈 3개 키워드, 클릭시 마다 참조해야하기때문에 지역변수 선언
+            	var word =
+            		[
+            			document.getElementById("#1").value,
+            			document.getElementById("#2").value,
+            			document.getElementById("#3").value
+            		];  
+            
+            	if( word[0]===d.name || word[1]===d.name || word[2]===d.name  ) {										// 다른 단어를 클릭한 경우
+             		//document.getElementById("#1").value=d.name;
+             		alert("같은 단어 : " + d.name);
+             	}else if(word[0]==""){												// 처음 공백인 경우
+                	document.getElementById("#1").value=d.name;
+                	
+            	}else if(word[1]==""){
+            		document.getElementById("#2").value=d.name;
+            	}else if(word[2]==""){
+            		document.getElementById("#3").value=d.name;
+            	}else {															// 공백이 아닌 경우
+            		var random = Math.floor(Math.random() * 3) + 1;
+            		document.getElementById("#"+random).value=d.name;
+            		//alert("랜덤 위치 : " + random);
+            	}
             });
 
     }
@@ -126,7 +167,7 @@ resetBubbles = function () {
     svg.attr("height",h);
 
     var t = svg.transition()
-        .duration(650);
+        .duration(400);
 
     t.selectAll(".topBubble")
         .attr("r", function(d) { return oR; })
@@ -143,7 +184,7 @@ resetBubbles = function () {
         t.selectAll(".childBubbleText" + k)
             .attr("x", function(d,i) {return (oR*(3*(k+1)-1) + oR*1.5*Math.cos((i-1)*45/180*3.1415926));})
             .attr("y", function(d,i) {return ((h+oR)/3 +        oR*1.5*Math.sin((i-1)*45/180*3.1415926));})
-            .attr("font-size", 6)
+            .attr("font-size", 10)
             .style("opacity",0.5);
 
         t.selectAll(".childBubble" + k)

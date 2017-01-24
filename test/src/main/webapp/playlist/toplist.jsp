@@ -4,7 +4,6 @@
 <!-- 대시보드 호출 -->
 	 <script>
 	 	var freqData='${jsonTopTen }'			// top10 감정별 점수 jsonArray
-	 	alert(freqData);
 	 	</script>	
 <div id='dashboard'></div>
 <!-- 탑 리스트 -->

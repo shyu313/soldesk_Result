@@ -1,9 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file ="../header.jsp" %>
-	<input text value="#1"> </input text>
-	<input text > </input text>
-	<input text> </input text>
+<form id="searchForm">
+	<input type="text" id="#1" >
+	<input type="text" id="#2">
+	<input type="text" id="#3"> 
+	<input type="button" value="검색" onclick="">
+</form>
 	
 	<script>	
 		// mainBubble div 를 생성하기 전에 데이터를 받아야 하므로 스크립트 삽입
@@ -13,7 +16,7 @@
 	<div id="mainBubble"></div>
 	
 	<!-- 탑 리스트 -->
-	<center><a style="font:20"> Music Top 10 </a></center>
+	<center><a style="font:20"> Emotion Music List </a></center>
 	<br>
 	
 	<center>
