@@ -5,13 +5,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.co.music.MusicMapper">
 	<!-- 전체 음악 리스트 쿼리  -->
-	<select id="list" resultType="HistoryDTO">
+	<select id="list" parameterType="HashMap" resultType="HistoryDTO">
 		<![CDATA[
 			select @RNUM := @RNUM +1 AS RNUM, t.*
 			from
-				( select * from bardciel.userhistory) t, 
+				( select * from bardciel.userhistory where userId=#{username}) t, 
 				(select @RNUM := 0) R
 		]]> 
+	</select>
+	
+	<!-- 전체 음악 리스트 쿼리  -->
+	<select id="datelist" resultType="HistoryDTO">
+		<![CDATA[
+	SELECT emotion, HOUR( TIME ) , COUNT(*) AS value
+	FROM bardciel.userhistory
+	GROUP BY emotion , HOUR( TIME ) , value 
+		]]> 
+		
+		
+		<!-- SELECT * 
+SELECT emotion, HOUR( TIME ) , ifnull ( COUNT(*) AS value, 0 )
+FROM bardciel.userhistory
+GROUP BY HOUR( TIME ) , emotion
+
+
+
+WHERE userId = #{username} and DATE(time) = #{selectdate}
+
+SELECT emotion, HOUR( TIME ) , COUNT(*) AS value
+FROM bardciel.userhistory
+GROUP BY emotion , HOUR( TIME ) , value 
+INTO OUTFILE 'C:/tmp/tmp.csv' 
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"' 
+LINES TERMINATED BY '\n';
+
+		  -->
+		  
+		
+		
 	</select>
 	
 </mapper>

@@ -14,23 +14,27 @@
 
 <script>$("#departure").dateDropper();</script>
 	
-  
-  <script>
-    $(document).ready(function () {
-        var $cnts = $('.text'); // cnt 배열
-        $cnts.change(function () { // input값이 변화가 있을 때 발생하는 이벤트
-            for (var i = 0; i < $cnts.length; i++) {
-                // input 값 가져오기
-                console.log(i + ' index input - ' + $cnts.eq(i).val());
-                alert("!!!!!!!!!!!");
-            }
-        });
-
-    });
-</script>
-
+ 
     <div id="chart"></div>
   
+  
+ <table width="500" border="1" cellpadding="0" cellspacing="0">
+		<tr>
+			<th><font color="#ffffff">사용자</font></th>
+			<th><font color="#ffffff">노래 제목</font></th>
+			<th><font color="#ffffff">재생 시간</font></th>
+			<th><font color="#ffffff">노래 감정</font></th>
+		</tr>
+		<c:forEach var="dto" items="${list }">
+		<tr>
+			<td><font color="#ffffff">${dto.userId }</font></td>
+			<td><font color="#ffffff">${dto.title}</font></td>
+			<td><font color="#ffffff">${dto.time}</font>
+			</td>
+			<td><font color="#ffffff">${dto.emotion }</font></td>
+		</tr>
+		</c:forEach>
+	</table>
   
 <%@ include file ="../footer.jsp" %>
 

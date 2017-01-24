@@ -1,5 +1,6 @@
 package kr.co.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,9 +16,15 @@ public class HistoryDAO extends AbstractDAO{
 	@Autowired
 	private SqlSession sqlSession;		// sql ¹® ½ÇÇà °´Ã¼
 	
-	public List<HistoryDTO> list(){
+	public List<HistoryDTO> list(HashMap hashMap){
 		MusicMapper mapper = sqlSession.getMapper(MusicMapper.class);
-		List<HistoryDTO> list = mapper.list();
+		List<HistoryDTO> list = mapper.list(hashMap);
+		return list;
+	}
+	
+	public List<HistoryDTO> datelist(){
+		MusicMapper mapper = sqlSession.getMapper(MusicMapper.class);
+		List<HistoryDTO> list = mapper.datelist();
 		return list;
 	}
 }
