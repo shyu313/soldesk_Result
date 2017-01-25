@@ -31,6 +31,12 @@ public class MediaDAO extends AbstractDAO{
 			List<MediaDTO> list = mapper.list();
 			return list;
 		}
+		// 감정별 노래 조회 리스트
+		public ArrayList<MediaDTO> listOfEmotionTpye(String emotiontype){
+			MediaMapper mapper = sqlSession.getMapper(MediaMapper.class);
+			ArrayList<MediaDTO> list = mapper.listOfEmotionTpye(emotiontype);
+			return list;
+		}
 		
 		// 노래 top10 조회 리스트
 		public List<MediaDTO> toplist(){

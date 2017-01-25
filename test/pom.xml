@@ -195,6 +195,12 @@
 			<version>1.4</version>
 		</dependency>
 
+		<!-- DB접근시 쿼리문 로깅을 위한 log4jdbc-remix  -->
+		<dependency>
+		    <groupId>org.lazyluke</groupId>
+		    <artifactId>log4jdbc-remix</artifactId>
+		    <version>0.2.7</version>
+		</dependency>
 
 
 		<!-- Test -->

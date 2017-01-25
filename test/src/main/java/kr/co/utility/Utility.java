@@ -268,4 +268,35 @@ public class Utility {
 		return jsonTopMusic;
 		
 	}
+	
+	/*  노래 추천을 위한 감정별 정렬 퀴리문 요청*/
+	public static ArrayList<MediaDTO> categorizeEmotionType(List<MediaDTO> musicList, MediaDAO mediaDAO){
+		String emotionTypeArray[] ={"happy","sad","disgust","interest","pain","fear","rage"};
+		HashMap<String, String> emotionTypeHash = new HashMap<String, String>();
+		@SuppressWarnings("unchecked")
+		ArrayList<MediaDTO> mediaEmotionType[] = new ArrayList[emotionTypeArray.length];		
+		
+		
+		// 한참 헤맨 부분 : 'fear' 이런식으로 들어갔다. 18.. 
+		// => log4j-remix 을 이용해서 쿼리문 에러 캐치 가능해짐
+		
+		for(int index=0; index<emotionTypeArray.length; index++){
+			mediaEmotionType[index] =  mediaDAO.listOfEmotionTpye(emotionTypeArray[index]);	// 감정별 정렬 쿼리 요청
+			logger.debug(mediaEmotionType[index].get(0).getTitle());
+			
+			/*	logger.debug("기준 감정타입 "+emotionTypeArray[index]+" : \n"
+			+"getHappy  : "+String.valueOf(mediaEmotionType[index].get(0).getHappy())+"\n"
+			+"getDisgust : "+String.valueOf(mediaEmotionType[index].get(0).getDisgust())+"\n"
+			+"getInterest : "+String.valueOf(mediaEmotionType[index].get(0).getInterest())+"\n"
+			+"getPain     : "+String.valueOf(mediaEmotionType[index].get(0).getPain())+"\n"
+			+"getRage    : "+String.valueOf(mediaEmotionType[index].get(0).getRage())+"\n"
+			+"getSad      : "+String.valueOf(mediaEmotionType[index].get(0).getSad())+"\n"
+			+"getFear     :  "+String.valueOf(mediaEmotionType[index].get(0).getFear())+"\n"
+					);					// 정렬된 최상의 노래 보기
+*/	
+			
+		}
+		
+		return null;
+	}
 } // class end

@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
+import java.util.Random;
 
 import javax.management.AttributeList;
 import javax.servlet.http.HttpServletRequest;
@@ -77,7 +78,7 @@ public class MainController {
 		mav.addObject("jsonBubbleMenu",jsonBubbleMenu);
 		
 		Iterator<DictionaryDTO> emotionDICIterator= emotionDICList.iterator();				// 감정사전에서 키워드 비교
-		ArrayList<DictionaryDTO> paramDICList = new ArrayList<DictionaryDTO>();			// AttributeList() 대신 List<DictionaryDTO> 할당방법? -> ArrayList 사용
+		ArrayList<DictionaryDTO> searchList = new ArrayList<DictionaryDTO>();			// AttributeList() 대신 List<DictionaryDTO> 할당방법? -> ArrayList 사용
 		
 		String inputWord[] = {word1,word2,word3};
 		
@@ -93,16 +94,18 @@ public class MainController {
 			}
 			for(String word: inputWord){
 				if(dicWord.equals(word)){
-					logger.debug("Emotion : "+dto.getEmotion());
-					logger.debug("word : "+dto.getWord());
-					logger.debug("point : "+dto.getPoint());
-					paramDICList.add(dto);
+					//logger.debug("Emotion : "+dto.getEmotion());
+					//logger.debug("word : "+dto.getWord());
+					//logger.debug("point : "+dto.getPoint());
+					searchList.add(dto);
 				}
 			}
 		}
 		
-		List<MediaDTO> emotionList= mediaDAO.searchEmotionList(paramDICList); 												// 감정단어 검색 결과 리스트
-		logger.debug(emotionList.toString());
+		// 감정별 정렬된 데이터에서 3가지 타입별 9곡 추천 
+		Random randomIndex = new Random();														// 감정 타입별로 랜덤 추천
+		Utility.categorizeEmotionType(musicList, mediaDAO);											// 다른 클래스에서 DB 접근을 위해 dao 넘김
+		
 		return mav;
 	} // Search() end
 	

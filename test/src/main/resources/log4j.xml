@@ -47,12 +47,13 @@
         <level value="INFO"/> 
         <appender-ref ref="console-infolog"/> 
     </logger>
-     
-    <logger name="jdbc.resultsettable" additivity="false"> 
+    
+    <!-- Result Table 테이블이 길게 나와서 주석처리 -->
+    <!-- <logger name="jdbc.resultsettable" additivity="false"> 
         <level value="INFO"/> 
         <appender-ref ref="console"/> 
-    </logger> 
- 
+    </logger>  
+    -->
     <!-- Root Logger -->
     <root>
         <priority value="off"/>
