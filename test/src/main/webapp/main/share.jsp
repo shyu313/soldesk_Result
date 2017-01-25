@@ -9,10 +9,10 @@
 	<center>
 	<table border="1" cellpadding="0" cellspacing="0">
 		<tr>
-			<td colspan="5" align="right"><input type="button" value="글쓰기" onclick="location.href='http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://localhost:9090/test/main/create.do'"></td>
+			<td id="a1" colspan="5" align="right"><input type="button" value="글쓰기" onclick="location.href='http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://localhost:9090/test/main/create.do'"></td>
 		</tr>
 		<tr>
-			<td colspan="5" align="right">전체 글 : ${count }</td>
+			<td id="a2" colspan="5" align="right">전체 글 : ${count }</td>
 		</tr>
 		<tr>
 			<th>번호</th>
@@ -38,7 +38,7 @@
 		</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="5" id="a1">
+			<td colspan="5" id="a3">
 				<c:if test="${count>0 }">
 					<c:set var="pageCount" value="${totalPage }"/>
 					<c:set var="startPage" value="${startPage }"/>
@@ -63,7 +63,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="5" id="a1">
+			<td colspan="5" id="a4">
 				<form name="frm" action="./share.do">
 				<select name="searchCondition" class="sel">
 					<option value="0" <c:if test="${searchCondition == 0 }">selected</c:if>>제목</option>
