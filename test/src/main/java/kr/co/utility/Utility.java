@@ -189,7 +189,7 @@ public class Utility {
 				  if( listOfEmotionWord[emotion].get(wordIndex).length()<4){	// ~하다 동사 제거	단, 3글자 제외 ex) 위하다		
 					  word = listOfEmotionWord[emotion].get(wordIndex);		
 				  }else{
-					  word = listOfEmotionWord[emotion].get(wordIndex).replace("하다", "");		
+					  word = listOfEmotionWord[emotion].get(wordIndex).replace("하다","");		
 				  }
 				  
 				 // logger.debug("word:"+word);
