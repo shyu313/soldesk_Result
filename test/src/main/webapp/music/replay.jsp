@@ -18,7 +18,7 @@
 			<td><font color="#ffffff">${dto.time}</font></td>
 			<td><font color="#ffffff">${dto.emotion }</font></td>
 		</tr>
-		</c:forEach>
+		</c:forEach> 
 	</table>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>  	

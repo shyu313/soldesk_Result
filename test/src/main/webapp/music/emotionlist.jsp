@@ -17,24 +17,7 @@
 	
  
     <div id="chart"></div>
-  
-  
- <table width="500" border="1" cellpadding="0" cellspacing="0">
-		<tr>
-			<th><font color="#ffffff">재생 시간</font></th>
-			<th><font color="#ffffff">노래 감정</font></th>
-			<th><font color="#ffffff">재생 횟수</font></th>
-		</tr>
-		<c:forEach var="dto" items="${datelist }">
-		<tr>
-			<td><font color="#ffffff">${dto.time}</font></td>
-			<td><font color="#ffffff">${dto.emotion }</font></td>
-			<td><font color="#ffffff">${dto.value }</font></td>
-		</tr>
-		</c:forEach>
-	</table>
-	
-	<%
+  	<%
 	
 	int arr[][] = new int[7][24];
 	%>
@@ -44,6 +27,9 @@
 	}
 	else if(${dto.emotion}=="sad")
 	{arr[1][${dto.time}] = ${dto.value };
+	}
+	else if(${dto.emotion}=="disgust")
+	{arr[2][${dto.time}] = ${dto.value };
 	}
 	</c:forEach>
   
