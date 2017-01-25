@@ -40,10 +40,6 @@ public class PlaylistController {
 		 
 		// dash board 부분 
 		List<MediaDTO> topList= mediaDAO.toplist();										//bubbleChart를 보여주기위해  전체 노래 정보 조회 
-		
-		//logger.debug(String.valueOf(topList.size()));
-		
-		
 		JSONArray jsonTopTen = Utility.getJsonTopMusic(topList);	 
 		mav.addObject("jsonTopTen",jsonTopTen);											// DashBoard JsonObj
 		mav.addObject("topList", topList);														// top 10 리스트 
@@ -64,19 +60,43 @@ public class PlaylistController {
 		String url[]=mediaDTO.getUrl().split("=");
 		mav.addObject("videoId", url[1]);
 		mav.addObject("lyrics", mediaDTO.getLyrics());
+		JSONArray jsonTopTen = Utility.getJsonTopMusic(topList);	 
+		mav.addObject("jsonTopTen",jsonTopTen);											// DashBoard JsonObj
 		mav.addObject("topList", topList);
 		
 		return mav;
 	} // play() end
 	
-	@RequestMapping("/playlist/randomplay.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
-	public ModelAndView Randomplay() {
+	@RequestMapping("/playlist/randomplaylist.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
+	public ModelAndView Randomplaylist() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("playlist/randomplay");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		mav.setViewName("playlist/randomplaylist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
 		mav.addObject("jsonEmotion",jsonEmotion);
 		
+		List<MediaDTO> randomList= mediaDAO.randomList();										//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		mav.addObject("randomList", randomList);														// Random 리스트 
+		
+		
+		return mav;
+	} // Randomplaylist() end
+	
+	@RequestMapping(value="/playlist/randomplay.do", method=RequestMethod.GET)								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
+	public ModelAndView Randomplay(MediaDTO mediaDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("playlist/randomplaylist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
+		
+		List<MediaDTO> randomList= mediaDAO.randomList();										//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		mav.addObject("randomList", randomList);														// Random 리스트 
+		
+		mediaDTO = mediaDAO.read(mediaDTO.getLyricsNo());
+		String url[]=mediaDTO.getUrl().split("=");
+		mav.addObject("videoId", url[1]);
+		mav.addObject("lyrics", mediaDTO.getLyrics());
 		
 		return mav;
 	} // Randomplay() end

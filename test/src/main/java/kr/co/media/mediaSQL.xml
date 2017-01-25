@@ -42,6 +42,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]> 
 		</select>
 	
+	<!-- 랜덤 음악 리스트 쿼리  -->
+	<select id="randomList" resultType="MediaDTO">
+		<![CDATA[
+			select @RNUM := @RNUM +1 AS RNUM, t.*
+			from
+				( select * from bardciel.media order by rand() limit 25 ) t, 
+				(select @RNUM := 0) R
+		]]> 
+	</select>
+	
 	<!-- 음악 정보 등록 쿼리 -->
 	<insert id="create" parameterType="MediaDTO">
 		<selectKey keyProperty="lyricsNo" resultType="int" order="BEFORE">

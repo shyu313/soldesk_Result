@@ -12,6 +12,7 @@ public interface MediaMapper {
 		public List<MediaDTO> list();							// 노래 전체 리스트
 		public List<MediaDTO> toplist();						// top10 리스트
 		public List<MediaDTO> searchEmotionList(ArrayList<DictionaryDTO> paramDICList);			// 감정검색 결과 리스트
+		public List<MediaDTO> randomList();
 		
 		//<insert id="create">
 		public int create(MediaDTO dto);

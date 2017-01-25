@@ -1,16 +1,18 @@
+    var freqData = JSON.parse(jsonTopTen );
+    
 function dashboard(id, fData){
     var barColor = 'silver';
     //function segColor(c){ return {low:"#807dba", mid:"#e08214",high:"#41ab5d"}[c]; }
 
     //감정별 색깔
-    function segColor(c){ return {happy:"#E3CC55", sad:"#2A72BA",rage:"#EC5E44", disgust:"#0AA400",interest:"#AB748E"
-        , pain:"#7D2F22",fear:"#444344"}[c]; }
+    function segColor(c){ return {happy:"#E3DD51", sad:"#4877BA",rage:"#FF8A2A", disgust:"#7DA440",interest:"#AB748E"
+        , pain:"#D1B3FF",fear:"#939091"}[c]; }
 
 
     // compute total for each state.
     // 감정점수 총합
-    fData.forEach(function(d){d.total=d.freq.happy+d.freq.sad+d.freq.rage+d.freq.disgust
-        +d.freq.interest+d.freq.pain+d.freq.fear;});
+    fData.forEach(function(d){d.total=d.freq.pain+d.freq.interest+d.freq.happy+d.freq.sad
+        +d.freq.rage+d.freq.disgust+d.freq.fear;});
 
     // function to handle histogram.
     //막대그래프
@@ -126,7 +128,7 @@ function dashboard(id, fData){
 
             .each(function(d) { this._current = d; })
             .style("fill", function(d) { return segColor(d.data.type); })
-            .on("mouseover",mouseover);
+            .on("click",mouseover);
             //.on("mouseout",mouseout); //마우스 아웃 주석
 
 
@@ -234,7 +236,7 @@ function dashboard(id, fData){
 
 
     // calculate total frequency by segment for all state.
-    var tF = ['happy','sad','rage','disgust','interest','pain','fear'].map(function(d){
+    var tF = ['pain','interest','happy','sad','rage','disgust','fear'].map(function(d){
         return {type:d, freq: d3.sum(fData.map(function(t){ return t.freq[d];}))};
     });
 
@@ -281,11 +283,4 @@ function dashboard(id, fData){
         ,{State:'top10',freq:{happy:10, sad:10, rage:10, disgust:10, interest:10, pain:10, fear:10}}
     ];
     */
-
-    
-    
-    alert(freqData);
-
-
-
-	dashboard('#dashboard',freqData);
+dashboard('#dashboard',freqData);

@@ -45,6 +45,12 @@ public class MediaDAO extends AbstractDAO{
 			return searchEmotionList;
 		}
 		
+		// RandomPlay 리스트
+				public List<MediaDTO> randomList(){
+					MediaMapper mapper = sqlSession.getMapper(MediaMapper.class);
+					List<MediaDTO> randomList = mapper.randomList();
+					return randomList;
+				}
 		
 		
 		// 노래 조회
