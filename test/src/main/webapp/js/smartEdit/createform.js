@@ -16,7 +16,7 @@ $(function(){
 		},
 		fCreator:"createSEditor2"
 	});
-			         
+			    
 	//전송버튼 클릭이벤트
 	$("#cs1").click(function(){
 		//id가 smarteditor인 textarea에 에디터에서 대입
