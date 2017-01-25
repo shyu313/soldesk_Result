@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import kr.co.dto.HistoryDTO;
+import kr.co.dto.HistorySearchDTO;
 import kr.co.music.MusicMapper;
 
 @Component
@@ -22,9 +23,9 @@ public class HistoryDAO extends AbstractDAO{
 		return list;
 	}
 	
-	public List<HistoryDTO> datelist(){
+	public List<HistorySearchDTO> datelist(HashMap hashMap){
 		MusicMapper mapper = sqlSession.getMapper(MusicMapper.class);
-		List<HistoryDTO> list = mapper.datelist();
+		List<HistorySearchDTO> list = mapper.datelist(hashMap);
 		return list;
 	}
 }

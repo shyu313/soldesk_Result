@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.dao.HistoryDAO;
 import kr.co.dao.MediaDAO;
 import kr.co.dto.HistoryDTO;
+import kr.co.dto.HistorySearchDTO;
 import kr.co.dto.MediaDTO;
 import kr.co.utility.Utility;
 @Controller
@@ -26,6 +27,9 @@ public class MusicController {
 	public static Logger logger = LoggerFactory.getLogger(MusicController.class);
 	@Autowired
 	HistoryDAO historyDAO;
+	
+	@Autowired
+	MediaDAO mediaDAO;
 
 	@RequestMapping("/music/replay.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Replay(HistoryDTO historyDTO) {
@@ -35,6 +39,9 @@ public class MusicController {
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		hashMap.put("username", username);
 		
+		List<MediaDTO> mumusicList= mediaDAO.list();			
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(mumusicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
 		List<HistoryDTO> musicList= historyDAO.list(hashMap);		
 		mav.addObject("list",musicList);
 
@@ -45,16 +52,18 @@ public class MusicController {
 	public ModelAndView Emotionlist() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("music/emotionlist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
-		String username = "Ciel Lu";
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		hashMap.put("username", username);
+		String selectemotion = "happy";
+		int selecttime = 22;
+		hashMap.put("selectemotion", selectemotion);
+		hashMap.put("selecttime", selecttime);
+
+		List<MediaDTO> mumusicList= mediaDAO.list();			
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(mumusicList);	 
+		mav.addObject("jsonEmotion",jsonEmotion);
 		
-		List<HistoryDTO> musicList= historyDAO.list(hashMap);		
-		mav.addObject("list",musicList);					
-		/*List<HistoryDTO> musicList= historyDAO.datelist();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
-*/		//JSONObject jsonEmotion = Utility.getHistoryMusic(musicList);	 
-		mav.addObject("list",musicList);
-		
+		List<HistorySearchDTO> musicList= historyDAO.datelist(hashMap);		
+		mav.addObject("datelist",musicList);					
 
 		return mav;
 	} // Emotionlist() end

@@ -105,7 +105,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
       var datasetpicker = d3.select("#dataset-picker").selectAll(".dataset-button")
         .data(datasets);
 
-      datasetpicker.enter()
+/*      datasetpicker.enter()
         .append("input")
         .attr("value", function(d){ return "Dataset " + d })
         .attr("type", "button")
@@ -114,5 +114,5 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
           heatmapChart(d);
         });
 
-      
+      */
       

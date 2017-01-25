@@ -15,8 +15,7 @@
 		<tr>
 			<td><font color="#ffffff">${dto.userId }</font></td>
 			<td><font color="#ffffff">${dto.title}</font></td>
-			<td><font color="#ffffff">${dto.time}</font>
-			</td>
+			<td><font color="#ffffff">${dto.time}</font></td>
 			<td><font color="#ffffff">${dto.emotion }</font></td>
 		</tr>
 		</c:forEach>

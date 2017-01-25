@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file ="../header.jsp" %>
@@ -20,21 +21,47 @@
   
  <table width="500" border="1" cellpadding="0" cellspacing="0">
 		<tr>
-			<th><font color="#ffffff">사용자</font></th>
-			<th><font color="#ffffff">노래 제목</font></th>
 			<th><font color="#ffffff">재생 시간</font></th>
 			<th><font color="#ffffff">노래 감정</font></th>
+			<th><font color="#ffffff">재생 횟수</font></th>
 		</tr>
-		<c:forEach var="dto" items="${list }">
+		<c:forEach var="dto" items="${datelist }">
 		<tr>
-			<td><font color="#ffffff">${dto.userId }</font></td>
-			<td><font color="#ffffff">${dto.title}</font></td>
-			<td><font color="#ffffff">${dto.time}</font>
-			</td>
+			<td><font color="#ffffff">${dto.time}</font></td>
 			<td><font color="#ffffff">${dto.emotion }</font></td>
+			<td><font color="#ffffff">${dto.value }</font></td>
 		</tr>
 		</c:forEach>
 	</table>
+	
+	<%
+	
+	int arr[][] = new int[7][24];
+	%>
+	<c:forEach var="dto" items="${datelist }">
+	if(${dto.emotion}=="happy")
+	{arr[0][${dto.time}] = ${dto.value };
+	}
+	else if(${dto.emotion}=="sad")
+	{arr[1][${dto.time}] = ${dto.value };
+	}
+	</c:forEach>
+  
+   <table width="500" border="1" cellpadding="0" cellspacing="0">
+		<tr>
+			<th><font color="#ffffff">재생 시간</font></th>
+			<th><font color="#ffffff">노래 감정</font></th>
+			<th><font color="#ffffff">재생 횟수</font></th>
+		</tr>
+		<c:forEach var="dto" items="${datelist }">
+		<tr>
+			<td><font color="#ffffff">${dto.time}</font></td>
+			<td><font color="#ffffff">${dto.emotion }</font></td>
+			<td><font color="#ffffff">${dto.value }</font></td>
+		</tr>
+		</c:forEach>
+	</table>
+  
   
 <%@ include file ="../footer.jsp" %>
 

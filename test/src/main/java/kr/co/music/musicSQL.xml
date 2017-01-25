@@ -15,11 +15,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 전체 음악 리스트 쿼리  -->
-	<select id="datelist" resultType="HistoryDTO">
+	<select id="datelist" parameterType ="HashMap" resultType="HistorySearchDTO">
 		<![CDATA[
-	SELECT emotion, HOUR( TIME ) , COUNT(*) AS value
+	SELECT emotion, HOUR( TIME ) as time , COUNT(*) AS value
 	FROM bardciel.userhistory
-	GROUP BY emotion , HOUR( TIME ) , value 
+	GROUP BY emotion , HOUR( TIME ) 
 		]]> 
 		
 		
