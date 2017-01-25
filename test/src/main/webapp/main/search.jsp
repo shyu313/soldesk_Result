@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file ="../header.jsp" %>
+<link rel="stylesheet" href="../css/sentshare.css">
 <form method="post" action="./search.do" name="searchForm" id="searchForm">
 	<input type="hidden" id="#emotion1"  name="word1Emotion">
 	<input type="hidden" id="#emotion2"  name="word2Emotion">
