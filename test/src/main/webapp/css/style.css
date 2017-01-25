@@ -1,5 +1,5 @@
 
-/* Body �뜝�떥釉앹삕 Start*/
+/* Body 占쎈쐻占쎈뼢�뇡�빘�굲 Start*/
 body {
     background: #181818;
     font-family: 'Roboto', sans-serif;
@@ -11,10 +11,10 @@ body a {
 body a:hover {
     color: #c8c8c8;
 }
-/* Body �뜝�떥釉앹삕 End*/
+/* Body 占쎈쐻占쎈뼢�뇡�빘�굲 End*/
 
-/* Header �뜝�떥釉앹삕 Start  */
-.header {											/*�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕 Bar*/
+/* Header 占쎈쐻占쎈뼢�뇡�빘�굲 Start  */
+.header {											/*占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 Bar*/
     background: #282828;
     padding: 10px;
     color: #aaaaaa;
@@ -23,7 +23,7 @@ body a:hover {
     flex-flow: row wrap;
     align-items: center;
 }
-.header .page-flows .flow {					/* �뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕 Bar �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떛�벝�삕 �뜝�룞�삕�듉*/
+.header .page-flows .flow {					/* 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 Bar 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼓占쎈쿈占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈뱣*/
     font-size: 20px;
     color: #aaaaaa;
     margin: 0 10px;
@@ -34,7 +34,7 @@ body a:hover {
 .header .page-flows .flow .disabled {
     color: #5e5e5e;
 }
-.header .search {								/* �뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕 bar �뜝�떙�궪�삕 �뜝�떥釉앹삕 - �뜝�룞�삕�뜝�룞�삕 �뜝�뙇�눦�삕 泥섇뜝�룞�삕*/
+.header .search {								/* 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 bar 占쎈쐻占쎈뼑占쎄땔占쎌굲 占쎈쐻占쎈뼢�뇡�빘�굲 - 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솂占쎈닰占쎌굲 筌ｌ꼪�쐻占쎈짗占쎌굲*/
     margin-left: 1%;
 }
 .header .search input {
@@ -49,7 +49,7 @@ body a:hover {
     background-size: 10%;
     background-position: 5px;
 }
-.header .user {									/* �뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕 bar �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떥釉앹삕 */
+.header .user {									/* 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 bar 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼢�뇡�빘�굲 */
     width: 300px;
     margin-left: auto;
     display: flex;
@@ -111,22 +111,22 @@ body a:hover {
     color: #c8c8c8;
     transition: all 0.2s ease;
 }
-/* Header �뜝�떥釉앹삕 End  */
+/* Header 占쎈쐻占쎈뼢�뇡�빘�굲 End  */
 
-/* �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝占� �뜝�뙣�뙋�삕, �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떥釉앹삕 Start*/
-.content__left {									/* �뜝�룞�삕�뜝�룞�삕 �뜝�뙣�뙋�삕 bar*/
+/* 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈솭占쎈솇占쎌굲, 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼢�뇡�빘�굲 Start*/
+.content__left {									/* 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솭占쎈솇占쎌굲 bar*/
     width: 20%;
 }
-.content__middle{								    /* �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떥釉앹삕*/
+.content__middle{								    /* 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼢�뇡�빘�굲*/
     width: 50%;
 }
-.content__right{								    /* �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝占� �뜝�떥釉앹삕*/
+.content__right{								    /* 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈뼢�뇡�빘�굲*/
     width: 30%;
 }
 #content__player{
     width: 100%;
 }
-#content__lyrics{								    /* �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떥釉앹삕*/
+#content__lyrics{								    /* 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼢�뇡�빘�굲*/
     width: 100%;
     height: 45%;
 }
@@ -135,7 +135,7 @@ body a:hover {
     height: 100%;
 }
 
-/* �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝占� �뜝�뙣�뙋�삕, �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떥釉앹삕 End*/
+/* 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈솭占쎈솇占쎌굲, 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼢�뇡�빘�굲 End*/
 
 .navigation {
     padding: 15px;
@@ -932,7 +932,7 @@ button:hover {
     flex-flow: row wrap;
 }
 
-.section-bottom {                                    /* �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�듃 �뜝�떥釉앹삕*/
+.section-bottom {                                    /* 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈뱜 占쎈쐻占쎈뼢�뇡�빘�굲*/
     text-transform: uppercase;
     letter-spacing: 1.25px;
     font-size: 13.2px;
@@ -942,13 +942,13 @@ button:hover {
 
 
 
-/* �뜝�뙎琉꾩삕�뜝�룞�삕 �뜝�룞�삕���뜝�룞�삕 START */
+/* 占쎈쐻占쎈솊筌뚭쑴�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쏙옙占쎈쐻占쎈짗占쎌굲 START */
 .bar 				{ fill: steelblue; }
 .bar:hover 		{ fill: brown; }
 .axis--x path 		{ display: none; }
 text 				{ fill: #fff; }
 g path, g line 	{ stroke: #fff; }
-/* �뜝�뙎琉꾩삕�뜝�룞�삕 �뜝�룞�삕���뜝�룞�삕 END */
+/* 占쎈쐻占쎈솊筌뚭쑴�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쏙옙占쎈쐻占쎈짗占쎌굲 END */
 
 
 /* Bubble Chart Start*/
@@ -1006,3 +1006,8 @@ g path, g line 	{ stroke: #fff; }
         fill: #FFF;
       }
 /*Emotion Graph End*/
+
+/* playlist 테이블 가운데 정렬 */
+#randombox{
+	text-align:center;
+}

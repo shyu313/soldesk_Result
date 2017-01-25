@@ -113,7 +113,7 @@
                         <i class="ion-ios-musical-notes"></i>
                         <span>감성 보기</span>
                     </a>
-                    <a href="./playlist/randomplay.do" class="navigation__list__item">
+                    <a href="./playlist/randomplaylist.do" class="navigation__list__item">
                         <i class="ion-ios-musical-notes"></i>
                         <span>랜덤 듣기</span>
                     </a>

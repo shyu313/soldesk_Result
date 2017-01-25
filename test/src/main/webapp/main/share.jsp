@@ -24,7 +24,7 @@
 		<c:forEach var="dto" items="${articleList }">
 		<tr>
 			<td>${dto.bbsno }</td>
-			<td>
+			<td id="a5">
 				<a href="http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://localhost:9090/test/main/read.do?bbsno=${dto.bbsno }">
 					${dto.subject }
 				</a>

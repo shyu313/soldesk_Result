@@ -77,38 +77,31 @@ public class MainController {
 		mav.addObject("jsonBubbleMenu",jsonBubbleMenu);
 		
 		Iterator<DictionaryDTO> emotionDICIterator= emotionDICList.iterator();				// 감정사전에서 키워드 비교
-		List<Object> paramDICList = new AttributeList();												// AttributeList() 뭔지 모르겠음 , List<DictionaryDTO> 할당방법?
+		ArrayList<DictionaryDTO> paramDICList = new ArrayList<DictionaryDTO>();			// AttributeList() 대신 List<DictionaryDTO> 할당방법? -> ArrayList 사용
 		
-		logger.debug(word1);
-		logger.debug(word2);
-		logger.debug(word3);
 		String inputWord[] = {word1,word2,word3};
 		
 		
-		// 3글자 이상에서 ~하다 제거 
+		
 		while(emotionDICIterator.hasNext()){
 			DictionaryDTO dto = emotionDICIterator.next();
 			String dicWord;
-			if(dto.getWord().length()>4){
-				dicWord = dto.getWord().replace("하다",	 "");
-			}else{
+			if(dto.getWord().length()<4){				// 3글자 이상 '~하다' 제거했던  문자열 비교 ex> 위하다		
 				dicWord = dto.getWord();
+			}else{
+				dicWord = dto.getWord().replace("하다","");
 			}
-			
 			for(String word: inputWord){
 				if(dicWord.equals(word)){
+					logger.debug("Emotion : "+dto.getEmotion());
+					logger.debug("word : "+dto.getWord());
+					logger.debug("point : "+dto.getPoint());
 					paramDICList.add(dto);
 				}
 			}
 		}
-		Iterator iter = paramDICList.iterator();
-		while(iter.hasNext()){
-			logger.debug(iter.next().toString());
-		}
-		
 		
 		List<MediaDTO> emotionList= mediaDAO.searchEmotionList(paramDICList); 												// 감정단어 검색 결과 리스트
-		 
 		logger.debug(emotionList.toString());
 		return mav;
 	} // Search() end
