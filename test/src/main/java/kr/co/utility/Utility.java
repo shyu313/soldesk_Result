@@ -269,34 +269,39 @@ public class Utility {
 		
 	}
 	
-	/*  노래 추천을 위한 감정별 정렬 퀴리문 요청*/
-	public static ArrayList<MediaDTO> categorizeEmotionType(List<MediaDTO> musicList, MediaDAO mediaDAO){
+	/*  search.do 관련 메소드 : 노래 추천을 위한 감정별 정렬 퀴리문 요청*/
+	public static ArrayList<MediaDTO>[] categorizeEmotionType(List<MediaDTO> musicList, MediaDAO mediaDAO){
 		String emotionTypeArray[] ={"happy","sad","disgust","interest","pain","fear","rage"};
 		HashMap<String, String> emotionTypeHash = new HashMap<String, String>();
 		@SuppressWarnings("unchecked")
 		ArrayList<MediaDTO> mediaEmotionType[] = new ArrayList[emotionTypeArray.length];		
-		
-		
-		// 한참 헤맨 부분 : 'fear' 이런식으로 들어갔다. 18.. 
+		// 한참 헤맨 부분 : String 값 전달시 'fear' 이런식으로 들어갔다. 18.. 
 		// => log4j-remix 을 이용해서 쿼리문 에러 캐치 가능해짐
-		
+		// => $ 바인딩으로 value 값을 받기 위해 해쉬맵에 담아서 전달
 		for(int index=0; index<emotionTypeArray.length; index++){
-			mediaEmotionType[index] =  mediaDAO.listOfEmotionTpye(emotionTypeArray[index]);	// 감정별 정렬 쿼리 요청
-			logger.debug(mediaEmotionType[index].get(0).getTitle());
-			
-			/*	logger.debug("기준 감정타입 "+emotionTypeArray[index]+" : \n"
-			+"getHappy  : "+String.valueOf(mediaEmotionType[index].get(0).getHappy())+"\n"
-			+"getDisgust : "+String.valueOf(mediaEmotionType[index].get(0).getDisgust())+"\n"
-			+"getInterest : "+String.valueOf(mediaEmotionType[index].get(0).getInterest())+"\n"
-			+"getPain     : "+String.valueOf(mediaEmotionType[index].get(0).getPain())+"\n"
-			+"getRage    : "+String.valueOf(mediaEmotionType[index].get(0).getRage())+"\n"
-			+"getSad      : "+String.valueOf(mediaEmotionType[index].get(0).getSad())+"\n"
-			+"getFear     :  "+String.valueOf(mediaEmotionType[index].get(0).getFear())+"\n"
-					);					// 정렬된 최상의 노래 보기
-*/	
-			
+			emotionTypeHash.put("emotiontype", emotionTypeArray[index]);							// $ 바인딩 참조를 위한 해쉬맵
+			mediaEmotionType[index] =  mediaDAO.listOfEmotionTpye(emotionTypeHash);			// 감정별 정렬 쿼리 요청
+			//logger.debug(mediaEmotionType[index].get(0).getTitle());
 		}
-		
-		return null;
-	}
+		return mediaEmotionType;
+	}// end
+	
+	/*  search.do 관련 메소드 : 중복제거 랜덤 함수 */
+	public static int[] randomNumber(int size, int scope){
+		int randomNumbers[] = new int[size];
+		Random random = new Random();
+		for(int outter=0; outter<size; outter++){							
+			randomNumbers[outter] = random.nextInt(scope);				// 랜덤 숫자를 생성
+			for(int inner=0; inner<outter; inner++){						// 중복 숫자를 제거하기 위한 반복
+				if(randomNumbers[outter]==randomNumbers[inner]){	// 중복인 경우 해당 숫자를 버리고 뒤로 돌아가 새로 생성		
+					outter--;
+				}
+			}
+		}
+		return randomNumbers;
+	}// end
+	
+	/*  search.do 관련 메소드 :  */
+	
+	
 } // class end

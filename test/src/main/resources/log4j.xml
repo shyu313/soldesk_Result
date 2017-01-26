@@ -43,10 +43,10 @@
 	</logger>
      
     <!-- Query Loggers -->
-    <logger name="jdbc.sqlonly" additivity="false"> 
+    <!-- <logger name="jdbc.sqlonly" additivity="false"> 
         <level value="INFO"/> 
         <appender-ref ref="console-infolog"/> 
-    </logger>
+    </logger> -->
     
     <!-- Result Table 테이블이 길게 나와서 주석처리 -->
     <!-- <logger name="jdbc.resultsettable" additivity="false"> 

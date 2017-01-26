@@ -32,9 +32,9 @@ public class MediaDAO extends AbstractDAO{
 			return list;
 		}
 		// 감정별 노래 조회 리스트
-		public ArrayList<MediaDTO> listOfEmotionTpye(String emotiontype){
+		public ArrayList<MediaDTO> listOfEmotionTpye(HashMap<String, String> emotionType){
 			MediaMapper mapper = sqlSession.getMapper(MediaMapper.class);
-			ArrayList<MediaDTO> list = mapper.listOfEmotionTpye(emotiontype);
+			ArrayList<MediaDTO> list = mapper.listOfEmotionTpye(emotionType);
 			return list;
 		}
 		

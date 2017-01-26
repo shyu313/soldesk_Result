@@ -11,7 +11,7 @@ public interface MediaMapper {
 		//<select id="list">
 		public List<MediaDTO> list();							// 노래 전체 리스트
 		public List<MediaDTO> toplist();						// top10 리스트
-		public ArrayList<MediaDTO> listOfEmotionTpye(String emotiontype);		// 감정별 노래 조회 리스트
+		public ArrayList<MediaDTO> listOfEmotionTpye(HashMap<String, String> emotionType);		// 감정별 노래 조회 리스트
 		public List<MediaDTO> searchEmotionList(ArrayList<DictionaryDTO> paramDICList);			// 감정검색 결과 리스트
 		public List<MediaDTO> randomList();
 		
