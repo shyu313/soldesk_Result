@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 			select @RNUM := @RNUM +1 AS RNUM, t.*
 			from
-				( select * from bardciel.media order by rand() limit 25 ) t, 
+				( select * from bardciel.media order by rand() limit 5 ) t, 
 				(select @RNUM := 0) R
 		]]> 
 	</select>
