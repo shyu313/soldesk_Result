@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file ="../header.jsp" %>
-	<script<%--  src="<c:url value='https://code.jquery.com/jquery-1.11.0.min.js'/>" --%>>
+<link rel="stylesheet" href="../css/sentshareinsert.css">
+	<script>
 		$(function(){
 	        //전역변수선언
 	        var editor_object = [];
@@ -32,35 +33,33 @@
 	            $("#frm").submit();
 	        });
 	    });
-		
-
 	</script>
 
 	<a style="font:20">감정 공유 게시판!</a>
-	<p>
-		<a href="share.do">[목록]</a>
-	</p>
 	<form name="bbsform" method="post" action="create.do">
-	<table width="752">
+	<table border="1" cellpadding="0" cellspacing="0">
 	<tr>
 		<th><font color="#FFFFFF">작성자</font></th>
 		<td>
-			<input type="text" id="wname" name="wname" size="10" readonly>
+			<!-- <input type="text" id="wname" name="wname" size="20" readonly> -->
+			<input type="text" id="wname" name="wname" readonly>
 		</td>
 	</tr>
 	<tr>
 		<th><font color="#FFFFFF">제목</font></th>
-		<td><input type="text" name="subject" size="100"></td>
+		<!-- <td><input type="text" id="subject" name="subject" size="100"></td> -->
+		<td><input type="text" id="subject" name="subject"></td>
 	</tr>
 	<tr>
 		<th><font color="#FFFFFF">내용</font></th>
 		<td>
-			<textarea name="content" id="content" style="HEIGHT: 220px; WIDTH: 610px;" rows="10" cols="30"></textarea>
+			<!-- <textarea name="content" id="content" style="HEIGHT: 220px; WIDTH: 610px;" rows="10" cols="30"></textarea> -->
+			<textarea name="content" id="content"></textarea>
 		</td>
 	</tr>
 
 	<tr>
-		<td colspan="2" align="center">
+		<td colspan="2" id="a1">
 			<!-- <input type="button" value="쓰기" onClick="bbsCheck(this.form)"> -->
 			<input type="submit" id="cs1" value="쓰기">
 			<input type="reset" value="취소" onclick="location.href='share.do';">

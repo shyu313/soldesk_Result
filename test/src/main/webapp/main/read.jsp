@@ -2,7 +2,7 @@
 
 <%@ include file ="../header.jsp" %>
 <link rel="stylesheet" href="../css/sentshareread.css">
-<input type="hidden" name="noticeno" value=${dto.bbsno }>
+<input type="hidden" name="noticeno" value=${dto.bbsno }> 
 
 	<a style="font:20">감정 공유 게시판!</a>
 	
@@ -23,11 +23,11 @@
 		</tr>
 		<tr>
 			<th><font color="#ffffff">제목</font></th>
-			<td colspan="3"><font color="#ffffff">${dto.subject}</font></td>
+			<td colspan="3" id="a2"><font color="#ffffff">${dto.subject}</font></td>
 		</tr>
 		<tr>
 			<th><font color="#ffffff">내용</font></th>
-			<td colspan="3"><font color="#ffffff">${dto.content}</font></td>
+			<td colspan="3" id="a2"><font color="#ffffff">${dto.content}</font></td>
 		</tr>
 		<tr>
 			<td colspan="4" id="a1">
