@@ -399,3 +399,7 @@ table tr:last-child td:last-child {
 	HEIGHT: 220px; 
 	WIDTH: 610px;
 }
+
+#wname, #subject{
+	color: #000000;
+}
