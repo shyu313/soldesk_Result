@@ -195,12 +195,19 @@
 			<version>1.4</version>
 		</dependency>
 
-		<!-- DB접근시 쿼리문 로깅을 위한 log4jdbc-remix  -->
+		<!-- DB접근시 쿼리문 로깅을 위한 log4jdbc-remix -->
 		<dependency>
-		    <groupId>org.lazyluke</groupId>
-		    <artifactId>log4jdbc-remix</artifactId>
-		    <version>0.2.7</version>
+			<groupId>org.lazyluke</groupId>
+			<artifactId>log4jdbc-remix</artifactId>
+			<version>0.2.7</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+
 
 
 		<!-- Test -->

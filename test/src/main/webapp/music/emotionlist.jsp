@@ -9,15 +9,15 @@
 <style>
 #departure {font-size:20px;height:40px;line-height:40px}
 </style>
+<!-- 
 
-
-<input type="text" id="departure" readonly/>
+<input type="text" id="departure" readonly/> -->
 
 <script>$("#departure").dateDropper();</script>
 	
  
-    <div id="chart"></div>
-  	<%
+    <div id="chart"></div> 
+  	<%-- <%
 	
 	int arr[][] = new int[7][24];
 	%>
@@ -31,7 +31,7 @@
 	else if(${dto.emotion}=="disgust")
 	{arr[2][${dto.time}] = ${dto.value };
 	}
-	</c:forEach>
+	</c:forEach> --%>
   
    <table width="500" border="1" cellpadding="0" cellspacing="0">
 		<tr>
