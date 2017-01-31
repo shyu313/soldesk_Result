@@ -18,6 +18,7 @@ public class MediaDTO {
 	private int fear;						// 무서움
 	private int rage; 					// 분노 
 	private int RNUM;				// 조회 결과 순서
+	private String emotion;		// 대표 감정
 	
 	public MediaDTO() {
 	}
@@ -117,17 +118,20 @@ public class MediaDTO {
 	public void setRNUM(int RNUM) {
 		this.RNUM = RNUM;
 	}
+	
+	public String getEmotion() {
+		return emotion;
+	}
+	public void setEmotion(String emotion) {
+		this.emotion = emotion;
+	}
 	@Override
 	public String toString() {
 		return "MediaDTO [lyricsNo=" + lyricsNo + ", title=" + title + ", singer=" + singer + ", url=" + url + ", bpm="
 				+ bpm + ", playCnt=" + playCnt + ", recCnt=" + recCnt + ", lyrics=" + lyrics + ", happy=" + happy
 				+ ", sad=" + sad + ", disgust=" + disgust + ", interest=" + interest + ", pain=" + pain + ", fear="
-				+ fear + ", rage=" + rage + ", rowNum=" + RNUM + ", getLyricsNo()=" + getLyricsNo() + ", getTitle()="
-				+ getTitle() + ", getSinger()=" + getSinger() + ", getUrl()=" + getUrl() + ", getBpm()=" + getBpm()
-				+ ", getPlayCnt()=" + getPlayCnt() + ", getRecCnt()=" + getRecCnt() + ", getLyrics()=" + getLyrics()
-				+ ", getHappy()=" + getHappy() + ", getSad()=" + getSad() + ", getDisgust()=" + getDisgust()
-				+ ", getInterest()=" + getInterest() + ", getPain()=" + getPain() + ", getFear()=" + getFear()
-				+ ", getRage()=" + getRage() + ", getRowNum()=" + getRNUM() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ fear + ", rage=" + rage + ", RNUM=" + RNUM + ", emotion=" + emotion + "]";
 	}
+
+	
 }

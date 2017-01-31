@@ -15,6 +15,7 @@ import java.util.Random;
 import javax.management.AttributeList;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,6 +66,29 @@ public class MainController {
 		return mav;
 	} // Search() end
 	
+	@RequestMapping(value="/main/searchplay.do", method=RequestMethod.GET)
+	public ModelAndView play(MediaDTO mediaDTO) {
+		ModelAndView mav = new ModelAndView();
+		mediaDAO.playcnt(mediaDTO.getLyricsNo()); 														// 재생횟수 증가
+		List<MediaDTO> musicList= mediaDAO.list();														//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		List<DictionaryDTO> emotionDICList = dicDAO.selectList("selectList");						// emotionDIC 테이블 감정 단어 정보
+		JSONObject jsonBubbleMenu = Utility.getJsonBubbleMenu(emotionDICList);				// BubbleMenu data : jsonEmotion
+		mediaDTO = mediaDAO.read(mediaDTO.getLyricsNo());
+		String url[]=mediaDTO.getUrl().split("=");
+		
+		
+		mav.setViewName("main/search");	
+		mav.addObject("jsonEmotion",jsonEmotion);
+		mav.addObject("jsonBubbleMenu",jsonBubbleMenu);										// for bubbleMenu
+		mav.addObject("videoId", url[1]);
+		mav.addObject("lyrics", mediaDTO.getLyrics());
+		
+		
+		return mav;
+	} // play() end
+	
+	
 	@RequestMapping(value="/main/search.do", produces = "application/json; charset=utf8", method=RequestMethod.POST )								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Search(String word1, String word2, String word3 ) {
 		// 검색 페이지에 필요한 기본 변수들  
@@ -95,11 +119,10 @@ public class MainController {
 		
 		//!!!! 이부분 알고리즘 개선 필요 -> 점수기준 상위에서 랜덤으로 선정할 경우 하위의 노래는 계속해서 비추천으로 남음!!!
 		// 감정별 정렬된 데이터에서  노래추천을 위한 변수  
-		int randomNumbers[] = Utility.randomNumber(searchList.size(), 20);						// 감정 타입별로 상위 20곡에서 랜덤곡 추천 searchList.size() = 선택한 단어의 감정 수 
 		ArrayList<MediaDTO> recommendList = new ArrayList<MediaDTO>();						// 추천 곡 리스트
-		ArrayList<MediaDTO> mediaDTOeachEmotionType[] =Utility.categorizeEmotionType(musicList, mediaDAO);	 // 감정별로 정렬되있는 리스트 다른 클래스에서 DB 접근을 위해 dao 넘김
-		String emotionTypeArray[] ={"기쁨","슬픔","혐오","흥미","고통","공포","분노"};				// 정렬되어있는 감정타입 순서 
-		logger.debug(String.valueOf(searchList.size()) );
+		ArrayList<MediaDTO> mediaDTOeachEmotionType[] =Utility.categorizeEmotionType(mediaDAO);	 // 감정별로 정렬되있는 리스트 다른 클래스에서 DB 접근을 위해 dao 넘김
+		String emotionTypeArray[] ={"기쁨","슬픔","혐오","흥미","통증","공포","분노"};				// 정렬되어있는 감정타입 순서 
+		//logger.debug(String.valueOf(searchList.size()) );
 		
 		// 검색 한 결과가 중복된 감정타입인 경우 제거		
 		for(int index=0; index<searchList.size(); index++){
@@ -108,18 +131,25 @@ public class MainController {
 					logger.debug("중복된 감정타입 제거 : " +searchList.get(index).getEmotion() );
 					searchList.remove(index);		// 중복 감정 제거
 					index--;							// 지운 위치 전 부터 다시 비교
+					
 				}
 			}
 		}
-		logger.debug(String.valueOf(searchList.size()) );
+		
+		int randomNumbers[] = Utility.randomNumber(searchList.size(), 20);						// 감정 타입별로 상위 20곡에서 랜덤곡 추천 searchList.size() = 선택한 단어의 감정 수 
+		//logger.debug(String.valueOf(searchList.size()) );
+		for(int num : randomNumbers){
+			logger.debug("랜덤 숫자 : "+ String.valueOf(num));
+		}
 		
 		/* 찾은 감정타입(searchList)으로 감정별 랜덤 곡 추천 */
 		for(DictionaryDTO dicDTO : searchList ){
 			logger.debug("해당 감정 : "+dicDTO.getEmotion());
-			for(int emotionIndex=0; emotionIndex<emotionTypeArray.length; emotionIndex++){			// 최소 3회~ 최대 7회 이동
+			for(int emotionIndex=0; emotionIndex<emotionTypeArray.length; emotionIndex++){	//emotionTypeArray.length		// 최소 3회~ 최대 7회 이동
 				if(dicDTO.getEmotion().equals(emotionTypeArray[emotionIndex]))								// 사용자가 선택한 감정의 정렬 데이터 접근
 					for(int random:randomNumbers){																// 추천 곡수 만큼 반복
 						MediaDTO dto = mediaDTOeachEmotionType[emotionIndex].get(random);			// 상위에서 랜덤 추천
+						dto.setEmotion(dicDTO.getEmotion());
 						recommendList.add(dto);
 					}
 			}

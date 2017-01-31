@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
 <%@ include file ="../header.jsp" %>
 <!-- 대시보드 호출 -->
 	 <script>

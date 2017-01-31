@@ -15,6 +15,7 @@ public interface MediaMapper {
 		public List<MediaDTO> searchEmotionList(ArrayList<DictionaryDTO> paramDICList);			// 감정검색 결과 리스트
 		public List<MediaDTO> randomList();
 		
+		
 		//<insert id="create">
 		public int create(MediaDTO dto);
 		
@@ -27,4 +28,5 @@ public interface MediaMapper {
 		public int update(MediaDTO dto);
 		
 		public void readcnt(int bbsno);
+		public void playcnt(int lyricNo);
 }

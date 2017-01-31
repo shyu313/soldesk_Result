@@ -74,64 +74,20 @@ public class MusicController {
         hmap.put("hour", "hour");
         hmap.put("value", "value");
         list.add(hmap);
+        String emotionTypeArray[] ={"happy","sad","disgust","interest","pain","fear","rage"};
         
         for(int i=0; i<musicList.size(); i++){
 			HistorySearchDTO dto =musicList.get(i);
-			if("happy".equals(dto.getEmotion()))
-			{
-				hmap = new HashMap<String, Object>();
-	            hmap.put("day", 1);
-	            hmap.put("hour", dto.getTime());
-	            hmap.put("value", dto.getValue());
-	            list.add(hmap);
-			}
-			else if("sad".equals(dto.getEmotion()))
-			{
-				hmap = new HashMap<String, Object>();
-	            hmap.put("day", 2);
-	            hmap.put("hour", dto.getTime());
-	            hmap.put("value", dto.getValue());
-	            list.add(hmap);
-			}
-			else if("rage".equals(dto.getEmotion()))
-			{
-				hmap = new HashMap<String, Object>();
-	            hmap.put("day", 3);
-	            hmap.put("hour", dto.getTime());
-	            hmap.put("value", dto.getValue());
-	            list.add(hmap);
-			}
-			else if("disgust".equals(dto.getEmotion()))
-			{
-				hmap = new HashMap<String, Object>();
-	            hmap.put("day", 4);
-	            hmap.put("hour", dto.getTime());
-	            hmap.put("value", dto.getValue());
-	            list.add(hmap);
-			}
-			else if("interest".equals(dto.getEmotion()))
-			{
-				hmap = new HashMap<String, Object>();
-	            hmap.put("day", 5);
-	            hmap.put("hour", dto.getTime());
-	            hmap.put("value", dto.getValue());
-	            list.add(hmap);
-			}
-			else if("pain".equals(dto.getEmotion()))
-			{
-				hmap = new HashMap<String, Object>();
-	            hmap.put("day", 6);
-	            hmap.put("hour", dto.getTime());
-	            hmap.put("value", dto.getValue());
-	            list.add(hmap);
-			}
-			else if("fear".equals(dto.getEmotion()))
-			{ 
-				hmap = new HashMap<String, Object>();
-	            hmap.put("day", 7);
-	            hmap.put("hour", dto.getTime());
-	            hmap.put("value", dto.getValue());
-	            list.add(hmap);
+			for(int emotionIndex=0; emotionIndex<emotionTypeArray.length; emotionIndex++ ){
+				String emotion = emotionTypeArray[emotionIndex];
+				if(emotion.equals(dto.getEmotion()))
+				{
+					hmap = new HashMap<String, Object>();
+		            hmap.put("day", emotionIndex+1);
+		            hmap.put("hour", dto.getTime());
+		            hmap.put("value", dto.getValue());
+		            list.add(hmap);
+				}
 			}
 		}
         
@@ -148,7 +104,7 @@ public class MusicController {
 	    }
 	    
 		try {
-            CSVWriter cw = new CSVWriter(new OutputStreamWriter(new FileOutputStream("C:\\Users\\soldesk\\git\\soldesk_Team_1\\test\\src\\main\\webapp\\music\\data.csv"), "UTF-8"),',', '"');
+            CSVWriter cw = new CSVWriter(new OutputStreamWriter(new FileOutputStream("C:\\Users\\soldesk\\git\\soldesk_Team_3\\test\\src\\main\\webapp\\music\\data.csv"), "UTF-8"),',', '"');
             try {
                 for(Map<String, Object> m : list) {
                     //배열을 이용하여 row를 CSVWriter 객체에 write

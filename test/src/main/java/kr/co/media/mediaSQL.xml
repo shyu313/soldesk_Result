@@ -14,12 +14,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]> 
 	</select>
 	<!-- 감정별 정렬 음악 리스트 조회 쿼리  -->
-	<!--  -->
 	<select id="listOfEmotionTpye" parameterType="HashMap" resultType="MediaDTO">
 		<![CDATA[
 			select @RNUM := @RNUM +1 AS RNUM, t.*
-			from ( ]]> 
-				 select * from bardciel.media ORDER BY ${emotiontype} DESC	<!-- 이부분 알고리즘을 개선, 정확한 추천  -->
+			from ( 
+			]]>  
+				 select * from bardciel.media ORDER BY ${emotiontype} DESC  LIMIT 20
 		<![CDATA[	
 			) t, 
 			(select @RNUM := 0) R

@@ -84,7 +84,11 @@ public class MediaDAO extends AbstractDAO{
 			MediaMapper mapper = sqlSession.getMapper(MediaMapper.class);
 			mapper.readcnt(lyricNo);
 		}
-		
-		
+		 
+		//재생횟수 증가
+		public void playcnt(int lyricNo){
+			MediaMapper mapper = sqlSession.getMapper(MediaMapper.class);
+			mapper.playcnt(lyricNo);
+		}
 	
 }

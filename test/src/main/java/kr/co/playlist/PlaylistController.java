@@ -50,7 +50,8 @@ public class PlaylistController {
 	@RequestMapping(value="/playlist/toplistplay.do", method=RequestMethod.GET)
 	public ModelAndView play(MediaDTO mediaDTO) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("playlist/toplist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		mav.setViewName("playlist/toplist");											// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		mediaDAO.playcnt(mediaDTO.getLyricsNo()); 									// 플레이 횟수 증가 
 		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
 		mav.addObject("jsonEmotion",jsonEmotion);
@@ -86,6 +87,7 @@ public class PlaylistController {
 	public ModelAndView Randomplay(MediaDTO mediaDTO) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("playlist/randomplaylist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		mediaDAO.playcnt(mediaDTO.getLyricsNo()); 									// 플레이 횟수 증가 
 		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
 		mav.addObject("jsonEmotion",jsonEmotion);

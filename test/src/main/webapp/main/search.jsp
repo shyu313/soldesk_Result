@@ -26,7 +26,7 @@
 	<center>
 	<table width="500" border="1" cellpadding="0" cellspacing="0" id="randombox">
 		<tr style="font-family: 나눔고딕">
-			<td><strong><font size="4"  color="#ffffff">Top</font></strong></td>
+			<td><strong><font size="4"  color="#ffffff">감정타입</font></strong></td>
 			<td><strong><font size="4"  color="#ffffff">제목 - Click to play</font></strong></td>
 			<td><strong><font size="4"  color="#ffffff">가수</font></strong></td>
 			<td><strong><font size="4"  color="#ffffff">재생횟수</font></strong></td>
@@ -35,8 +35,8 @@
 		</tr>
 		<c:forEach var="dto" items="${recommendList }">
 		<tr>
-			<td><font color="#ffffff">${dto.RNUM }</font></td>
-			<td><font color="#ffffff"><a href="toplistplay.do?lyricsNo=${dto.lyricsNo }">${dto.title }</a></font></td>
+			<td><font color="#ffffff">${dto.emotion }</font></td>
+			<td><font color="#ffffff"><a href="searchplay.do?lyricsNo=${dto.lyricsNo }">${dto.title }</a></font></td>
 			<td><font color="#ffffff">${dto.singer}</font></td>
 			<td><font color="#ffffff">${dto.playCnt}</font></td>
 			<td><font color="#ffffff">${dto.recCnt }</font></td>

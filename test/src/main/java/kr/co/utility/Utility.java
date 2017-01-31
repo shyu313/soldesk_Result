@@ -123,7 +123,7 @@ public class Utility {
 	public static JSONObject getJsonBubbleMenu(List<DictionaryDTO> dictionaryList  ){				 
 		Iterator<DictionaryDTO> iterator = dictionaryList.iterator();
 		Random randomEmotion = new Random();
-		String emotionType[] ={"기쁨","혐오","공포","흥미","고통","분노","슬픔"};
+		String emotionType[] ={"기쁨","혐오","공포","흥미","통증","분노","슬픔"};
 		ArrayList<String> listOfEmotionWord[] = new ArrayList[7];			// 감정별 단어를 담을 배열
 		for(int index=0; index<listOfEmotionWord.length; index++){
 			listOfEmotionWord[index] = new ArrayList<String>();
@@ -270,7 +270,7 @@ public class Utility {
 	}
 	
 	/*  search.do 관련 메소드 : 노래 추천을 위한 감정별 정렬 퀴리문 요청*/
-	public static ArrayList<MediaDTO>[] categorizeEmotionType(List<MediaDTO> musicList, MediaDAO mediaDAO){
+	public static ArrayList<MediaDTO>[] categorizeEmotionType(MediaDAO mediaDAO){
 		String emotionTypeArray[] ={"happy","sad","disgust","interest","pain","fear","rage"};
 		HashMap<String, String> emotionTypeHash = new HashMap<String, String>();
 		@SuppressWarnings("unchecked")
@@ -278,16 +278,16 @@ public class Utility {
 		// 한참 헤맨 부분 : String 값 전달시 'fear' 이런식으로 들어갔다. 18.. 
 		// => log4j-remix 을 이용해서 쿼리문 에러 캐치 가능해짐
 		// => $ 바인딩으로 value 값을 받기 위해 해쉬맵에 담아서 전달
-		for(int index=0; index<emotionTypeArray.length; index++){
+		for(int index=0; index<emotionTypeArray.length; index++){		
 			emotionTypeHash.put("emotiontype", emotionTypeArray[index]);							// $ 바인딩 참조를 위한 해쉬맵
 			mediaEmotionType[index] =  mediaDAO.listOfEmotionTpye(emotionTypeHash);			// 감정별 정렬 쿼리 요청
-			//logger.debug(mediaEmotionType[index].get(0).getTitle());
 		}
 		return mediaEmotionType;
 	}// end
-	
 	/*  search.do 관련 메소드 : 중복제거 랜덤 함수 */
 	public static int[] randomNumber(int size, int scope){
+		logger.debug("랜덤 숫자 갯수 : " + size +"/" + "범위 : "+ scope);
+		
 		int randomNumbers[] = new int[size];
 		Random random = new Random();
 		for(int outter=0; outter<size; outter++){							
