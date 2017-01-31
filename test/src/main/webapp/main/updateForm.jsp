@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file ="../header.jsp" %>
-	
+<link rel="stylesheet" href="../css/sentshareinsert.css">
 	<script>
 		$(function(){
 	        //전역변수선언
@@ -125,20 +125,18 @@
 	<tr>
 		<th><font color="#FFFFFF">작성자</font></th>
 		<td>
-			<input type="text" name="wname" value="${dto.wname }" size="10" readonly>
+			<input type="text" id="wname" name="wname" value="${dto.wname }" size="10" readonly>
 			<!-- <div id="wname" style="color:#FFFFFF;"></div> -->
 		</td>
 	</tr>
 	<tr>
 		<th><font color="#FFFFFF">제목</font></th>
-		<td><input type="text" name="subject" value="${dto.subject }" size="84"></td>
+		<td><input type="text" id="subject" name="subject" value="${dto.subject }" size="84"></td>
 	</tr>
 	<tr>
 		<th><font color="#FFFFFF">내용</font></th>
 		<td>
-			<textarea id="content" style="HEIGHT: 220px; WIDTH: 610px; background: white;" rows="10" cols="30" name="content">
-				${dto.content }
-			</textarea>
+			<textarea id="content" name="content">${dto.content }</textarea>
 		</td>
 	</tr>
 	<!-- <tr>
