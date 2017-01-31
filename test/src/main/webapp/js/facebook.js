@@ -73,6 +73,7 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         response.name;      
+      document.getElementById('wname').value = response.name;
       	
     });
   }
