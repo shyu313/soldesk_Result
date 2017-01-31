@@ -2,6 +2,8 @@
 
 <%@ include file ="../header.jsp" %>
 <link rel="stylesheet" href="../css/sentshareinsert.css">
+<script text="text/javascript" src="../js/createForm.js"></script>
+
 	<script>
 		$(function(){
 	        //전역변수선언
@@ -55,14 +57,14 @@
 		<th><font color="#FFFFFF">내용</font></th>
 		<td>
 			<!-- <textarea name="content" id="content" style="HEIGHT: 220px; WIDTH: 610px;" rows="10" cols="30"></textarea> -->
-			<textarea name="content" id="content"></textarea>
+			<textarea name="content" id="content" style="max-width: 100%"></textarea>
 		</td>
 	</tr>
 
 	<tr>
 		<td colspan="2" id="a1">
-			<!-- <input type="button" value="쓰기" onClick="bbsCheck(this.form)"> -->
-			<input type="submit" id="cs1" value="쓰기">
+			<input type="button" id="cs1" value="쓰기" onClick="validate(this.form)">
+			<!-- <input type="submit" id="cs1" value="쓰기"> -->
 			<input type="reset" value="취소" onclick="location.href='share.do';">
 		</td>
 	</tr>
