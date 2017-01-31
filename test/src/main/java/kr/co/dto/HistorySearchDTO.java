@@ -25,6 +25,10 @@ public class HistorySearchDTO {
 	public void setValue(int value) {
 		this.value = value;
 	}
+	@Override
+	public String toString() {
+		return "HistorySearchDTO [time=" + time + ", emotion=" + emotion + ", value=" + value + "]";
+	}
 
 	
 }

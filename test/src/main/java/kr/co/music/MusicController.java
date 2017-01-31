@@ -64,8 +64,9 @@ public class MusicController {
 		mav.addObject("jsonEmotion",jsonEmotion);
 		
 		List<HistorySearchDTO> musicList= historyDAO.datelist(hashMap);	
+
 		
-		 ArrayList<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		ArrayList<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 
 		Map<String, Object> hmap = null;
 		hmap = new HashMap<String, Object>();
@@ -73,21 +74,75 @@ public class MusicController {
         hmap.put("hour", "hour");
         hmap.put("value", "value");
         list.add(hmap);
-	    for(int i=1;i<8;i++)
+        
+        for(int i=0; i<musicList.size(); i++){
+			HistorySearchDTO dto =musicList.get(i);
+			if("happy".equals(dto.getEmotion()))
+			{
+				hmap = new HashMap<String, Object>();
+	            hmap.put("day", 1);
+	            hmap.put("hour", dto.getTime());
+	            hmap.put("value", dto.getValue());
+	            list.add(hmap);
+			}
+			else if("sad".equals(dto.getEmotion()))
+			{
+				hmap = new HashMap<String, Object>();
+	            hmap.put("day", 2);
+	            hmap.put("hour", dto.getTime());
+	            hmap.put("value", dto.getValue());
+	            list.add(hmap);
+			}
+			else if("rage".equals(dto.getEmotion()))
+			{
+				hmap = new HashMap<String, Object>();
+	            hmap.put("day", 3);
+	            hmap.put("hour", dto.getTime());
+	            hmap.put("value", dto.getValue());
+	            list.add(hmap);
+			}
+			else if("disgust".equals(dto.getEmotion()))
+			{
+				hmap = new HashMap<String, Object>();
+	            hmap.put("day", 4);
+	            hmap.put("hour", dto.getTime());
+	            hmap.put("value", dto.getValue());
+	            list.add(hmap);
+			}
+			else if("interest".equals(dto.getEmotion()))
+			{
+				hmap = new HashMap<String, Object>();
+	            hmap.put("day", 5);
+	            hmap.put("hour", dto.getTime());
+	            hmap.put("value", dto.getValue());
+	            list.add(hmap);
+			}
+			else if("pain".equals(dto.getEmotion()))
+			{
+				hmap = new HashMap<String, Object>();
+	            hmap.put("day", 6);
+	            hmap.put("hour", dto.getTime());
+	            hmap.put("value", dto.getValue());
+	            list.add(hmap);
+			}
+			else if("fear".equals(dto.getEmotion()))
+			{
+				hmap = new HashMap<String, Object>();
+	            hmap.put("day", 7);
+	            hmap.put("hour", dto.getTime());
+	            hmap.put("value", dto.getValue());
+	            list.add(hmap);
+			}
+		}
+        
+        for(int i=1;i<8;i++)
 	    {
 	    	for(int j=1;j<25;j++)
 	    	{
 	    		hmap = new HashMap<String, Object>();
 	            hmap.put("day", i);
 	            hmap.put("hour", j);
-	            if(j>10&&i>5)
-	            {
-	            	hmap.put("value", 0);
-	            }
-	            else
-	            {
-	            	hmap.put("value", j);
-	            }
+	            hmap.put("value", 0);
 	            list.add(hmap);
 	    	}
 	    }
