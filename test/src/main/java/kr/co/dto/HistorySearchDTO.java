@@ -20,7 +20,7 @@ public class HistorySearchDTO {
 		this.emotion = emotion;
 	}
 	public int getValue() {
-		return value;
+		return value; 
 	}
 	public void setValue(int value) {
 		this.value = value;

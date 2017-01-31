@@ -126,7 +126,7 @@ public class MusicController {
 	            list.add(hmap);
 			}
 			else if("fear".equals(dto.getEmotion()))
-			{
+			{ 
 				hmap = new HashMap<String, Object>();
 	            hmap.put("day", 7);
 	            hmap.put("hour", dto.getTime());
