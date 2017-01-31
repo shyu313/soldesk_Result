@@ -2,6 +2,7 @@
 
 <%@ include file ="../header.jsp" %>
 <link rel="stylesheet" href="../css/sentshareinsert.css">
+<script type="text/javascript" src="../js/facebook.js"></script>
 	<script>
 		$(function(){
 	        //전역변수선언
@@ -33,6 +34,7 @@
 	            $("#frm").submit();
 	        });
 	    });
+		
 	</script>
 
 	<a style="font:20">감정 공유 게시판!</a>
