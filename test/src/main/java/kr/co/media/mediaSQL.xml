@@ -4,131 +4,137 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.media.MediaMapper">
-	<!-- 전체 음악 리스트 쿼리  -->
+	<!-- 전체 음악 리스트 쿼리 -->
 	<select id="list" resultType="MediaDTO">
 		<![CDATA[
 			select @RNUM := @RNUM +1 AS RNUM, t.*
 			from
 				( select * from bardciel.media ) t, 
 				(select @RNUM := 0) R
-		]]> 
+		]]>
 	</select>
-	<!-- 감정별 정렬 음악 리스트 조회 쿼리  -->
-	<select id="listOfEmotionTpye" parameterType="HashMap" resultType="MediaDTO">
+	<!-- 감정별 정렬 음악 리스트 조회 쿼리 -->
+	<select id="listOfEmotionTpye" parameterType="HashMap"
+		resultType="MediaDTO">
 		<![CDATA[
 			select @RNUM := @RNUM +1 AS RNUM, t.*
 			from ( 
-			]]>  
-				 select * from bardciel.media ORDER BY ${emotiontype} DESC  LIMIT 20
+			]]>
+		select * from bardciel.media ORDER BY ${emotiontype} DESC LIMIT 20
 		<![CDATA[	
 			) t, 
 			(select @RNUM := 0) R
-		]]> 
+		]]>
 	</select>
-	
-	<!-- top10 리스트 쿼리  -->
-	<select id="toplist"  resultType="MediaDTO">
+
+	<!-- top10 리스트 쿼리 -->
+	<select id="toplist" resultType="MediaDTO">
 		<![CDATA[
 			select @RNUM := @RNUM +1 AS RNUM, t.*
 			from
 				( select * from bardciel.media order by playCnt desc LIMIT 0, 10 ) t, 
 				(select @RNUM := 0) R
-		]]> 
-		</select>
-	
-	  
-	<!-- 감정검색 리스트 쿼리  -->
-	<select id="searchEmotionList"  parameterType="java.util.List"  resultType="MediaDTO">
+		]]>
+	</select>
+
+
+	<!-- 감정검색 리스트 쿼리 -->
+	<select id="searchEmotionList" parameterType="java.util.List"
+		resultType="MediaDTO">
 		
 		<![CDATA[
 			select @RNUM := @RNUM +1 AS RNUM, t.*
 			from
-		]]> 
-				  	
-							( select * from bardciel.media 
-							<foreach collection="list" item="element" index="index" >
-								WHERE emotion = #{element.emotion} AND point >= #{element.point}  
-							</foreach>
-							)t, 
+		]]>
+
+		( select * from bardciel.media
+		<foreach collection="list" item="element" index="index">
+			WHERE emotion = #{element.emotion} AND point >= #{element.point}
+		</foreach>
+		)t, 
 		<![CDATA[	
 				(select @RNUM := 0) R
-		]]> 
-		</select>
-	
-	<!-- 랜덤 음악 리스트 쿼리  -->
+		]]>
+	</select>
+
+	<!-- 랜덤 음악 리스트 쿼리 -->
 	<select id="randomList" resultType="MediaDTO">
 		<![CDATA[
 			select @RNUM := @RNUM +1 AS RNUM, t.*
 			from
 				( select * from bardciel.media order by rand() limit 5 ) t, 
 				(select @RNUM := 0) R
-		]]> 
+		]]>
 	</select>
-	
+
 	<!-- 음악 정보 등록 쿼리 -->
 	<insert id="create" parameterType="MediaDTO">
 		<selectKey keyProperty="lyricsNo" resultType="int" order="BEFORE">
 			SELECT ifnull(MAX(lyricsNo), 0)+1 as lyricsNo FROM bardciel.media
 		</selectKey>
-		INSERT INTO bardciel.media(lyricsNo, title, singer, url, bpm, playCnt, recCnt, lyrics, happy, sad, disgust, interest, pain, fear, rage) 
-		VALUES(#{lyricsNo}, #{title}, #{singer}, #{url}, #{bpm}, #{playCnt}, #{recCnt},#{lyrics},#{happy},#{sad},#{disgust},#{interest},#{pain},#{fear},#{rage})
+		INSERT INTO bardciel.media(lyricsNo, title, singer, url, bpm, playCnt,
+		recCnt, lyrics, happy, sad, disgust, interest, pain, fear, rage)
+		VALUES(#{lyricsNo}, #{title}, #{singer}, #{url}, #{bpm}, #{playCnt},
+		#{recCnt},#{lyrics},#{happy},#{sad},#{disgust},#{interest},#{pain},#{fear},#{rage})
 	</insert>
-	
+
 	<!-- 음악 조회 쿼리 -->
 	<select id="read" parameterType="int" resultType="MediaDTO">
-		SELECT * FROM bardciel.media WHERE lyricsNo = #{lyricsNo}
+		SELECT * FROM
+		bardciel.media WHERE lyricsNo = #{lyricsNo}
 	</select>
-	
+
 	<!-- 음악 정보 삭제 쿼리 -->
 	<delete id="delete" parameterType="MediaDTO">
-		DELETE FROM bardciel.media WHERE lyricsNo = #{lyricsNo}
+		DELETE FROM bardciel.media
+		WHERE lyricsNo = #{lyricsNo}
 	</delete>
-	
-	<!-- 음악 정보 수정 처리 / 관리자 페이지 사용-->
+
+	<!-- 음악 정보 수정 처리 / 관리자 페이지 사용 -->
 	<update id="update" parameterType="MediaDTO">
-		UPDATE bardciel.media 
-		SET title = #{title}, 
-			 singer = #{singer}, 
-			 url = #{url}, 
-			 bpm = #{bpm},
-			 playCnt = #{playCnt},
-			 recCnt = #{recCnt},
-			 lyrics = #{lyrics},
-			 happy = #{happy},
-			 sad = #{sad},
-			 disgust = #{disgust},
-			 interest = #{interest},
-			 pain = #{pain},
-			 fear = #{fear},
-			 rage = #{rage}
+		UPDATE bardciel.media
+		SET title = #{title},
+		singer = #{singer},
+		url = #{url},
+		bpm = #{bpm},
+		playCnt = #{playCnt},
+		recCnt = #{recCnt},
+		lyrics = #{lyrics},
+		happy = #{happy},
+		sad = #{sad},
+		disgust = #{disgust},
+		interest = #{interest},
+		pain = #{pain},
+		fear = #{fear},
+		rage = #{rage}
 		WHERE lyricsNo = #{lyricsNo}
 	</update>
-	
+
 	<!-- 재생 횟수 증가 -->
 	<update id="playcnt" parameterType="int">
-		UPDATE bardciel.media SET playCnt = playCnt + 1 WHERE lyricsNo = #{lyricsNo}
+		UPDATE bardciel.media SET
+		playCnt = playCnt + 1 WHERE lyricsNo = #{lyricsNo}
 	</update>
-	
+
+	<insert id="dateinsert" parameterType="HashMap">
+		INSERT INTO
+		bardciel.userhistory (userId,title ,time,emotion ,historyNo)
+		VALUES
+		(#{userId}, #{title}, NOW( ) , #{emotion}, NULL)
+	</insert>
+
+
 	<!-- 추천 횟수 증가 -->
 	<update id="reccnt" parameterType="int">
-		UPDATE bardciel.media SET recCnt = recCnt + 1 WHERE lyricsNo = #{lyricsNo}
+		UPDATE bardciel.media SET
+		recCnt = recCnt + 1 WHERE lyricsNo = #{lyricsNo}
 	</update>
-	
+
 	<!-- 음악 전체 갯수 보여주기 -->
-	<!-- <select id="getArticleCount" parameterType="SearchDTO" resultType="int">
-		SELECT COUNT(*) cnt FROM bardciel.media
-		<if test="word != null">
-			<choose>
-				<when test="searchCondition == 0">
-					WHERE subject LIKE '%' || #{word} || '%'
-				</when>
-				<when test="searchCondition == 1">
-					WHERE content LIKE '%' || #{word} || '%'
-				</when>
-				<when test="searchCondition == 2">
-					WHERE wname LIKE '%' || #{word} || '%'
-				</when>
-			</choose>
-		</if>
-	</select> -->
+	<!-- <select id="getArticleCount" parameterType="SearchDTO" resultType="int"> 
+		SELECT COUNT(*) cnt FROM bardciel.media <if test="word != null"> <choose> 
+		<when test="searchCondition == 0"> WHERE subject LIKE '%' || #{word} || '%' 
+		</when> <when test="searchCondition == 1"> WHERE content LIKE '%' || #{word} 
+		|| '%' </when> <when test="searchCondition == 2"> WHERE wname LIKE '%' || 
+		#{word} || '%' </when> </choose> </if> </select> -->
 </mapper>

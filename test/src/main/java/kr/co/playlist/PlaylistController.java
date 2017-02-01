@@ -2,6 +2,7 @@ package kr.co.playlist;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -51,6 +52,7 @@ public class PlaylistController {
 	public ModelAndView play(MediaDTO mediaDTO) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("playlist/toplist");											// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		
 		mediaDAO.playcnt(mediaDTO.getLyricsNo()); 									// 플레이 횟수 증가 
 		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
@@ -87,7 +89,25 @@ public class PlaylistController {
 	public ModelAndView Randomplay(MediaDTO mediaDTO) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("playlist/randomplaylist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
+		System.out.println("asdf");
+		System.out.println(mediaDTO.getLyricsNo());
+
 		mediaDAO.playcnt(mediaDTO.getLyricsNo()); 									// 플레이 횟수 증가 
+		
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		String userId = "Ciel Lu";
+		String title = mediaDTO.getTitle();
+		String emotion = mediaDTO.getEmotion();
+		hashMap.put("userId", userId);
+		hashMap.put("title", title);
+		hashMap.put("emotion", emotion);
+		mediaDAO.dateinsert(hashMap);
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(title);
+		System.out.println(emotion);
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+		
 		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
 		mav.addObject("jsonEmotion",jsonEmotion);

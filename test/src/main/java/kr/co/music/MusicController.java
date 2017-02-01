@@ -104,7 +104,7 @@ public class MusicController {
 	    }
 	    
 		try {
-            CSVWriter cw = new CSVWriter(new OutputStreamWriter(new FileOutputStream("C:\\Users\\soldesk\\git\\soldesk_Team_3\\test\\src\\main\\webapp\\music\\data.csv"), "UTF-8"),',', '"');
+            CSVWriter cw = new CSVWriter(new OutputStreamWriter(new FileOutputStream("C:\\Users\\Luciel\\git\\soldesk_Team_1\\test\\src\\main\\webapp\\music\\data.csv"), "UTF-8"),',', '"');
             try {
                 for(Map<String, Object> m : list) {
                     //배열을 이용하여 row를 CSVWriter 객체에 write

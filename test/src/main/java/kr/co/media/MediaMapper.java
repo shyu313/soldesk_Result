@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import kr.co.dto.DictionaryDTO;
+import kr.co.dto.HistoryDTO;
 import kr.co.dto.MediaDTO;
 
 public interface MediaMapper {
@@ -18,6 +19,7 @@ public interface MediaMapper {
 		
 		//<insert id="create">
 		public int create(MediaDTO dto);
+		public void dateinsert(HashMap hashMap);
 		
 		//<select id="read" parameterType="int" resultType="SentShareDTO">
 		public MediaDTO read(int bbsno);

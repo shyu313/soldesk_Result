@@ -70,6 +70,17 @@ public class MainController {
 	public ModelAndView play(MediaDTO mediaDTO) {
 		ModelAndView mav = new ModelAndView();
 		mediaDAO.playcnt(mediaDTO.getLyricsNo()); 														// 재생횟수 증가
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		String userId = "Ciel Lu";
+		int title = mediaDTO.getLyricsNo();
+		String emotion = mediaDTO.getEmotion();
+		logger.debug(title +"///////"+ emotion);
+		
+		hashMap.put("userId", userId);
+		hashMap.put("title", title);
+		hashMap.put("emotion", emotion);
+		mediaDAO.dateinsert(hashMap);
+
 		List<MediaDTO> musicList= mediaDAO.list();														//bubbleChart를 보여주기위해  전체 노래 정보 조회 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
 		List<DictionaryDTO> emotionDICList = dicDAO.selectList("selectList");						// emotionDIC 테이블 감정 단어 정보

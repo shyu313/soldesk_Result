@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import kr.co.dto.DictionaryDTO;
+import kr.co.dto.HistoryDTO;
 import kr.co.dto.MediaDTO;
 import kr.co.media.MediaMapper;
 
@@ -24,6 +25,7 @@ public class MediaDAO extends AbstractDAO{
 			int cnt=mapper.create(dto);
 			return cnt;
 		}
+		
 		
 		// 노래 조회 리스트
 		public List<MediaDTO> list(){
@@ -90,5 +92,9 @@ public class MediaDAO extends AbstractDAO{
 			MediaMapper mapper = sqlSession.getMapper(MediaMapper.class);
 			mapper.playcnt(lyricNo);
 		}
-	
+
+		public void dateinsert(HashMap hashMap){
+			MediaMapper mapper = sqlSession.getMapper(MediaMapper.class);
+			mapper.dateinsert(hashMap);
+		}
 }
