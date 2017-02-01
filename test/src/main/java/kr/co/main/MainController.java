@@ -67,14 +67,15 @@ public class MainController {
 	} // Search() end
 	
 	@RequestMapping(value="/main/searchplay.do", method=RequestMethod.GET)
-	public ModelAndView play(MediaDTO mediaDTO) {
+	public ModelAndView play(MediaDTO paramMediaDTO) {
 		ModelAndView mav = new ModelAndView();
-		mediaDAO.playcnt(mediaDTO.getLyricsNo()); 														// 재생횟수 증가
+		mediaDAO.playcnt(paramMediaDTO.getLyricsNo()); 														// 재생횟수 증가
+		MediaDTO mediaDTO = mediaDAO.read(paramMediaDTO.getLyricsNo());		// 해당 노래 조회
+		mediaDTO.setEmotion(paramMediaDTO.getEmotion());					// 페이지에서 받은 감정 타입까지 저장 
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		String userId = "Ciel Lu";
-		int title = mediaDTO.getLyricsNo();
+		String title = mediaDTO.getTitle();
 		String emotion = mediaDTO.getEmotion();
-		logger.debug(title +"///////"+ emotion);
 		
 		hashMap.put("userId", userId);
 		hashMap.put("title", title);
@@ -156,18 +157,18 @@ public class MainController {
 		/* 찾은 감정타입(searchList)으로 감정별 랜덤 곡 추천 */
 		for(DictionaryDTO dicDTO : searchList ){
 			logger.debug("해당 감정 : "+dicDTO.getEmotion());
-			for(int emotionIndex=0; emotionIndex<emotionTypeArray.length; emotionIndex++){	//emotionTypeArray.length		// 최소 3회~ 최대 7회 이동
+			for(int emotionIndex=0; emotionIndex<emotionTypeArray.length; emotionIndex++){					//emotionTypeArray.length		// 최소 3회~ 최대 7회 이동
 				if(dicDTO.getEmotion().equals(emotionTypeArray[emotionIndex]))								// 사용자가 선택한 감정의 정렬 데이터 접근
-					for(int random:randomNumbers){																// 추천 곡수 만큼 반복
-						MediaDTO dto = mediaDTOeachEmotionType[emotionIndex].get(random);			// 상위에서 랜덤 추천
-						dto.setEmotion(dicDTO.getEmotion());
+					for(int random:randomNumbers){															// 추천 곡수 만큼 반복
+						MediaDTO dto = mediaDTOeachEmotionType[emotionIndex].get(random);					// 상위에서 랜덤 추천
+						dto.setEmotion(dicDTO.getEmotion());												// 미디어dto에 감정 정보 저장
 						recommendList.add(dto);
 					}
 			}
 		}
 		mav.setViewName("main/search");															// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		mav.addObject("jsonEmotion",jsonEmotion);												// for bubbleChart 	
-		mav.addObject("jsonBubbleMenu",jsonBubbleMenu);										// for bubbleMenu
+		mav.addObject("jsonBubbleMenu",jsonBubbleMenu);											// for bubbleMenu
 		mav.addObject("recommendList", recommendList);											// for recommendList 
 		return mav;
 	} // Search() end

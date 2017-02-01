@@ -22,7 +22,7 @@ public interface MediaMapper {
 		public void dateinsert(HashMap hashMap);
 		
 		//<select id="read" parameterType="int" resultType="SentShareDTO">
-		public MediaDTO read(int bbsno);
+		public MediaDTO read(int lyricsNo);
 			
 		//<delete id="delete" parameterType="int" resultType="SentShareDTO">
 		public int delete(MediaDTO dto);
