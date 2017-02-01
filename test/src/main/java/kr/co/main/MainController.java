@@ -71,7 +71,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		mediaDAO.playcnt(paramMediaDTO.getLyricsNo()); 														// 재생횟수 증가
 		MediaDTO mediaDTO = mediaDAO.read(paramMediaDTO.getLyricsNo());		// 해당 노래 조회
-		mediaDTO.setEmotion(paramMediaDTO.getEmotion());					// 페이지에서 받은 감정 타입까지 저장 
+		mediaDTO.setEmotion(paramMediaDTO.getEmotion());						// 페이지에서 받은 감정 타입까지 저장 
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		String userId = "Ciel Lu";
 		String title = mediaDTO.getTitle();

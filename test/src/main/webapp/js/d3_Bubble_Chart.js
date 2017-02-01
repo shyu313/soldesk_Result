@@ -1,7 +1,6 @@
 /**
  * Created by Soldesk on 2017-01-04.
  */
-
 /* BubbleChart Start*/
 $(document).ready(function () {
     var bubbleChart = new d3.svg.BubbleChart({
@@ -20,10 +19,10 @@ $(document).ready(function () {
             items: [
                 {text: "행복", count: point0},
                 {text: "혐오", count: point1},
-                {text: "무서움", count: point2},
+                {text: "공포", count: point2},
                 {text: "흥미", count: point3},
-                {text: "고통", count: point4},
-                {text: "화남", count: point5},
+                {text: "통증", count: point4},
+                {text: "분노", count: point5},
                 {text: "슬픔", count: point6},
             ],
             eval: function (item) {return item.count;},

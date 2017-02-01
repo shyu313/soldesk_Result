@@ -1,6 +1,7 @@
 package kr.co.playlist;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -86,13 +87,17 @@ public class PlaylistController {
 	} // Randomplaylist() end
 	
 	@RequestMapping(value="/playlist/randomplay.do", method=RequestMethod.GET)								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
-	public ModelAndView Randomplay(MediaDTO mediaDTO) {
+	public ModelAndView Randomplay(MediaDTO paramMediaDTO) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("playlist/randomplaylist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
-		System.out.println("asdf");
-		System.out.println(mediaDTO.getLyricsNo());
+		mediaDAO.playcnt(paramMediaDTO.getLyricsNo()); 									// 플레이 횟수 증가 
+		MediaDTO mediaDTO = mediaDAO.read(paramMediaDTO.getLyricsNo());		// 해당 노래 조회
+		mediaDTO.setEmotion(paramMediaDTO.getEmotion());						// 페이지에서 받은 감정 타입까지 저장 
 
-		mediaDAO.playcnt(mediaDTO.getLyricsNo()); 									// 플레이 횟수 증가 
+		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		List<MediaDTO> randomList= mediaDAO.randomList();										//bubbleChart를 보여주기위해  전체 노래 정보 조회 
+		mediaDTO = mediaDAO.read(mediaDTO.getLyricsNo());
+		String url[]=mediaDTO.getUrl().split("=");
 		
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		String userId = "Ciel Lu";
@@ -101,22 +106,11 @@ public class PlaylistController {
 		hashMap.put("userId", userId);
 		hashMap.put("title", title);
 		hashMap.put("emotion", emotion);
-		mediaDAO.dateinsert(hashMap);
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		System.out.println(title);
-		System.out.println(emotion);
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
+		//mediaDAO.dateinsert(hashMap);		// 혁준씨 추가 부분 -> 랜덤플레이 페이지에서 감정 분류 필요
 		
-		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
-		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		mav.setViewName("playlist/randomplaylist");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		mav.addObject("jsonEmotion",jsonEmotion);
-		
-		List<MediaDTO> randomList= mediaDAO.randomList();										//bubbleChart를 보여주기위해  전체 노래 정보 조회 
-		mav.addObject("randomList", randomList);														// Random 리스트 
-		
-		mediaDTO = mediaDAO.read(mediaDTO.getLyricsNo());
-		String url[]=mediaDTO.getUrl().split("=");
+		mav.addObject("randomList", randomList);		// Random 리스트 
 		mav.addObject("videoId", url[1]);
 		mav.addObject("lyrics", mediaDTO.getLyrics());
 		
@@ -126,11 +120,13 @@ public class PlaylistController {
 	@RequestMapping("/playlist/emotion.do")								// .do가 안됬던 이유 : 패키지명 test를 제외한 경로 입력
 	public ModelAndView Emotion() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("playlist/emotion");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		List<MediaDTO> musicList= mediaDAO.list();									//bubbleChart를 보여주기위해  전체 노래 정보 조회 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
+		String emotionTypeArray[] ={"happy","disgust","fear","interest","pain","rage","sad"};
+		ArrayList<ArrayList<MediaDTO>> emotionMusicArrayList = Utility.getEmotionMusicList(musicList);
+		mav.setViewName("playlist/emotion");								// .jsp 는 suffix 에 지정했으므로 제외시켜도 된다.
 		mav.addObject("jsonEmotion",jsonEmotion);
-		
+		//mav.addObject("emotionMusicArrayList",emotionMusicArrayList);
 		return mav;
 	} // Emotion() end
 }

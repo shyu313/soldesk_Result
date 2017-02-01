@@ -85,6 +85,33 @@ public class Utility {
 		//logger.debug(jsonEmotion.toString());
 		return jsonEmotion;
 	}
+	
+	public static ArrayList<ArrayList<MediaDTO>> getEmotionMusicList(List<MediaDTO> musicList  ){				 
+		
+		String emotionTypeArray[] ={"happy","disgust","fear","interest","pain","rage","sad"};
+		ArrayList<ArrayList<MediaDTO>> emotionMusicArrayList = new ArrayList<ArrayList<MediaDTO>>();
+		for(String emotionType:emotionTypeArray){
+			ArrayList<MediaDTO> dtoArrayList  = new ArrayList<MediaDTO>();
+			Iterator<MediaDTO> iterator = musicList.iterator();
+			while(iterator.hasNext()){
+				MediaDTO mediaDTO = iterator.next();
+				if(mediaDTO.getHappy()>15		&& emotionType.equals("happy"))	{mediaDTO.setEmotion(emotionType); dtoArrayList.add(mediaDTO);}		// 0 ±â»Ý
+				if(mediaDTO.getDisgust()>15		&& emotionType.equals("disgust"))	{mediaDTO.setEmotion(emotionType); dtoArrayList.add(mediaDTO);}		// 1 Çø¿À
+				if(mediaDTO.getFear()>15			&& emotionType.equals("fear"))		{mediaDTO.setEmotion(emotionType); dtoArrayList.add(mediaDTO);}		// 2 °øÆ÷
+				if(mediaDTO.getInterest()>15	&& emotionType.equals("interest")){mediaDTO.setEmotion(emotionType); dtoArrayList.add(mediaDTO);}		// 3 Èï¹Ì
+				if(mediaDTO.getPain()>15			&& emotionType.equals("pain"))		{mediaDTO.setEmotion(emotionType); dtoArrayList.add(mediaDTO);}		// 4 ¾ÆÇÄ
+				if(mediaDTO.getRage()>15		&& emotionType.equals("rage"))	{mediaDTO.setEmotion(emotionType); dtoArrayList.add(mediaDTO);}		// 5 ºÐ³ë
+				if(mediaDTO.getSad()>15			&& emotionType.equals("sad"))		{mediaDTO.setEmotion(emotionType); dtoArrayList.add(mediaDTO);}		// 6 ½½ÇÄ
+			}
+			
+			logger.debug("°¨Á¤Å¸ÀÔ : " + emotionType);
+			logger.debug(String.valueOf(dtoArrayList.size()));
+			emotionMusicArrayList.add(dtoArrayList);
+		}
+		return emotionMusicArrayList ;
+	}
+	
+	
 
 	public static JSONObject getHistoryMusic(List<HistoryDTO> musicList  ){				 
 		Iterator<HistoryDTO> iterator = musicList.iterator();
