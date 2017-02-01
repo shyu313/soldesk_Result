@@ -105,11 +105,11 @@
         </div>
 
         <div class="collapse in" id="yourMusic">
-	       <a href="http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://172.16.4.2:9090/test/music/replay.do" class="navigation__list__item">
+	       <a href="http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://172.16.4.1:9090/test/music/replay.do" class="navigation__list__item">
 	            <i class="ion-headphone"></i>
-	            <span>노래 다시듣기</span>
+	            <span>청취 기록</span>
 	        </a>
-	        <a href="http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://172.16.4.2:9090/test/music/emotionlist.do" class="navigation__list__item">
+	        <a href="http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://172.16.4.1:9090/test/music/emotionlist.do" class="navigation__list__item">
 	            <i class="ion-ios-musical-notes"></i>
 	            <span>감정 그래프</span>
 	        </a>
@@ -129,10 +129,10 @@
         <i class="ion-ios-musical-notes"></i>
         <span>Music TOP 10</span>
         </a>
-        <a href="../playlist/emotion.do" class="navigation__list__item">
+        <!-- <a href="../playlist/emotion.do" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
         <span>감성 보기</span>
-        </a>
+        </a> -->
         <a href="../playlist/randomplaylist.do" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
         <span>랜덤 듣기</span>

@@ -9,7 +9,7 @@
 	<center>
 	<table border="1" cellpadding="0" cellspacing="0">
 		<tr>
-			<td id="a1" colspan="5" align="right"><input type="button" value="글쓰기" onclick="location.href='http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://localhost:9090/test/main/create.do'"></td>
+			<td id="a1" colspan="5" align="right"><input type="button" value="글쓰기" onclick="location.href='http://www.facebook.com/dialog/oauth?client_id=662302497285882&redirect_uri=http://172.16.4.1:9090/test/main/create.do'"></td>
 		</tr>
 		<tr>
 			<td id="a2" colspan="5" align="right">전체 글 : ${count }</td>

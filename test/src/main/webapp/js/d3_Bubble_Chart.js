@@ -43,7 +43,6 @@ $(document).ready(function () {
                     },
                     attr: {dy: "65px"},
                     centralClick: function() {
-                        alert("Here is more details!!");
                     }
                 }
             },

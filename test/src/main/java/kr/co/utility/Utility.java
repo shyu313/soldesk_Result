@@ -103,7 +103,6 @@ public class Utility {
 				if(mediaDTO.getRage()>15		&& emotionType.equals("rage"))	{mediaDTO.setEmotion(emotionType); dtoArrayList.add(mediaDTO);}		// 5 분노
 				if(mediaDTO.getSad()>15			&& emotionType.equals("sad"))		{mediaDTO.setEmotion(emotionType); dtoArrayList.add(mediaDTO);}		// 6 슬픔
 			}
-			
 			logger.debug("감정타입 : " + emotionType);
 			logger.debug(String.valueOf(dtoArrayList.size()));
 			emotionMusicArrayList.add(dtoArrayList);
