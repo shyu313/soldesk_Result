@@ -80,7 +80,7 @@ public class MainController {
 		hashMap.put("userId", userId);
 		hashMap.put("title", title);
 		hashMap.put("emotion", emotion);
-		mediaDAO.dateinsert(hashMap);
+		//mediaDAO.dateinsert(hashMap);
 
 		List<MediaDTO> musicList= mediaDAO.list();														//bubbleChart를 보여주기위해  전체 노래 정보 조회 
 		JSONObject jsonEmotion = Utility.getJsonAllEmotionMusic(musicList);	 
