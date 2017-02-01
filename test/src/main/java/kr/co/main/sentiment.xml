@@ -13,26 +13,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 										( select * from bardciel.sentshare order by bbsno desc ) t, 
 										(select @RNUM := 0) R
 						) a 
-		]]> WHERE <![CDATA[a.RNUM >= #{startRow} AND a.RNUM <= #{endRow}]]>
+		]]>  
 		<if test="word != null">
 			<choose>
 				<when test="searchCondition == 0">
-					AND subject LIKE CONCAT('%', #{word}, '%') ORDER BY bbsno DESC
+					WHERE subject LIKE CONCAT('%', #{word}, '%') ORDER BY bbsno DESC 
 				</when>
 				<when test="searchCondition == 1">
-					AND content LIKE CONCAT('%', #{word}, '%') ORDER BY bbsno DESC
+					WHERE content LIKE CONCAT('%', #{word}, '%') ORDER BY bbsno DESC 
 				</when>
 				<when test="searchCondition == 2">
-					AND wname LIKE CONCAT('%', #{word}, '%') ORDER BY bbsno DESC
+					WHERE wname LIKE CONCAT('%', #{word}, '%') ORDER BY bbsno DESC 
 				</when>
 			</choose>
 		</if>
-		
-		<!-- <if test="word == null">
-			<![CDATA[
-				ORDER BY bbsno desc
-			]]>
-		</if> -->
+		LIMIT 10
 	</select>
 	
 	<!-- 감성 공유 작성 쿼리 -->
