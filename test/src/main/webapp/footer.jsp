@@ -36,6 +36,7 @@
     <script src="http://phuonghuynh.github.io/js/bower_components/microplugin/src/microplugin.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
+    <script src="../js/central-click.js"></script>
     <script src="../js/d3_Bubble_Chart.js"></script>
     <script src="../js/d3_Simple_Dashboard.js"></script>
 
