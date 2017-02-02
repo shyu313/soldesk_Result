@@ -1,4 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+
+
+<!-- 프로젝트 실행시 유의해야 할 점 -->
+<!-- 
+1. 이 프로젝트는 Oauth를 사용하기 때문에 developer.facebook에서 oauth를 생성하여 아이디 값을 facebook.js와 인덱스, 헤더에 링크관련되어서
+나와있는 아이디값도 변경해주어야 한다.
+2. csv 파일 생성시 MusicController에서 이 프로젝트가 있는 위치를 지정해 두어야 music 폴더에 data.csv가 생성되며
+생성되었을 경우 프로젝트를 리프레시 해주어야 화면구현이 된다.
+3. 현재 페이스북 아이디를 통해 받아오기 때문에 아이디값을 제대로 저장하지 못하여 History검색에 문제점이 있다.
+String값으로 임의값을 지정해 두었기 때문에 그걸 변경하게 되면 작성이 가능하다.
+ -->
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>

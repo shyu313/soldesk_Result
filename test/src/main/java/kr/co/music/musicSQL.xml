@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 	SELECT emotion, HOUR( TIME ) as time , COUNT(*) AS value
 	FROM bardciel.userhistory
+	WHERE time  >= NOW() -  INTERVAL 1 MONTH
 	GROUP BY emotion , HOUR( TIME ) 
 		]]> 
 		
